@@ -1,0 +1,5 @@
+@import "./variables.scss";
+.pc-root-main-cont{
+    background: $default-pc-hovercolor;
+    height: calc( 100vh - 44px);
+}

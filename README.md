@@ -1,2 +1,2 @@
-# PromoClub-UI
-UI code base of Promo Club
+# PixLet
+This repository will hold all the details of PixLet project
