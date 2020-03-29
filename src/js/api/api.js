@@ -1,8 +1,10 @@
 import axios from "axios";
 
 const API_URL = (isMock, isLocal) => {
-  return !isMock
-    ? "http://localhost:8080"
+  return isLocal
+    ? !isMock
+      ? "http://localhost:8080"
+      : ""
     : "https://promoclub-service.herokuapp.com/";
 };
 
