@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Harry Potter",
+        "details": "A fantasy book about the journey of Harry Potter and his friends.",
+        "rating": "4.5",
+        "store": "amazon.com",
+        "publisher": "Suman",
+        "type": "book"
+    },
+    {
+        "title": "Numb",
+        "details": "Song from Meteora album of Linkin Park",
+        "rating": "4.5",
+        "store": "linkinpark.com",
+        "publisher": "Linkin Park",
+        "type": "song"
+    },
+    {
+        "title": "Harry Potter",
+        "details": "A fantasy book about the journey of Harry Potter and his friends.",
+        "rating": "4.5",
+        "store": "amazon.com",
+        "publisher": "Suman",
+        "type": "book"
+    },
+    {
+        "title": "Harry Potter",
+        "details": "A fantasy book about the journey of Harry Potter and his friends.",
+        "rating": "4.5",
+        "store": "amazon.com",
+        "publisher": "Suman",
+        "type": "book"
+    },
+    {
+        "title": "Harry Potter",
+        "details": "A fantasy book about the journey of Harry Potter and his friends.",
+        "rating": "4.5",
+        "store": "amazon.com",
+        "publisher": "Suman",
+        "type": "book"
+    }
+]
