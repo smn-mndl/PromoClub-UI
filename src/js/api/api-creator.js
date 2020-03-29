@@ -5,7 +5,7 @@ export const getPublishedData = () => {
     method: "GET",
     url: "./mock-data/published-data.json",
     payload: null,
-    isLocal: true,
+    isLocal: false,
     isMock: true
   });
 };
@@ -15,7 +15,7 @@ export const loginUser = payload => {
     method: "POST",
     url: "loginUser",
     payload: payload,
-    isLocal: true,
+    isLocal: false,
     isMock: false
   });
 };

@@ -62,11 +62,13 @@ const Register = () => {
       isLoading: true,
       errorText: ""
     });
-    const res = makeApiCall(
-      "POST",
-      "registerUsers",
-      JSON.stringify(registerData)
-    );
+    const res = makeApiCall({
+      method: "POST",
+      url: "registerUsers",
+      payload: JSON.stringify(registerData),
+      isLocal: false,
+      isMock: false
+    });
     if (!res.data.result.isValid) {
       setErrorInEmail({
         error: true,
