@@ -24,7 +24,19 @@ export const reducer = (state, action) => {
         ...state,
         publishedData: action.payload
       };
-
+    case "SET_SELECTED_LANGUAGE":
+      return {
+        ...state,
+        navigation: {
+          ...state.navigation,
+          slctdLan: action.payload
+        }
+      };
+    case "SET_LANGUAGE_CODES_ACTION":
+      return {
+        ...state,
+        languageCodes: action.payload
+      };
     default:
       return state;
   }

@@ -9,7 +9,7 @@
   padding: 0 1.5em;
   display: flex;
   font-family: "Roboto-Regular";
-  svg{
+  svg {
     margin-left: 10px;
   }
   .sign-in-menu-down {
@@ -48,6 +48,8 @@
   opacity: 1;
   transition: all 0.3s ease-in-out;
   transform: scaleY(1);
+  overflow: auto;
+  height: calc(100vh - 150px);
 }
 .lan-drpdwn-close {
   opacity: 0;
@@ -57,7 +59,7 @@
 .sign-up-hdr-cntct-us {
   margin-left: auto;
 }
-.lan-drpdwn-pgmask{
+.lan-drpdwn-pgmask {
   background: transparent;
   height: 100vh;
   width: 100vw;

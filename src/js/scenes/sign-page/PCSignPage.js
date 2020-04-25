@@ -4,21 +4,85 @@ import LanDrpdwn from "./language/LanDrpdwn";
 import { Store } from "../../store/Store";
 import PCSignUp from "./sign-up/PCSignUp";
 import PCSignIn from "./sign-in/PCSignIn";
+import { googleTranslate } from "../../components/google-translate/GoogleTranslateUtil";
+import {
+  getLanguageCodesAction,
+  setSelectedLanguageAction
+} from "../../actions/ApplevelActions";
+import LOGIN_CONFIG from "./login/login-config";
 
 const PCSignPage = () => {
   const [showLanDrpdwn, setShowLanDrpdwn] = useState(false);
-  const [selectedLan, setSelectedLan] = useState("English(US)");
+  const [loginConfig, setLoginConfig] = useState(LOGIN_CONFIG);
+  const [buttonTxt, setButtonTxt] = useState(["Login", "Register"]);
+  const [txt, setTxt] = useState("Not a member? Please");
 
   const { dispatch, state } = useContext(Store);
   const {
-    navigation: { subPage }
+    navigation: { subPage, slctdLan },
+    languageCodes
   } = state;
   const [selectedSubPage, setSelectedSubPage] = useState(subPage);
 
-  console.log("state in pcsignupapge", state);
+  // console.log("state in pcsignupapge", state);
   useEffect(() => {
     setSelectedSubPage(subPage);
   }, [subPage]);
+  useEffect(() => {
+    // getLanguageCodesAction(dispatch);
+    if (languageCodes.length === 0) {
+      googleTranslate.getSupportedLanguages("en", (err, lanCodes) => {
+        getLanguageCodesAction(dispatch, lanCodes);
+      });
+    }
+  });
+
+  const getTranslation = lan => {
+    const cnfg = JSON.parse(JSON.stringify(loginConfig));
+    return cnfg.map(eachObj => {
+      let trnstltdTxt = "";
+      googleTranslate.translate(
+        eachObj.dispVal,
+        lan.language,
+        (err, translation) => {
+          trnstltdTxt = translation.translatedText;
+          eachObj["dispVal"] = trnstltdTxt;
+        }
+      );
+      return eachObj;
+    });
+  };
+
+  const getBtnTxts = (lan, getBtnTxts) => {
+    let arr = [];
+    getBtnTxts.forEach(each => {
+      googleTranslate.translate(each, lan.language, (err, translation) => {
+        arr.push(translation.translatedText);
+        console.log(translation);
+      });
+    });
+    return arr;
+  };
+
+  const getTxt = (lan, txt) => {
+    let tempTxt = "";
+    googleTranslate.translate(txt, lan.language, (err, translation) => {
+      tempTxt = translation.translatedText;
+      setTxt(tempTxt);
+    });
+    return tempTxt;
+  };
+
+  const lanChangeHandler = async lan => {
+    const reponse = await getTranslation(lan);
+    const btnTxts = await getBtnTxts(lan, buttonTxt);
+    const tempTxt = await getTxt(lan, txt);
+    console.log("tempTxt", tempTxt);
+    setLoginConfig(reponse);
+    setButtonTxt(btnTxts);
+    setSelectedLanguageAction(dispatch, lan);
+  };
+
   return (
     <>
       <div className="sign-up-page">
@@ -27,7 +91,7 @@ const PCSignPage = () => {
             className="lan-label"
             onClick={() => setShowLanDrpdwn(!showLanDrpdwn)}
           >
-            {selectedLan}
+            {slctdLan.name}
             <svg
               viewBox="64 64 896 896"
               focusable="false"
@@ -58,14 +122,19 @@ const PCSignPage = () => {
             }
           >
             <LanDrpdwn
-              selectedLan={selectedLan}
-              setSelectedLan={setSelectedLan}
+              selectedLan={slctdLan}
+              setSelectedLan={lanChangeHandler}
+              languageCodes={languageCodes}
             />
           </div>
           <div className="sign-up-hdr-cntct-us">Contact Us 24/7</div>
         </div>
       </div>
-      {selectedSubPage === "SignIn" ? <PCSignIn /> : <PCSignUp />}
+      {selectedSubPage === "SignIn" ? (
+        <PCSignIn loginConfig={loginConfig} buttonTxt={buttonTxt} txt={txt} />
+      ) : (
+        <PCSignUp />
+      )}
     </>
   );
 };

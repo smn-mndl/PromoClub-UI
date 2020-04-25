@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RegisterRadio from "./RegisterRadio";
+const apiKey = process.env.REACT_APP_GOOGLE_TRANSLATE_API_KEY;
 
 const RegisterInput = ({ rowDtls, registerData, setRegisterData }) => {
   const radioBtns = rowDtls => {

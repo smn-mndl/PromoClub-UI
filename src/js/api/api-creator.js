@@ -5,8 +5,17 @@ export const getPublishedData = () => {
     method: "GET",
     url: "./mock-data/published-data.json",
     payload: null,
-    isLocal: false,
+    isLocal: true,
     isMock: true
+  });
+};
+export const registerUsers = payload => {
+  return makeApiCall({
+    method: "POST",
+    url: "registerUsers",
+    payload: payload,
+    isLocal: true,
+    isMock: false
   });
 };
 
@@ -19,3 +28,15 @@ export const loginUser = payload => {
     isMock: false
   });
 };
+
+export const getLanguages = payload => {
+  return makeApiCall({
+    method: "GET",
+    url: "loginUser",
+    payload: payload,
+    isLocal: false,
+    isMock: false
+  });
+};
+
+export const getTranslation = payload => {};

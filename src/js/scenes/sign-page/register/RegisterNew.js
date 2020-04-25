@@ -56,19 +56,20 @@ const Register = () => {
       return registerInptRow(each);
     });
   };
-  const onSubmit = () => {
+  const onSubmit = async () => {
     setErrorInEmail({
       error: false,
       isLoading: true,
       errorText: ""
     });
-    const res = makeApiCall({
+    const res = await makeApiCall({
       method: "POST",
       url: "registerUsers",
       payload: JSON.stringify(registerData),
-      isLocal: false,
+      isLocal: true,
       isMock: false
     });
+    debugger;
     if (!res.data.result.isValid) {
       setErrorInEmail({
         error: true,

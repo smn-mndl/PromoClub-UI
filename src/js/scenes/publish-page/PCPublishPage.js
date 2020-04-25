@@ -1,10 +1,13 @@
 import React from "react";
 import "./PCPublishPage.scss";
+import PublishPageHome from "../../components/publish-page/PublishPageHome";
 
 const PCPublishPage = () => {
   return (
     <>
-      <div>Publish Page</div>
+      <div className="publish-cont">
+        <PublishPageHome />
+      </div>
     </>
   );
 };

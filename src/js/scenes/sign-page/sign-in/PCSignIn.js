@@ -2,10 +2,14 @@ import React from "react";
 import "./PCSignIn.scss";
 import Login from "../login/Login";
 
-const PCSignIn = () => {
+const PCSignIn = props => {
   return (
     <>
-      <Login />
+      <Login
+        loginConfig={props.loginConfig}
+        buttonTxt={props.buttonTxt}
+        txt={props.txt}
+      />
     </>
   );
 };

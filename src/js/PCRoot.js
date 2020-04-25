@@ -41,7 +41,7 @@ const PromoClubRoot = props => {
             <AppHeader />
           </header>
         ) : null}
-        <main className="pc-root-main-cont">
+        <main className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}>
           {getLazyComponent(currentPage)}
         </main>
       </Suspense>

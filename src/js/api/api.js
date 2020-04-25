@@ -5,7 +5,7 @@ const API_URL = (isMock, isLocal) => {
     ? !isMock
       ? "http://localhost:8080"
       : ""
-    : "https://promoclub-service.herokuapp.com/";
+    : "https://promoclub-service.herokuapp.com";
 };
 
 const createStaticHeader = () => {

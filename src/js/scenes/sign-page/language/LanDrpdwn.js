@@ -15,18 +15,20 @@ const getUlNo = windowWidth => {
   }
   return ulNo;
 };
-const LanDrpdwn = ({ selectedLan, setSelectedLan }) => {
+const LanDrpdwn = ({ selectedLan, setSelectedLan, languageCodes }) => {
   const [ulNo, setUlNo] = useState(getUlNo(window.innerWidth));
-
+  const Languages = languageCodes;
   const createDrpdwnLi = elem => {
     return (
       <li
         className={
-          selectedLan === elem ? "each-lan each-lan-selected" : "each-lan"
+          selectedLan.language === elem.language
+            ? "each-lan each-lan-selected"
+            : "each-lan"
         }
         onClick={() => setSelectedLan(elem)}
       >
-        {elem}
+        {elem.name}
       </li>
     );
   };
@@ -45,7 +47,7 @@ const LanDrpdwn = ({ selectedLan, setSelectedLan }) => {
     const drpdwnHTMLArr = [];
     for (let i = 1; i <= ulNo; i++) {
       const liElemArr = [];
-      Languages.map((each, index) => {
+      Languages.forEach((each, index) => {
         let liElem = func(ulNo, i, each, index);
         liElem && liElemArr.push(liElem);
       });
