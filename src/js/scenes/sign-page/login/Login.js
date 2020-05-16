@@ -34,7 +34,7 @@ const Login = props => {
   const onSubmit = () => {
     userLoginAction(dispatch, JSON.stringify(loginData));
     //   userLoginStatusAction(dispatch, true);
-    //   goToPagesAction(dispatch, "LandingPage", "");
+    goToPagesAction(dispatch, "LandingPage", "");
   };
   return (
     <>

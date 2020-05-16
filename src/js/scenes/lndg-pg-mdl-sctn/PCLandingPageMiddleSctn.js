@@ -10,9 +10,9 @@ const LandingPageMiddleSctn = () => {
     dispatch
   } = useContext(Store);
 
-  useEffect(() => {
-    getPublisedDataAction(dispatch);
-  }, []);
+  // useEffect(() => {
+  //   getPublisedDataAction(dispatch);
+  // }, []);
   const getTiles = () => {
     return publishedData.map(each => {
       return (

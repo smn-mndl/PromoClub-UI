@@ -3,10 +3,10 @@ import makeApiCall from "./api";
 export const getPublishedData = () => {
   return makeApiCall({
     method: "GET",
-    url: "./mock-data/published-data.json",
+    url: "getAllPublishedData",
     payload: null,
     isLocal: true,
-    isMock: true
+    isMock: false
   });
 };
 export const registerUsers = payload => {
@@ -40,3 +40,23 @@ export const getLanguages = payload => {
 };
 
 export const getTranslation = payload => {};
+
+export const uploadFile = payload => {
+  return makeApiCall({
+    method: "POST",
+    url: "uploadFile",
+    payload: payload,
+    isLocal: true,
+    isMock: false
+  });
+};
+
+export const savePublishData = payload => {
+  return makeApiCall({
+    method: "POST",
+    url: "publishData",
+    payload: payload,
+    isLocal: true,
+    isMock: false
+  });
+};

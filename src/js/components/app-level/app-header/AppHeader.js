@@ -9,7 +9,13 @@ const LazySignInCont = lazy(() => import("./SignInCont"));
 const LAzyUserDetails = lazy(() => import("../user-details/UserDetails"));
 
 const AppHeader = () => {
-  const { dispatch, state } = useContext(Store);
+  const {
+    dispatch,
+    state,
+    state: {
+      navigation: { currentPage }
+    }
+  } = useContext(Store);
   const { isLoggedIn } = state;
   const [showDrpdwnOpt, setShowDrpdwnOpt] = useState(false);
 
@@ -20,13 +26,22 @@ const AppHeader = () => {
     <>
       <section className="pc-app-header-cont">
         <header className="pc-hdr">
-          <a href="#">ABC</a>
+          <a
+            href="#"
+            onClick={() => goToPagesAction(dispatch, "LandingPage", "")}
+          >
+            PromoClub
+          </a>
           <div className="pc-hdr-menu">
             <div>
               <Search />
             </div>
             <div
-              className="publish-btn"
+              className={
+                currentPage === "PublishPage"
+                  ? "publish-btn slcted-pagetab"
+                  : "publish-btn"
+              }
               onClick={() => publishBtnClickHandler()}
             >
               Publish
