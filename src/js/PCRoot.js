@@ -4,6 +4,7 @@ import Fallback from "./components/common/fallback/Fallback";
 import LoadingPage from "./components/common/loading-page/LoadingPage";
 import AppHeader from "./components/app-level/app-header/AppHeader";
 import "../styles/common.scss";
+import PageToast from "./components/common/page-toast/PageToast";
 const LazyLandingPage = lazy(() =>
   import("./scenes/landing-page/PCLandingPage")
 );
@@ -28,13 +29,20 @@ const PromoClubRoot = props => {
   const {
     state,
     state: {
-      navigation: { currentPage }
+      navigation: { currentPage },
+      pageToast
     },
     dispatch
   } = useContext(Store);
   console.log("state", state);
   return (
     <>
+      {pageToast.show && (
+        <PageToast
+          toastType={pageToast.toastType}
+          toastMsg={pageToast.toastMsg}
+        />
+      )}
       <Suspense fallback={<LoadingPage text="Loading..." />}>
         {currentPage !== "SignPage" ? (
           <header>

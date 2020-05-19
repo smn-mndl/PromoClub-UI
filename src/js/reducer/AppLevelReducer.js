@@ -1,6 +1,8 @@
+import { miscReducer } from "./MiscReducer";
+
 export const reducer = (state, action) => {
-  switch (action.type) {
-    case "SIGNIN_BTN_CLICK_ACTION":
+  switch (true) {
+    case action.type === "SIGNIN_BTN_CLICK_ACTION":
       return {
         ...state,
         navigation: {
@@ -9,22 +11,22 @@ export const reducer = (state, action) => {
           subPage: action.payload.subPage
         }
       };
-    case "SET_USER_DETAILS_ACTION":
+    case action.type === "SET_USER_DETAILS_ACTION":
       return {
         ...state,
         userDetails: action.payload
       };
-    case "SET_USER_LOGIN_STATUS_ACTION":
+    case action.type === "SET_USER_LOGIN_STATUS_ACTION":
       return {
         ...state,
         isLoggedIn: action.payload
       };
-    case "PUBLISHED_DATA_ACTION":
+    case action.type === "PUBLISHED_DATA_ACTION":
       return {
         ...state,
         publishedData: action.payload
       };
-    case "SET_SELECTED_LANGUAGE":
+    case action.type === "SET_SELECTED_LANGUAGE":
       return {
         ...state,
         navigation: {
@@ -32,11 +34,13 @@ export const reducer = (state, action) => {
           slctdLan: action.payload
         }
       };
-    case "SET_LANGUAGE_CODES_ACTION":
+    case action.type === "SET_LANGUAGE_CODES_ACTION":
       return {
         ...state,
         languageCodes: action.payload
       };
+    case action.type.includes("MISC"):
+      return miscReducer(state, action);
     default:
       return state;
   }

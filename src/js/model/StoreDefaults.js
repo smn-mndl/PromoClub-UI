@@ -1,5 +1,10 @@
 export const STORE_DEFAULTS = {
   pageMask: false,
+  pageToast: {
+    show: false,
+    toastType: null,
+    toastMsg: null
+  },
   navigation: {
     currentPage: "LandingPage",
     subPage: null,

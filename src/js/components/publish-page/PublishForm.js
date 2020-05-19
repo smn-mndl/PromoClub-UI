@@ -11,20 +11,20 @@ const PublishForm = () => {
   const {
     dispatch,
     state: {
-      userDetails: { userDetails }
-    }
+      userDetails: { userDetails },
+    },
   } = useContext(Store);
   const [image, setImage] = useState({ preview: "", raw: "" });
   const [uploadPercentage, setUploadPercentage] = useState(0);
   const [showProgressbar, setShowProgressBar] = useState(false);
   const [formData, setFormData] = useState({});
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     if (e.target.files[0]) {
-      console.log("targeet", e.target.files[0])
+      console.log("targeet", e.target.files[0]);
       setImage({
         preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0]
+        raw: e.target.files[0],
       });
       setUploadPercentage(0);
     }
@@ -35,7 +35,7 @@ const PublishForm = () => {
     return {
       title: data["pblsh-title"],
       desc: `${data["pblsh-details"]} ${data["pblsh-details-2"]}`,
-      link: data["pblsh-link"]
+      link: data["pblsh-link"],
     };
   };
 
@@ -43,8 +43,8 @@ const PublishForm = () => {
     const uploadTask = storage.ref(`images/${image.raw.name}`).put(image.raw);
     uploadTask.on(
       "state_changed",
-      snapshot => {},
-      error => {
+      (snapshot) => {},
+      (error) => {
         console.log(error);
       },
       () => {
@@ -52,7 +52,7 @@ const PublishForm = () => {
           .ref("images")
           .child(image.raw.name)
           .getDownloadURL()
-          .then(url => {
+          .then((url) => {
             console.log(url);
           });
       }
@@ -74,18 +74,18 @@ const PublishForm = () => {
       const config = { headers: { "content-type": "multipart/form-data" } };
 
       const options = {
-        onUploadProgress: ProgressEvent => {
+        onUploadProgress: (ProgressEvent) => {
           const { loaded, total } = ProgressEvent;
           let percent = Math.floor((loaded * 100) / total);
           if (percent < 100) {
             setUploadPercentage(percent);
           }
-        }
+        },
       };
       setShowProgressBar(true);
       axios
         .post("http://localhost:8080/uploadFile", data, options, config)
-        .then(res => {
+        .then((res) => {
           setUploadPercentage(100);
         });
     }

@@ -16,6 +16,7 @@ const Login = props => {
     navigation: { subPage }
   } = state;
   const [loginData, setLoginData] = useState({});
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const loginInptRow = rowDtls => {
     return (
@@ -32,17 +33,25 @@ const Login = props => {
     });
   };
   const onSubmit = () => {
-    userLoginAction(dispatch, JSON.stringify(loginData));
-    //   userLoginStatusAction(dispatch, true);
-    goToPagesAction(dispatch, "LandingPage", "");
+    setIsLoggingIn(true);
+    userLoginAction(dispatch, JSON.stringify(loginData), setIsLoggingIn);
   };
+  const arrow = `<`;
   return (
     <>
+      <div
+        className="back-to-home"
+        onClick={() => goToPagesAction(dispatch, "LandingPage", "")}
+      >
+        <span>{arrow}</span>
+        <span>Back to home</span>
+      </div>
       <div className="login-cont">
         <div className="login-inpt-cont">{loginInptFlds()}</div>
         <div className="login-btn-cont">
           <div className="login-link" onClick={() => onSubmit()}>
-            {props.buttonTxt[0]}
+            {props.buttonTxt[0]}{" "}
+            {isLoggingIn ? <div class="loader"></div> : null}
           </div>
           <div className="register-link-cont">
             {props.txt}{" "}

@@ -3,7 +3,10 @@ import "./Register.scss";
 import REGISTER_CONFIG from "./register-config";
 import RegisterInput from "./RegisterInput";
 import Axios from "axios";
-import { signInBtnClickHandler } from "../../../actions/ApplevelActions";
+import {
+  signInBtnClickHandler,
+  goToPagesAction
+} from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
 import makeApiCall from "../../../api/api";
 
@@ -87,43 +90,53 @@ const Register = () => {
   };
   const ifInptFldValid = checkIfInptFldValid(registerData);
   console.log("errorInEmail", errorInEmail, registerData);
+  const arrow = `<`;
   return (
-    <div className="register-cont">
-      <div className="register-inpt-cont">{registerInptFlds()}</div>
-      {errorInEmail.error ? (
-        <div className="email-error-txt">
-          <span className="email-error-asterisk">* </span>This email is already
-          registered. Please try with different email id.
-        </div>
-      ) : null}
-      <div className="register-btn-cont">
-        <div
-          className={
-            ifInptFldValid
-              ? errorInEmail.isLoading
-                ? "register-link register-link--isloading"
-                : "register-link"
-              : "register-link register-link-disabled"
-          }
-          onClick={() => (ifInptFldValid ? onSubmit() : null)}
-        >
-          Register
-          {errorInEmail.isLoading ? <div class="loader"></div> : null}
-          {/* <div class="loader"></div> */}
-        </div>
-        <div className="login-link-cont">
-          Already a member? Please{" "}
-          <span
-            className="login-link"
-            onClick={() =>
-              signInBtnClickHandler(dispatch, "SignPage", "SignIn")
+    <>
+      <div
+        className="back-to-home"
+        onClick={() => goToPagesAction(dispatch, "LandingPage", "")}
+      >
+        <span>{arrow}</span>
+        <span>Back to home</span>
+      </div>
+      <div className="register-cont">
+        <div className="register-inpt-cont">{registerInptFlds()}</div>
+        {errorInEmail.error ? (
+          <div className="email-error-txt">
+            <span className="email-error-asterisk">* </span>This email is
+            already registered. Please try with different email id.
+          </div>
+        ) : null}
+        <div className="register-btn-cont">
+          <div
+            className={
+              ifInptFldValid
+                ? errorInEmail.isLoading
+                  ? "register-link register-link--isloading"
+                  : "register-link"
+                : "register-link register-link-disabled"
             }
+            onClick={() => (ifInptFldValid ? onSubmit() : null)}
           >
-            Login
-          </span>
+            Register
+            {errorInEmail.isLoading ? <div class="loader"></div> : null}
+            {/* <div class="loader"></div> */}
+          </div>
+          <div className="login-link-cont">
+            Already a member? Please{" "}
+            <span
+              className="login-link"
+              onClick={() =>
+                signInBtnClickHandler(dispatch, "SignPage", "SignIn")
+              }
+            >
+              Login
+            </span>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

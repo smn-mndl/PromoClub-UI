@@ -29,3 +29,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: "icomoon";
+  src: url("./styles/fonts/toast-icons/icomoon.eot?efpnvx");
+  src: url("./styles/fonts/toast-icons/icomoon.eot?efpnvx#iefix")
+      format("embedded-opentype"),
+    url("./styles/fonts/toast-icons/icomoon.ttf?efpnvx") format("truetype"),
+    url("./styles/fonts/toast-icons/icomoon.woff?efpnvx") format("woff"),
+    url("./styles/fonts/toast-icons/icomoon.svg?efpnvx#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cancel:before {
+  content: "\e900";
+}
+.icon-check_circle_outline:before {
+  content: "\e901";
+}
+.icon-error_outline:before {
+  content: "\e902";
+}

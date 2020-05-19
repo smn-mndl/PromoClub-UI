@@ -30,7 +30,7 @@ const AppHeader = () => {
             href="#"
             onClick={() => goToPagesAction(dispatch, "LandingPage", "")}
           >
-            PromoClub
+            YourClub
           </a>
           <div className="pc-hdr-menu">
             <div>
