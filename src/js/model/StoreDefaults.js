@@ -3,19 +3,21 @@ export const STORE_DEFAULTS = {
   pageToast: {
     show: false,
     toastType: null,
-    toastMsg: null
+    toastMsg: null,
   },
   navigation: {
     currentPage: "LandingPage",
     subPage: null,
     slctdLan: {
       language: "en",
-      name: "English"
-    }
+      name: "English",
+    },
   },
   languageCodes: [],
   ind: false,
   userDetails: {},
   isLoggedIn: false,
-  publishedData: []
+  publishedData: [],
+  isPublishDataLoading: false,
+  publishedDataCount: null,
 };

@@ -4,6 +4,7 @@ import Search from "../search/Search";
 import { Store } from "../../../store/Store";
 import { goToPagesAction } from "../../../actions/ApplevelActions";
 import { getPublisedDataAction } from "../../../actions/LandingPageActions";
+import { Tooltip } from "antd";
 
 const LazySignInCont = lazy(() => import("./SignInCont"));
 const LAzyUserDetails = lazy(() => import("../user-details/UserDetails"));
@@ -13,8 +14,8 @@ const AppHeader = () => {
     dispatch,
     state,
     state: {
-      navigation: { currentPage }
-    }
+      navigation: { currentPage },
+    },
   } = useContext(Store);
   const { isLoggedIn } = state;
   const [showDrpdwnOpt, setShowDrpdwnOpt] = useState(false);
@@ -36,16 +37,24 @@ const AppHeader = () => {
             <div>
               <Search />
             </div>
-            <div
-              className={
-                currentPage === "PublishPage"
-                  ? "publish-btn slcted-pagetab"
-                  : "publish-btn"
-              }
-              onClick={() => publishBtnClickHandler()}
+            <Tooltip
+              placement="bottom"
+              title={isLoggedIn ? "" : "Please login to publish"}
             >
-              Publish
-            </div>
+              <div
+                className={
+                  isLoggedIn
+                    ? currentPage === "PublishPage"
+                      ? "publish-btn slcted-pagetab"
+                      : "publish-btn"
+                    : "publish-btn-disabled"
+                }
+                onClick={() => (isLoggedIn ? publishBtnClickHandler() : null)}
+              >
+                Publish
+              </div>
+            </Tooltip>
+
             <div
               className="sign-in-opt"
               onClick={() => setShowDrpdwnOpt(!showDrpdwnOpt)}

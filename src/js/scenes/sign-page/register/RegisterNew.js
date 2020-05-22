@@ -5,20 +5,20 @@ import RegisterInput from "./RegisterInput";
 import Axios from "axios";
 import {
   signInBtnClickHandler,
-  goToPagesAction
+  goToPagesAction,
 } from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
 import makeApiCall from "../../../api/api";
 
-const checkIfNonEmptyInptFld = registerData => {
+const checkIfNonEmptyInptFld = (registerData) => {
   const keys = Object.keys(registerData);
   return keys.length === 6 &&
-    keys.filter(each => registerData[each].length === 0).length === 0
+    keys.filter((each) => registerData[each].length === 0).length === 0
     ? true
     : false;
 };
 
-const checkIfPassMatch = registerData => {
+const checkIfPassMatch = (registerData) => {
   return registerData["firstpassword"] &&
     registerData["firstpassword"].length > 3 &&
     registerData["firstpassword"] === registerData["confirmpassword"]
@@ -26,7 +26,7 @@ const checkIfPassMatch = registerData => {
     : false;
 };
 
-const checkIfInptFldValid = registerData => {
+const checkIfInptFldValid = (registerData) => {
   const iIfEmptyInptFld = checkIfNonEmptyInptFld(registerData),
     ifPassMatch = checkIfPassMatch(registerData);
   return iIfEmptyInptFld && ifPassMatch ? true : false;
@@ -35,17 +35,17 @@ const checkIfInptFldValid = registerData => {
 const Register = () => {
   const { dispatch, state } = useContext(Store);
   const {
-    navigation: { subPage }
+    navigation: { subPage },
   } = state;
   const [registerData, setRegisterData] = useState({});
   const [errorInEmail, setErrorInEmail] = useState({
     error: false,
     isLoading: false,
     errorText: "",
-    successText: ""
+    successText: "",
   });
 
-  const registerInptRow = rowDtls => {
+  const registerInptRow = (rowDtls) => {
     return (
       <RegisterInput
         rowDtls={rowDtls}
@@ -55,7 +55,7 @@ const Register = () => {
     );
   };
   const registerInptFlds = () => {
-    return REGISTER_CONFIG.map(each => {
+    return REGISTER_CONFIG.map((each) => {
       return registerInptRow(each);
     });
   };
@@ -63,27 +63,26 @@ const Register = () => {
     setErrorInEmail({
       error: false,
       isLoading: true,
-      errorText: ""
+      errorText: "",
     });
     const res = await makeApiCall({
       method: "POST",
       url: "registerUsers",
       payload: JSON.stringify(registerData),
       isLocal: true,
-      isMock: false
+      isMock: false,
     });
-    debugger;
     if (!res.data.result.isValid) {
       setErrorInEmail({
         error: true,
         isLoading: false,
-        errorText: res.data.result.errorText
+        errorText: res.data.result.errorText,
       });
     } else {
       setErrorInEmail({
         error: false,
         isLoading: false,
-        errorText: ""
+        errorText: "",
       });
       setRegisterData({});
     }

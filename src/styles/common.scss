@@ -1,8 +1,13 @@
 @import "./variables.scss";
-.pc-root-main-cont{
-    background: $default-pc-hovercolor;
-    height: calc( 100vh - 44px);
+.pc-root-main-cont {
+  font-family: $app-font-regular;
+  background: $default-pc-hovercolor;
+  height: calc(100vh - 44px);
 }
-.pc-root-main-cont-SignPage{
-    height: 100vh;
+.pc-root-main-cont-SignPage {
+  height: 100vh;
+}
+.pc-root-main-cont-LandingPage {
+  overflow-y: auto;
+  overflow-x: hidden;
 }

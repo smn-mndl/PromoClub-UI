@@ -5,7 +5,7 @@ import axios from "axios";
 import PublishImageUpload from "./publish-image-upload/PublishImageUpload";
 import PublishFormElem from "./publish-form-elem/PublishFormElem";
 import { savePublishDataAction } from "../../actions/PublishPageActions";
-import { storage } from "../../api/firebase";
+import Resizer from "react-image-file-resizer";
 
 const PublishForm = () => {
   const {
@@ -22,6 +22,19 @@ const PublishForm = () => {
   const handleChange = (e) => {
     if (e.target.files[0]) {
       console.log("targeet", e.target.files[0]);
+      Resizer.imageFileResizer(
+        e.target.files[0],
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
+        (uri) => {
+          console.log(uri);
+        },
+        "JPEG"
+      );
+      console.log("JPEG", e.target.files[0]);
       setImage({
         preview: URL.createObjectURL(e.target.files[0]),
         raw: e.target.files[0],
@@ -39,38 +52,20 @@ const PublishForm = () => {
     };
   };
 
-  const handleUpload2 = () => {
-    const uploadTask = storage.ref(`images/${image.raw.name}`).put(image.raw);
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {},
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref("images")
-          .child(image.raw.name)
-          .getDownloadURL()
-          .then((url) => {
-            console.log(url);
-          });
-      }
-    );
-  };
-
   const handleUpload = async () => {
     // e.preventDefault();
     if (image.raw) {
       const pblshdData = getPublishedData();
       const data = new FormData();
-      data.append("file", image.raw);
-      data.append("filename", image.raw.name);
+      data.append("profileImage", image.raw);
+      // data.append("filename", image.raw.name);
       data.append(
         "email",
         userDetails ? userDetails.email : "smn.mndl1241@gmail.com"
       );
-      data.append("publishedData", pblshdData);
+      Object.keys(pblshdData).forEach((each) => {
+        data.append(each, pblshdData[each]);
+      });
       const config = { headers: { "content-type": "multipart/form-data" } };
 
       const options = {
@@ -84,7 +79,7 @@ const PublishForm = () => {
       };
       setShowProgressBar(true);
       axios
-        .post("http://localhost:8080/uploadFile", data, options, config)
+        .post("http://localhost:8080/publishData", data, options, config)
         .then((res) => {
           setUploadPercentage(100);
         });

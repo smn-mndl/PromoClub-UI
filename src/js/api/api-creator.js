@@ -6,57 +6,66 @@ export const getPublishedData = () => {
     url: "getAllPublishedData",
     payload: null,
     isLocal: true,
-    isMock: false
+    isMock: false,
   });
 };
-export const registerUsers = payload => {
+export const getPublishedDataLength = () => {
+  return makeApiCall({
+    method: "GET",
+    url: "getPublishedDataLength",
+    payload: null,
+    isLocal: true,
+    isMock: false,
+  });
+};
+export const registerUsers = (payload) => {
   return makeApiCall({
     method: "POST",
     url: "registerUsers",
     payload: payload,
     isLocal: true,
-    isMock: false
+    isMock: false,
   });
 };
 
-export const loginUser = payload => {
+export const loginUser = (payload) => {
   return makeApiCall({
     method: "POST",
     url: "loginUser",
     payload: payload,
     isLocal: false,
-    isMock: false
+    isMock: false,
   });
 };
 
-export const getLanguages = payload => {
+export const getLanguages = (payload) => {
   return makeApiCall({
     method: "GET",
     url: "loginUser",
     payload: payload,
     isLocal: false,
-    isMock: false
+    isMock: false,
   });
 };
 
-export const getTranslation = payload => {};
+export const getTranslation = (payload) => {};
 
-export const uploadFile = payload => {
+export const uploadFile = (payload) => {
   return makeApiCall({
     method: "POST",
     url: "uploadFile",
     payload: payload,
     isLocal: true,
-    isMock: false
+    isMock: false,
   });
 };
 
-export const savePublishData = payload => {
+export const savePublishData = (payload) => {
   return makeApiCall({
     method: "POST",
     url: "publishData",
     payload: payload,
     isLocal: true,
-    isMock: false
+    isMock: false,
   });
 };

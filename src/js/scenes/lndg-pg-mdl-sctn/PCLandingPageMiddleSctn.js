@@ -1,20 +1,37 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./PCLandingPageMiddleSctn.scss";
 import { Store } from "../../store/Store";
-import { getPublisedDataAction } from "../../actions/LandingPageActions";
+import {
+  getPublisedDataAction,
+  publishedDataLoadingAction,
+  getPublishedDataLengthAction,
+} from "../../actions/LandingPageActions";
 import PublishedDataTile from "../../components/published-data-tile/PublishedDataTile";
+import { Skeleton, Switch, Card, Avatar } from "antd";
+import {
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
+
+const { Meta } = Card;
 
 const LandingPageMiddleSctn = () => {
   const {
-    state: { publishedData },
-    dispatch
+    state: { publishedData, isPublishDataLoading, publishedDataCount },
+    dispatch,
   } = useContext(Store);
 
-  // useEffect(() => {
-  //   getPublisedDataAction(dispatch);
-  // }, []);
+  useEffect(() => {
+    getPublishedDataLengthAction(dispatch);
+  }, []);
+
+  useEffect(() => {
+    getPublisedDataAction(dispatch);
+  }, []);
+
   const getTiles = () => {
-    return publishedData.map(each => {
+    return publishedData.map((each) => {
       return (
         <div>
           <PublishedDataTile tileData={each} />
@@ -22,9 +39,34 @@ const LandingPageMiddleSctn = () => {
       );
     });
   };
+  const skeleton = () => {
+    let skeletonHTML = [];
+    for (let i = 0; i < publishedDataCount; i++) {
+      skeletonHTML.push(
+        <div className="published-data-tile-cont">
+          <Skeleton loading={true} avatar active>
+            <Meta
+              avatar={
+                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              }
+              title="Card title"
+              description="This is the description"
+            />
+          </Skeleton>
+        </div>
+      );
+    }
+    return skeletonHTML;
+  };
+  const getDOMElem = () => {
+    let domHTML = [];
+    return publishedDataCount && publishedData.length !== 0
+      ? getTiles()
+      : skeleton();
+  };
   return (
     <>
-      <div>{getTiles}</div>
+      <div>{getDOMElem()}</div>
     </>
   );
 };

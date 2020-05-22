@@ -101,6 +101,10 @@
     background: $default-pc-hovercolor;
   }
 }
+.publish-btn-disabled {
+  padding: 0 0.5em;
+  cursor: not-allowed;
+}
 .slcted-pagetab {
   background: $default-pc-hovercolor;
 }
