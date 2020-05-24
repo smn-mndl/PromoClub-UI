@@ -12,8 +12,12 @@ const LazySignPage = lazy(() => import("./scenes/sign-page/PCSignPage"));
 const LazyPublishPage = lazy(() =>
   import("./scenes/publish-page/PCPublishPage")
 );
+const LazyUserProfilePage = lazy(() =>
+  import("./scenes/user-profile/UserProfile")
+);
+const LazyUserInboxPage = lazy(() => import("./scenes/user-inbox/UserInbox"));
 
-const getLazyComponent = slctdPage => {
+const getLazyComponent = (slctdPage) => {
   switch (slctdPage) {
     case "LandingPage":
       return <LazyLandingPage />;
@@ -21,18 +25,22 @@ const getLazyComponent = slctdPage => {
       return <LazyPublishPage />;
     case "SignPage":
       return <LazySignPage />;
+    case "UserProfilePage":
+      return <LazyUserProfilePage />;
+    case "UserInboxPage":
+      return <LazyUserInboxPage />;
     default:
       return <Fallback>404</Fallback>;
   }
 };
-const PromoClubRoot = props => {
+const PromoClubRoot = (props) => {
   const {
     state,
     state: {
       navigation: { currentPage },
-      pageToast
+      pageToast,
     },
-    dispatch
+    dispatch,
   } = useContext(Store);
   console.log("state", state);
   return (

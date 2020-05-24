@@ -31,7 +31,8 @@ const LandingPageMiddleSctn = () => {
   }, []);
 
   const getTiles = () => {
-    return publishedData.map((each) => {
+    const clonedData = JSON.parse(JSON.stringify(publishedData));
+    return clonedData.reverse().map((each) => {
       return (
         <div>
           <PublishedDataTile tileData={each} />

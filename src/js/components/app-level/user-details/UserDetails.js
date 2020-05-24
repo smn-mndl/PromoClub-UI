@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./UserDetails.scss";
+import { goToPagesAction } from "../../../actions/ApplevelActions";
+import { Store } from "../../../store/Store";
 
 const config = ["Profile", "Inbox", "Notifications", "Settings", "Log Out"];
 
 const UserDetails = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch }) => {
   const createUserDtlsList = () => {
-    return config.map(each => {
-      return <div className="user-dtls-list-item">{each}</div>;
+    return config.map((each) => {
+      return (
+        <div
+          className="user-dtls-list-item"
+          onClick={() => {
+            if (each === "Profile") {
+              goToPagesAction(dispatch, "UserProfilePage", "");
+            } else if (each === "Inbox") {
+              goToPagesAction(dispatch, "UserInboxPage", "");
+            }
+          }}
+        >
+          {each}
+        </div>
+      );
     });
   };
   return (

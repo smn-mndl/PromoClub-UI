@@ -1,0 +1,37 @@
+@import "../../../styles/variables.scss";
+.user-profile-cont {
+  .user-cover-pic-cont {
+    position: relative;
+    form {
+      height: 100%;
+      width: 100%;
+      .user-cover-pic-preview {
+        height: 100%;
+        width: 100%;
+        object-fit: fill;
+        border-radius: 0px 0px 10px 10px;
+      }
+      .upload-cntnr {
+        position: absolute;
+        bottom: -38px;
+        right: 30px;
+      }
+    }
+    .cover-pic-input {
+      height: 50px;
+      width: 50px;
+      background: $default-pc-background;
+      border-radius: 50%;
+      box-shadow: 0px 7px 15px -6px rgba(0, 0, 0, 0.65);
+      div {
+        height: 50px;
+        width: 50px;
+        background: url(../../../images/svgs/icons8-plus.svg);
+        background-repeat: no-repeat, repeat;
+        background-size: 45%;
+        background-position: 50% 50%;
+        cursor: pointer;
+      }
+    }
+  }
+}
