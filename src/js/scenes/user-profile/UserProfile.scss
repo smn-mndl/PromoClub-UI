@@ -1,9 +1,13 @@
 .user-profile-cont {
   width: 70%;
   margin: 0 auto;
+  height: 100%;
+  border: 1px solid;
+  // background: #faf4f4;
+  background: #fdfbfb;
   .user-cover-pic-cont {
     height: 225px;
-    border: 1px solid;
+    border-bottom: 1px solid;
     border-top: none;
   }
   .user-cover-pic-cont-no-border {

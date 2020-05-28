@@ -69,3 +69,13 @@ export const savePublishData = (payload) => {
     isMock: false,
   });
 };
+
+export const uploadCoverPic = (payload) => {
+  return makeApiCall({
+    method: "POST",
+    url: "coverPicture",
+    payload: payload,
+    isLocal: true,
+    isMock: false,
+  });
+};
