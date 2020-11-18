@@ -6,20 +6,55 @@ const GenerateSvg = (node, props) => {
   return svg;
 };
 const CoverPic = (props) => {
+  const {
+    coverPicDtls,
+    setEditingMode,
+    editingMode,
+    imageClickHandler,
+  } = props;
   const [node, setNode] = useState(null);
-  const { viewMode, setViewMode } = props;
-
-  const coverpicHeight = document
+  const [zoomTranformScale, setZoomTranformScale] = useState(null);
+  const [coverPicImgDimension, setCoverPicImgDimension] = useState({
+    coverpicHeight: document
       .querySelector(".cover-pic-form")
       .getBoundingClientRect().height,
-    coverpicWidth = document
+    coverpicWidth: document
       .querySelector(".cover-pic-form")
-      .getBoundingClientRect().width;
+      .getBoundingClientRect().width,
+  });
+  const { viewMode, setViewMode } = props;
+
+  window.addEventListener("resize", () => {
+    setTimeout(() => {
+      setCoverPicImgDimension({
+        coverpicHeight: document
+          .querySelector(".cover-pic-form")
+          .getBoundingClientRect().height,
+        coverpicWidth: document
+          .querySelector(".cover-pic-form")
+          .getBoundingClientRect().width,
+      });
+    }, 2000);
+  });
 
   useEffect(() => {
+    console.log(
+      "in use Effect",
+      coverPicDtls.transformConfig,
+      zoomTranformScale
+    );
+    setZoomTranformScale(coverPicDtls.transformConfig);
+  }, [props.editingMode]);
+
+  useEffect(() => {
+    //debugger;
+    const { coverpicHeight, coverpicWidth } = coverPicImgDimension;
     let svg = GenerateSvg(node, props);
-    const g = svg.select("image").attr("cursor", "grab");
-    console.log("viewMode", viewMode);
+    const g = svg
+      .select("image")
+      .attr("cursor", `${!viewMode ? "grab" : "unset"}`)
+      .attr("transform", zoomTranformScale);
+
     if (!viewMode) {
       const started = () => {
         var circle = d3
@@ -40,8 +75,7 @@ const CoverPic = (props) => {
       };
 
       const zoomed = () => {
-        // console.log("zoom event", d3.event);
-        props.setCoverPicConfig(d3.event.transform);
+        setZoomTranformScale(d3.event.transform);
         g.attr("transform", d3.event.transform);
       };
 
@@ -60,18 +94,27 @@ const CoverPic = (props) => {
       d3.dragDisable(window);
       svg.on(".zoom", null);
     }
-  }, [node, coverpicHeight, coverpicWidth, props]);
-
+  }, [
+    node,
+    coverPicImgDimension.coverpicHeight,
+    coverPicImgDimension.coverpicWidth,
+    props,
+    props.coverPicConfig,
+  ]);
+  console.log("viewMode", viewMode);
   return (
     <>
       <svg
         viewBox="0 0 30 20"
-        preserveAspectRatio="xMidYMid slice"
-        width={coverpicWidth}
-        height={coverpicHeight}
+        preserveAspectRatio="xMaxYMid slice"
+        width={coverPicImgDimension.coverpicWidth}
+        height={coverPicImgDimension.coverpicHeight}
         ref={(node) => setNode(node)}
         id="123"
-        style={{ borderRadius: "0px 0px 10px 10px" }}
+        style={{
+          borderRadius: "0px 0px 10px 10px",
+          cursor: `${!viewMode ? "grab" : "unset"}`,
+        }}
       >
         <image
           className="user-cover-pic-preview"
@@ -80,8 +123,9 @@ const CoverPic = (props) => {
           height="100%"
           //   x="0"
           //   y="0"
-          style={{ objectFit: "none" }}
-          xlinkHref={props.coverPic.preview}
+          // style={{ objectFit: "none" }}
+          xlinkHref={props.coverPicDtls.imageDtls.preview}
+          onClick={() => imageClickHandler()}
         />
       </svg>
       {!viewMode && (
@@ -89,8 +133,11 @@ const CoverPic = (props) => {
           <div
             className="user-cover-pic-save-btn"
             onClick={() => {
-              props.saveCoverPic();
+              props.saveCoverPic(zoomTranformScale);
               setViewMode(!viewMode);
+              setEditingMode(null);
+              // props.setCoverPicConfig(zoomTranformScale);
+              // props.setPrevCoverPicConfig(zoomTranformScale);
             }}
           >
             Save
@@ -99,7 +146,9 @@ const CoverPic = (props) => {
             className="user-cover-pic-cancel-btn"
             // onClick={() => setViewMode(!viewMode)}
             onClick={() => {
-              props.handleCoverPicChange({ preview: null, raw: null });
+              setZoomTranformScale(coverPicDtls.coverPicConfig);
+              setEditingMode(null);
+              props.coverPicCancelHandler();
             }}
           >
             Cancel

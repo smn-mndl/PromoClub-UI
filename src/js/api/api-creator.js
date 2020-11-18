@@ -79,3 +79,12 @@ export const uploadCoverPic = (payload) => {
     isMock: false,
   });
 };
+export const getUserPublishedData = (payload) => {
+  return makeApiCall({
+    method: "POST",
+    url: "getUserPublicationDetails",
+    payload,
+    isLocal: true,
+    isMock: false,
+  });
+};

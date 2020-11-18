@@ -5,13 +5,18 @@ import CoverPic from "./CoverPic";
 
 const UserCoverPic = (props) => {
   const {
-    coverPic,
+    coverPicDtls,
+    setCoverPicDtls,
     handleCoverPicChange,
     viewMode,
     setViewMode,
     saveCoverPic,
+    setPrevCoverPicConfig,
+    coverPicCancelHandler,
+    imageClickHandler,
   } = props;
   const [viewOptions, setViewOptions] = useState(false);
+  const [editingMode, setEditingMode] = useState(null);
 
   const getCoverpicOptions = () => {
     const arr1 = ["Upload", "Repostion"];
@@ -39,12 +44,23 @@ const UserCoverPic = (props) => {
                     setViewMode(false);
                     handleCoverPicChange(e);
                     setViewOptions(false);
+                    setEditingMode("upload");
                   }}
                   name="avatar"
                 />
               </>
             ) : (
-              coverPic.preview && <div>{each}</div>
+              coverPicDtls.imageDtls.preview && (
+                <div
+                  onClick={() => {
+                    setViewOptions(false);
+                    setViewMode(false);
+                    setEditingMode("reposition");
+                  }}
+                >
+                  {each}
+                </div>
+              )
             );
           })}
         </div>
@@ -55,18 +71,22 @@ const UserCoverPic = (props) => {
     <>
       <form
         onSubmit={() => {}}
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
         className="cover-pic-form"
       >
-        {coverPic && coverPic.preview ? (
+        {coverPicDtls.imageDtls && coverPicDtls.imageDtls.preview ? (
           // <img src={coverPic.preview} className="user-cover-pic-preview" />
           <CoverPic
-            coverPic={coverPic}
+            coverPicDtls={coverPicDtls}
             viewMode={viewMode}
             setViewMode={setViewMode}
-            setCoverPicConfig={props.setCoverPicConfig}
             handleCoverPicChange={handleCoverPicChange}
             saveCoverPic={saveCoverPic}
+            editingMode={editingMode}
+            setEditingMode={setEditingMode}
+            setPrevCoverPicConfig={setPrevCoverPicConfig}
+            coverPicCancelHandler={coverPicCancelHandler}
+            imageClickHandler={imageClickHandler}
           />
         ) : null}
         {viewMode && (

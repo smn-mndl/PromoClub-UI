@@ -9,7 +9,7 @@ const Search = () => {
         <svg
           viewBox="64 64 896 896"
           focusable="false"
-          class=""
+          className=""
           data-icon="search"
           width="1em"
           height="1em"

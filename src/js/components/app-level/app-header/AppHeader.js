@@ -63,7 +63,6 @@ const AppHeader = () => {
               <svg
                 viewBox="64 64 896 896"
                 focusable="false"
-                class=""
                 data-icon="down"
                 width="1em"
                 height="1em"

@@ -11,7 +11,7 @@
   width: 100vw;
   background: $default-pc-background;
   // background: rgb(83, 131, 7);
-  color: rgb(54, 54, 54);
+  color: rgb(54, 54, 54) !important;
   padding: 0 1.5em;
   display: flex;
   font-family: "Roboto-Regular";
@@ -22,6 +22,7 @@
     align-items: center;
     font-size: 2em;
     font-weight: 600;
+    color: rgb(54, 54, 54) !important;
   }
 }
 .pc-hdr-menu {
@@ -48,6 +49,7 @@
   transform: rotate(180deg);
 }
 .hdr-drpdwn-cont {
+  font-family: $app-font-regular;
   position: absolute;
   display: flex;
   top: 44px;

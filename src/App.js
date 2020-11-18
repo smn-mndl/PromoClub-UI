@@ -1,8 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  const abc = () => {
+    for (let i = 0; i < 3; i++) {
+      //debugger;
+      switch (i) {
+        case 0:
+          break;
+        case 1:
+          console.log("one");
+        case 2:
+          console.log("two");
+        case 2:
+          console.log("three");
+        default:
+          break;
+      }
+    }
+  };
+  abc();
   return (
     <div className="App">
       <header className="App-header">
