@@ -6,7 +6,7 @@ export const STORE_DEFAULTS = {
     toastMsg: null,
   },
   navigation: {
-    currentPage: "UserProfilePage",
+    currentPage: "LandingPage",
     subPage: null,
     slctdLan: {
       language: "en",

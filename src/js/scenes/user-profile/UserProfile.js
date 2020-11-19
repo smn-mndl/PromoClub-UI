@@ -55,7 +55,6 @@ const UserProfile = () => {
       },
     };
     setShowProgressBar(true);
-    gvhjgyse;
     // axios
     //   .post("http://localhost:8080/coverPicture", data, options, config)
     //   .then((res) => {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as d3 from "d3";
+import { zoomTransform } from "d3";
 
 const GenerateSvg = (node, props) => {
   const svg = d3.select(node);
@@ -56,27 +57,27 @@ const CoverPic = (props) => {
       .attr("transform", zoomTranformScale);
 
     if (!viewMode) {
-      const started = () => {
+      const started = (event) => {
         var circle = d3
           .select(".user-cover-pic-preview")
           .classed("dragging", true);
 
-        const dragged = (d) => {
-          console.log("d3 events", d3.event);
+        const dragged = (event, d) => {
+          console.log("d3 events", event);
           circle
             .raise()
-            .attr("x", (d.x = d3.event.x))
-            .attr("y", (d.y = d3.event.y));
+            .attr("x", (d.x = event.x))
+            .attr("y", (d.y = event.y));
         };
         const ended = () => {
           circle.classed("dragging", false);
         };
-        d3.event.on("drag", dragged).on("end", ended);
+        event.on("drag", dragged).on("end", ended);
       };
 
-      const zoomed = () => {
-        setZoomTranformScale(d3.event.transform);
-        g.attr("transform", d3.event.transform);
+      const zoomed = (event, d) => {
+        setZoomTranformScale(event.transform);
+        g.attr("transform", event.transform);
       };
 
       svg.call(
