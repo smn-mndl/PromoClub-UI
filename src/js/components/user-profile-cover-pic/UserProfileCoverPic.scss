@@ -1,0 +1,103 @@
+@import "../../../styles/variables.scss";
+.user-profile-cont {
+  .user-cover-pic-cont {
+    position: relative;
+    .cover-pic-page-mask {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: transparent;
+      height: 100vh;
+      width: 100vw;
+      z-index: 3;
+    }
+    .coverpic-options {
+      position: relative;
+      z-index: 4;
+      float: right;
+      margin: 2.5em 4.5em 0px 0px;
+      background: black;
+      color: white;
+      padding: 5px 5px 5px 12px;
+      line-height: 22px;
+      width: 100px;
+      border-radius: 4px;
+      cursor: pointer;
+      .cover-pic-upload-btn-label {
+        margin-bottom: 0 !important;
+        text-indent: 0 !important;
+        cursor: pointer;
+        width: 100%;
+      }
+      div {
+        width: 100%s;
+      }
+    }
+    form {
+      height: 100%;
+      width: 100%;
+      background: $default-pc-hovercolor;
+      .user-cover-pic-preview {
+        height: 100%;
+        width: 100%;
+        border-radius: 0px 0px 10px 10px;
+      }
+      .upload-cntnr {
+        position: absolute;
+        bottom: -24px;
+        right: 30px;
+      }
+    }
+    .cover-pic-input {
+      height: 50px;
+      width: 50px;
+      background: $default-pc-background;
+      border-radius: 50%;
+      box-shadow: 0px 7px 10px -6px rgba(0, 0, 0, 0.65);
+      &:hover {
+        box-shadow: 0px 7px 15px -6px rgba(0, 0, 0, 0.65);
+      }
+      div {
+        height: 50px;
+        width: 50px;
+        background: url(../../../images/svgs/icons8-plus.svg);
+        background-repeat: no-repeat, repeat;
+        background-size: 45%;
+        background-position: 50% 50%;
+        cursor: pointer;
+      }
+    }
+    .user-cover-pic-save-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 85px;
+      border: 1px solid white;
+      width: 55px;
+      background: rgba(255, 255, 255, 0.2);
+      text-align: center;
+      border-radius: 3px;
+      color: white;
+      cursor: pointer;
+      &:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+    }
+    .user-cover-pic-cancel-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      border: 1px solid white;
+      width: 55px;
+      background: rgba(255, 255, 255, 0.2);
+      text-align: center;
+      border-radius: 3px;
+      color: white;
+      cursor: pointer;
+      &:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+}
+
+// rgba(255, 255, 255, 0.1)

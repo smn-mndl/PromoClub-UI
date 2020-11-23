@@ -1,3 +1,48 @@
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("./styles/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto-Medium";
+  font-weight: 500;
+  src: local("Roboto-Medium"),
+    url("./styles/fonts/roboto/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto-Bold";
+  font-weight: 900;
+  src: local("Roboto-Bold"),
+    url("./styles/fonts/roboto/Roboto-Bold.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto-Regular";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 13px !important;
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@font-face {
+  font-family: "icomoon";
+  src: url("./styles/fonts/toast-icons/icomoon.eot?efpnvx");
+  src: url("./styles/fonts/toast-icons/icomoon.eot?efpnvx#iefix")
+      format("embedded-opentype"),
+    url("./styles/fonts/toast-icons/icomoon.ttf?efpnvx") format("truetype"),
+    url("./styles/fonts/toast-icons/icomoon.woff?efpnvx") format("woff"),
+    url("./styles/fonts/toast-icons/icomoon.svg?efpnvx#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 [class^="icon-"],
 [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */

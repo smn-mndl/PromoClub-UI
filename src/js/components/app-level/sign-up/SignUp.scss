@@ -1,0 +1,12 @@
+@import "../../../../styles/variables.scss";
+.sign-up-elem {
+    // padding: 2em;
+    .sign-up-btn {
+        background: transparent;
+        border: none;
+        font-size: 1.5em;
+        padding: 0;
+        color: $default-btn-color;
+        outline: none;
+    }
+}

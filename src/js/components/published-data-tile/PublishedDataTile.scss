@@ -1,0 +1,25 @@
+@import "../../../styles/variables.scss";
+.published-data-tile-cont {
+  box-shadow: 0px 2px 2px grey;
+  border-radius: 4px;
+  padding: 1em;
+  margin-bottom: 1em;
+  background: #fdfbfb;
+  word-break: break-all;
+  overflow: hidden;
+  .publish-tile-content {
+  }
+  .publish-tile-img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  .publish-tile-hdr {
+    font-weight: 600;
+    font-family: $app-font-medium;
+  }
+}
