@@ -9,7 +9,8 @@ import { PCProvider } from "./js/store/Store";
 
 ReactDOM.render(
   <PCProvider>
-    <PromoClubRoot />
+    {/* <PromoClubRoot /> */}
+    <App />
   </PCProvider>,
   document.getElementById("root")
 );
