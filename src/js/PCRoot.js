@@ -8,7 +8,7 @@ import PageToast from "./components/common/page-toast/PageToast";
 const LazyLandingPage = lazy(() =>
   import("./scenes/landing-page/PCLandingPage")
 );
-// const LazySignPage = lazy(() => import("./scenes/sign-page/PCSignPage"));
+const LazySignPage = lazy(() => import("./scenes/sign-page/PCSignPage"));
 // const LazyPublishPage = lazy(() =>
 //   import("./scenes/publish-page/PCPublishPage")
 // );
@@ -23,8 +23,8 @@ const getLazyComponent = (slctdPage) => {
       return <LazyLandingPage />;
     // case "PublishPage":
     //   return <LazyPublishPage />;
-    // case "SignPage":
-    //   return <LazySignPage />;
+    case "SignPage":
+      return <LazySignPage />;
     // case "UserProfilePage":
     //   return <LazyUserProfilePage />;
     // case "UserInboxPage":
