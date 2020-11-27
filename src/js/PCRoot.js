@@ -1,10 +1,10 @@
 import React, { useContext, lazy, Suspense } from "react";
 import { Store } from "./store/Store";
-// import Fallback from "./components/common/fallback/Fallback";
-// import LoadingPage from "./components/common/loading-page/LoadingPage";
+import Fallback from "./components/common/fallback/Fallback";
+import LoadingPage from "./components/common/loading-page/LoadingPage";
 // import AppHeader from "./components/app-level/app-header/AppHeader";
 import "../styles/common.scss";
-// import PageToast from "./components/common/page-toast/PageToast";
+import PageToast from "./components/common/page-toast/PageToast";
 // const LazyLandingPage = lazy(() =>
 //   import("./scenes/landing-page/PCLandingPage")
 // );
@@ -18,8 +18,7 @@ import "../styles/common.scss";
 // const LazyUserInboxPage = lazy(() => import("./scenes/user-inbox/UserInbox"));
 
 const getLazyComponent = (slctdPage) => {
-  switch (
-    slctdPage
+  switch (slctdPage) {
     // case "LandingPage":
     //   return <LazyLandingPage />;
     // case "PublishPage":
@@ -30,9 +29,8 @@ const getLazyComponent = (slctdPage) => {
     //   return <LazyUserProfilePage />;
     // case "UserInboxPage":
     //   return <LazyUserInboxPage />;
-    // default:
-    //   return <Fallback>404</Fallback>;
-  ) {
+    default:
+      return <Fallback>404</Fallback>;
   }
 };
 const PromoClubRoot = (props) => {
@@ -47,7 +45,7 @@ const PromoClubRoot = (props) => {
   console.log("state", state);
   return (
     <>
-      {/* {pageToast.show && (
+      {pageToast.show && (
         <PageToast
           toastType={pageToast.toastType}
           toastMsg={pageToast.toastMsg}
@@ -55,15 +53,12 @@ const PromoClubRoot = (props) => {
       )}
       <Suspense fallback={<LoadingPage text="Loading..." />}>
         {currentPage !== "SignPage" ? (
-          <header>
-            <AppHeader />
-          </header>
+          <header>{/* <AppHeader /> */}</header>
         ) : null}
         <main className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}>
           {getLazyComponent(currentPage)}
         </main>
-      </Suspense> */}
-      <div>Test</div>
+      </Suspense>
     </>
   );
 };
