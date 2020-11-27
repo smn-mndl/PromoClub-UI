@@ -2,7 +2,7 @@ import React, { useContext, lazy, Suspense } from "react";
 import { Store } from "./store/Store";
 import Fallback from "./components/common/fallback/Fallback";
 import LoadingPage from "./components/common/loading-page/LoadingPage";
-// import AppHeader from "./components/app-level/app-header/AppHeader";
+import AppHeader from "./components/app-level/app-header/AppHeader";
 import "../styles/common.scss";
 import PageToast from "./components/common/page-toast/PageToast";
 // const LazyLandingPage = lazy(() =>
@@ -53,7 +53,9 @@ const PromoClubRoot = (props) => {
       )}
       <Suspense fallback={<LoadingPage text="Loading..." />}>
         {currentPage !== "SignPage" ? (
-          <header>{/* <AppHeader /> */}</header>
+          <header>
+            <AppHeader />
+          </header>
         ) : null}
         <main className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}>
           {getLazyComponent(currentPage)}

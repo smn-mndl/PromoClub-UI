@@ -1,0 +1,13 @@
+@import "../../../../styles/variables.scss";
+.sign-in-elem{
+    width: 50%;
+    border-right: 1px solid;
+    .sign-in-btn {
+        background: transparent;
+        border: none;
+        font-size: 1.5em;
+        padding: 0;
+        color: $default-btn-color;
+        outline: none;
+    }
+}
