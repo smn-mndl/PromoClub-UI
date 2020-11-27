@@ -4,10 +4,10 @@ import LanDrpdwn from "./language/LanDrpdwn";
 import { Store } from "../../store/Store";
 import PCSignUp from "./sign-up/PCSignUp";
 import PCSignIn from "./sign-in/PCSignIn";
-import { googleTranslate } from "../../components/google-translate/GoogleTranslateUtil";
+// import { googleTranslate } from "../../components/google-translate/GoogleTranslateUtil";
 import {
   getLanguageCodesAction,
-  setSelectedLanguageAction
+  setSelectedLanguageAction,
 } from "../../actions/ApplevelActions";
 import LOGIN_CONFIG from "./login/login-config";
 
@@ -20,7 +20,7 @@ const PCSignPage = () => {
   const { dispatch, state } = useContext(Store);
   const {
     navigation: { subPage, slctdLan },
-    languageCodes
+    languageCodes,
   } = state;
   const [selectedSubPage, setSelectedSubPage] = useState(subPage);
 
@@ -28,60 +28,59 @@ const PCSignPage = () => {
   useEffect(() => {
     setSelectedSubPage(subPage);
   }, [subPage]);
-  useEffect(() => {
-    // getLanguageCodesAction(dispatch);
-    if (languageCodes.length === 0) {
-      googleTranslate.getSupportedLanguages("en", (err, lanCodes) => {
-        getLanguageCodesAction(dispatch, lanCodes);
-      });
-    }
-  });
+  // useEffect(() => {
+  //   if (languageCodes.length === 0) {
+  //     googleTranslate.getSupportedLanguages("en", (err, lanCodes) => {
+  //       getLanguageCodesAction(dispatch, lanCodes);
+  //     });
+  //   }
+  // });
 
-  const getTranslation = lan => {
-    const cnfg = JSON.parse(JSON.stringify(loginConfig));
-    return cnfg.map(eachObj => {
-      let trnstltdTxt = "";
-      googleTranslate.translate(
-        eachObj.dispVal,
-        lan.language,
-        (err, translation) => {
-          trnstltdTxt = translation.translatedText;
-          eachObj["dispVal"] = trnstltdTxt;
-        }
-      );
-      return eachObj;
-    });
-  };
+  // const getTranslation = (lan) => {
+  //   const cnfg = JSON.parse(JSON.stringify(loginConfig));
+  //   return cnfg.map((eachObj) => {
+  //     let trnstltdTxt = "";
+  //     googleTranslate.translate(
+  //       eachObj.dispVal,
+  //       lan.language,
+  //       (err, translation) => {
+  //         trnstltdTxt = translation.translatedText;
+  //         eachObj["dispVal"] = trnstltdTxt;
+  //       }
+  //     );
+  //     return eachObj;
+  //   });
+  // };
 
-  const getBtnTxts = (lan, getBtnTxts) => {
-    let arr = [];
-    getBtnTxts.forEach(each => {
-      googleTranslate.translate(each, lan.language, (err, translation) => {
-        arr.push(translation.translatedText);
-        console.log(translation);
-      });
-    });
-    return arr;
-  };
+  // const getBtnTxts = (lan, getBtnTxts) => {
+  //   let arr = [];
+  //   getBtnTxts.forEach((each) => {
+  //     googleTranslate.translate(each, lan.language, (err, translation) => {
+  //       arr.push(translation.translatedText);
+  //       console.log(translation);
+  //     });
+  //   });
+  //   return arr;
+  // };
 
-  const getTxt = (lan, txt) => {
-    let tempTxt = "";
-    googleTranslate.translate(txt, lan.language, (err, translation) => {
-      tempTxt = translation.translatedText;
-      setTxt(tempTxt);
-    });
-    return tempTxt;
-  };
+  // const getTxt = (lan, txt) => {
+  //   let tempTxt = "";
+  //   googleTranslate.translate(txt, lan.language, (err, translation) => {
+  //     tempTxt = translation.translatedText;
+  //     setTxt(tempTxt);
+  //   });
+  //   return tempTxt;
+  // };
 
-  const lanChangeHandler = async lan => {
-    const reponse = await getTranslation(lan);
-    const btnTxts = await getBtnTxts(lan, buttonTxt);
-    const tempTxt = await getTxt(lan, txt);
-    console.log("tempTxt", tempTxt);
-    setLoginConfig(reponse);
-    setButtonTxt(btnTxts);
-    setSelectedLanguageAction(dispatch, lan);
-  };
+  // const lanChangeHandler = async lan => {
+  //   const reponse = await getTranslation(lan);
+  //   const btnTxts = await getBtnTxts(lan, buttonTxt);
+  //   const tempTxt = await getTxt(lan, txt);
+  //   console.log("tempTxt", tempTxt);
+  //   setLoginConfig(reponse);
+  //   setButtonTxt(btnTxts);
+  //   setSelectedLanguageAction(dispatch, lan);
+  // };
 
   return (
     <>
@@ -121,11 +120,11 @@ const PCSignPage = () => {
                 : "lan-drpdwn lan-drpdwn-close"
             }
           >
-            <LanDrpdwn
+            {/* <LanDrpdwn
               selectedLan={slctdLan}
               setSelectedLan={lanChangeHandler}
               languageCodes={languageCodes}
-            />
+            /> */}
           </div>
           <div className="sign-up-hdr-cntct-us">Contact Us 24/7</div>
         </div>
