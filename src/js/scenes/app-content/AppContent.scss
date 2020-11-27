@@ -1,0 +1,26 @@
+.pc-lp-sctn {
+  background: #fdfbfb;
+  margin: 1%;
+}
+.pc-lp-left-sctn {
+  margin-right: 0;
+  width: 20%;
+  position: fixed;
+  left: 0;
+  top: 45px;
+  height: 100%;
+}
+.pc-lp-middle-sctn {
+  width: 50%;
+  margin-right: 0;
+  background: unset;
+  position: relative;
+  left: 21%;
+}
+.pc-lp-right-sctn {
+  width: 26%;
+  position: fixed;
+  right: 0;
+  top: 45px;
+  height: 100%;
+}

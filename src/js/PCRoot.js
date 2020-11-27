@@ -5,13 +5,13 @@ import LoadingPage from "./components/common/loading-page/LoadingPage";
 import AppHeader from "./components/app-level/app-header/AppHeader";
 import "../styles/common.scss";
 import PageToast from "./components/common/page-toast/PageToast";
-// const LazyLandingPage = lazy(() =>
-//   import("./scenes/landing-page/PCLandingPage")
-// );
+const LazyLandingPage = lazy(() =>
+  import("./scenes/landing-page/PCLandingPage")
+);
 // const LazySignPage = lazy(() => import("./scenes/sign-page/PCSignPage"));
-// const LazyPublishPage = lazy(() =>
-//   import("./scenes/publish-page/PCPublishPage")
-// );
+const LazyPublishPage = lazy(() =>
+  import("./scenes/publish-page/PCPublishPage")
+);
 // const LazyUserProfilePage = lazy(() =>
 //   import("./scenes/user-profile/UserProfile")
 // );
@@ -19,10 +19,10 @@ import PageToast from "./components/common/page-toast/PageToast";
 
 const getLazyComponent = (slctdPage) => {
   switch (slctdPage) {
-    // case "LandingPage":
-    //   return <LazyLandingPage />;
-    // case "PublishPage":
-    //   return <LazyPublishPage />;
+    case "LandingPage":
+      return <LazyLandingPage />;
+    case "PublishPage":
+      return <LazyPublishPage />;
     // case "SignPage":
     //   return <LazySignPage />;
     // case "UserProfilePage":

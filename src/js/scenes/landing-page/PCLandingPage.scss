@@ -1,0 +1,11 @@
+.pc-landing-page-cont {
+  height: 100%;
+  width: 100vw;
+  position: relative;
+  font-size: 13px;
+  .pc-app-content {
+    display: flex;
+    height: 100%;
+    background: #f3f6d6;
+  }
+}

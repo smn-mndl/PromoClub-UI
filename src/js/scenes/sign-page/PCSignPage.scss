@@ -1,0 +1,69 @@
+@import "../../../styles/variables.scss";
+.sign-up-header {
+  font-size: 1.1em;
+  height: 44px;
+  line-height: 44px;
+  background: $default-pc-background;
+  // background: rgb(83, 131, 7);
+  color: rgb(54, 54, 54);
+  padding: 0 1.5em;
+  display: flex;
+  font-family: "Roboto-Regular";
+  svg {
+    margin-left: 10px;
+  }
+  .sign-in-menu-down {
+    transition: transform 0.3s ease-in-out;
+  }
+  .sign-in-menu-up {
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(180deg);
+  }
+}
+.lan-label {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  z-index: 1;
+}
+.lan-drpdwn {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 44px;
+  width: 80vw;
+  z-index: 1;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top;
+  transform-origin: top;
+  height: auto;
+  visibility: visible;
+  background: rgb(224, 233, 170);
+  overflow-y: auto;
+  box-shadow: 0 8px 4px -6px rgb(224, 233, 170);
+  -webkit-box-shadow: 0 8px 4px -6px rgb(224, 233, 170);
+}
+.lan-drpdwn-open {
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  transform: scaleY(1);
+  overflow: auto;
+  height: calc(100vh - 150px);
+}
+.lan-drpdwn-close {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform: scaleY(0);
+}
+.sign-up-hdr-cntct-us {
+  margin-left: auto;
+}
+.lan-drpdwn-pgmask {
+  background: transparent;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
