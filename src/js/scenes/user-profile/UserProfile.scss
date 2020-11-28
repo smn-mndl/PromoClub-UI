@@ -1,0 +1,23 @@
+.user-profile-cont {
+  width: 70%;
+  margin: 0 auto;
+  height: 100%;
+  // border: 1px solid;
+  border-right: 1px solid;
+  border-left: 1px solid;
+  // background: #faf4f4;
+  background: #fdfbfb;
+  box-shadow: 0px 0px 10px 2px #888888;
+  .user-cover-pic-cont {
+    height: 275px;
+    border-bottom: 1px solid;
+    border-top: none;
+  }
+  .user-cover-pic-cont-no-border {
+    border: none !important;
+  }
+  .user-bio {
+    margin-top: 85px;
+    padding-left: 25px;
+  }
+}

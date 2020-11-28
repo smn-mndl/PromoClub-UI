@@ -29,6 +29,7 @@ const PCSignPage = () => {
     setSelectedSubPage(subPage);
   }, [subPage]);
   // useEffect(() => {
+  //   // getLanguageCodesAction(dispatch);
   //   if (languageCodes.length === 0) {
   //     googleTranslate.getSupportedLanguages("en", (err, lanCodes) => {
   //       getLanguageCodesAction(dispatch, lanCodes);
@@ -36,9 +37,9 @@ const PCSignPage = () => {
   //   }
   // });
 
-  // const getTranslation = (lan) => {
+  // const getTranslation = lan => {
   //   const cnfg = JSON.parse(JSON.stringify(loginConfig));
-  //   return cnfg.map((eachObj) => {
+  //   return cnfg.map(eachObj => {
   //     let trnstltdTxt = "";
   //     googleTranslate.translate(
   //       eachObj.dispVal,
@@ -54,7 +55,7 @@ const PCSignPage = () => {
 
   // const getBtnTxts = (lan, getBtnTxts) => {
   //   let arr = [];
-  //   getBtnTxts.forEach((each) => {
+  //   getBtnTxts.forEach(each => {
   //     googleTranslate.translate(each, lan.language, (err, translation) => {
   //       arr.push(translation.translatedText);
   //       console.log(translation);
