@@ -56,27 +56,27 @@ const CoverPic = (props) => {
       .attr("transform", zoomTranformScale);
 
     if (!viewMode) {
-      const started = (event) => {
+      const started = () => {
         var circle = d3
           .select(".user-cover-pic-preview")
           .classed("dragging", true);
 
-        const dragged = (d, event) => {
-          console.log("d3 events", event);
+        const dragged = (d) => {
+          console.log("d3 events", d3.event);
           circle
             .raise()
-            .attr("x", (d.x = event.x))
-            .attr("y", (d.y = event.y));
+            .attr("x", (d.x = d3.event.x))
+            .attr("y", (d.y = d3.event.y));
         };
         const ended = () => {
           circle.classed("dragging", false);
         };
-        event.on("drag", dragged).on("end", ended);
+        d3.event.on("drag", dragged).on("end", ended);
       };
 
-      const zoomed = (event) => {
-        setZoomTranformScale(event.transform);
-        g.attr("transform", event.transform);
+      const zoomed = () => {
+        setZoomTranformScale(d3.event.transform);
+        g.attr("transform", d3.event.transform);
       };
 
       svg.call(

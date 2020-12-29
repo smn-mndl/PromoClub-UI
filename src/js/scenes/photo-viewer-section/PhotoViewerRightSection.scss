@@ -1,0 +1,37 @@
+@import "../../../styles/variables.scss";
+.photoviewer-right-section {
+  color: #f2efef !important;
+  z-index: 3;
+  position: absolute;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  .photoviewer-right-section-header {
+    font-family: $app-font-medium;
+    font-size: 1.5em;
+    // color: rgb(31, 31, 31);
+  }
+  .photoviewer-right-section-radio-grp {
+    font-family: $app-font-regular;
+    overflow: hidden;
+  }
+  .photoviewer-right-section-add-to-cart {
+    margin-top: 30px;
+    font-size: 1.5em;
+    text-align: center;
+    border: 2px solid #f2efef;
+    border-radius: 16px;
+    cursor: pointer;
+  }
+  .photoviewer-right-section-photo-details {
+    margin-top: 30px;
+    .photo-details-title {
+      font-family: $app-font-medium;
+      font-size: 1.5em;
+    }
+    .photo-details-content {
+      margin-top: 5px;
+      //   font-family: $app-font-medium;
+    }
+  }
+}

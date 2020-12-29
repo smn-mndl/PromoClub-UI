@@ -6,19 +6,21 @@ import {
   signInBtnClickHandler,
   userLoginAction,
   userLoginStatusAction,
-  goToPagesAction
+  goToPagesAction,
 } from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
+import { useHistory } from "react-router";
 
-const Login = props => {
+const Login = (props) => {
   const { dispatch, state } = useContext(Store);
   const {
-    navigation: { subPage }
+    navigation: { subPage },
   } = state;
   const [loginData, setLoginData] = useState({});
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  let history = useHistory();
 
-  const loginInptRow = rowDtls => {
+  const loginInptRow = (rowDtls) => {
     return (
       <LoginInput
         rowDtls={rowDtls}
@@ -28,20 +30,28 @@ const Login = props => {
     );
   };
   const loginInptFlds = () => {
-    return props.loginConfig.map(each => {
+    return props.loginConfig.map((each) => {
       return loginInptRow(each);
     });
   };
   const onSubmit = () => {
     setIsLoggingIn(true);
-    userLoginAction(dispatch, JSON.stringify(loginData), setIsLoggingIn);
+    userLoginAction(
+      dispatch,
+      JSON.stringify(loginData),
+      setIsLoggingIn,
+      history
+    );
   };
   const arrow = `<`;
   return (
     <>
       <div
         className="back-to-home"
-        onClick={() => goToPagesAction(dispatch, "LandingPage", "")}
+        onClick={() => {
+          history.push("/");
+          // goToPagesAction(dispatch, "LandingPage", "");
+        }}
       >
         <span>{arrow}</span>
         <span>Back to home</span>
@@ -57,8 +67,10 @@ const Login = props => {
             {props.txt}{" "}
             <span
               className="register-link"
-              onClick={() =>
-                signInBtnClickHandler(dispatch, "SignPage", "SignUp")
+              onClick={
+                () => history.push("/signup")
+                //will modify later
+                // signInBtnClickHandler(dispatch, "SignPage", "SignUp")
               }
             >
               {props.buttonTxt[1]}

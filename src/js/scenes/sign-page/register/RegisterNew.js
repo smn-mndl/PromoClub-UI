@@ -3,12 +3,11 @@ import "./Register.scss";
 import REGISTER_CONFIG from "./register-config";
 import RegisterInput from "./RegisterInput";
 import Axios from "axios";
-import {
-  signInBtnClickHandler,
-  goToPagesAction,
-} from "../../../actions/ApplevelActions";
+import { userLoginStatusAction } from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
 import makeApiCall from "../../../api/api";
+import { useHistory } from "react-router";
+import Modal from "antd/lib/modal/Modal";
 
 const checkIfNonEmptyInptFld = (registerData) => {
   const keys = Object.keys(registerData);
@@ -38,12 +37,15 @@ const Register = () => {
     navigation: { subPage },
   } = state;
   const [registerData, setRegisterData] = useState({});
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [errorInEmail, setErrorInEmail] = useState({
     error: false,
     isLoading: false,
     errorText: "",
     successText: "",
   });
+
+  let history = useHistory();
 
   const registerInptRow = (rowDtls) => {
     return (
@@ -84,7 +86,7 @@ const Register = () => {
         isLoading: false,
         errorText: "",
       });
-      setRegisterData({});
+      setShowRegisterModal(true);
     }
   };
   const ifInptFldValid = checkIfInptFldValid(registerData);
@@ -94,7 +96,10 @@ const Register = () => {
     <>
       <div
         className="back-to-home"
-        onClick={() => goToPagesAction(dispatch, "LandingPage", "")}
+        onClick={() => {
+          history.push("/");
+          // goToPagesAction(dispatch, "LandingPage", "");
+        }}
       >
         <span>{arrow}</span>
         <span>Back to home</span>
@@ -126,14 +131,29 @@ const Register = () => {
             Already a member? Please{" "}
             <span
               className="login-link"
-              onClick={() =>
-                signInBtnClickHandler(dispatch, "SignPage", "SignIn")
+              onClick={
+                () => history.push("/login")
+                // signInBtnClickHandler(dispatch, "SignPage", "SignIn")
               }
             >
               Login
             </span>
           </div>
         </div>
+        <Modal
+          style={{ top: 20 }}
+          visible={showRegisterModal}
+          centered
+          onCancel={() => {
+            setShowRegisterModal(false);
+            history.push("/");
+            setRegisterData({});
+            userLoginStatusAction(dispatch, true);
+          }}
+          footer={null}
+        >
+          <p>Successfully Registered!</p>
+        </Modal>
       </div>
     </>
   );

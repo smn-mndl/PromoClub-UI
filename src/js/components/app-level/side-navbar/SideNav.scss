@@ -1,0 +1,13 @@
+.hdr-signin-cont {
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  max-width: 100px;
+  cursor: pointer;
+  .hdr-drpdwn-elem {
+    padding: 5px 5px 5px 5px;
+    &:hover {
+      background: #f0f4c3;
+    }
+  }
+}

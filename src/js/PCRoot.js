@@ -5,44 +5,55 @@ import LoadingPage from "./components/common/loading-page/LoadingPage";
 import AppHeader from "./components/app-level/app-header/AppHeader";
 import "../styles/common.scss";
 import PageToast from "./components/common/page-toast/PageToast";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+} from "react-router-dom";
+import dscImg from "../images/DSC_2850.JPG";
+import AppTabs from "./components/app-level/app-tabs/AppTabs";
+
+const LazyPhotoViewerSection = lazy(() =>
+  import("./scenes/photo-viewer-section/PhotoViewerSection")
+);
 const LazyLandingPage = lazy(() =>
   import("./scenes/landing-page/PCLandingPage")
 );
-const LazySignPage = lazy(() => import("./scenes/sign-page/PCSignPage"));
-const LazyPublishPage = lazy(() =>
-  import("./scenes/publish-page/PCPublishPage")
+const LazyLoginPage = lazy(() => import("./scenes/sign-page/sign-in/PCSignIn"));
+const LazyRegisterPage = lazy(() =>
+  import("./scenes/sign-page/sign-up/PCSignUp")
 );
-const LazyUserProfilePage = lazy(() =>
-  import("./scenes/user-profile/UserProfile")
-);
-const LazyUserInboxPage = lazy(() => import("./scenes/user-inbox/UserInbox"));
+const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
 
-const getLazyComponent = (slctdPage) => {
-  switch (slctdPage) {
-    case "LandingPage":
-      return <LazyLandingPage />;
-    case "PublishPage":
-      return <LazyPublishPage />;
-    case "SignPage":
-      return <LazySignPage />;
-    case "UserProfilePage":
-      return <LazyUserProfilePage />;
-    case "UserInboxPage":
-      return <LazyUserInboxPage />;
-    default:
-      return <Fallback>404</Fallback>;
-  }
-};
 const PromoClubRoot = (props) => {
   const {
     state,
     state: {
-      navigation: { currentPage },
+      navigation: { currentPage, currentTab },
       pageToast,
+      selectedPhotoDetails,
     },
     dispatch,
   } = useContext(Store);
   console.log("state", state);
+
+  const LazyPhotoViewerComponent = () => {
+    let match = useRouteMatch();
+    const photoId = selectedPhotoDetails.title;
+    return (
+      <Switch>
+        <Route path={`${match.path}/${photoId}`}>
+          <LazyPhotoViewerSection />
+        </Route>
+        <Route path="*">
+          <LazyHomePage />
+        </Route>
+      </Switch>
+    );
+  };
+
   return (
     <>
       {pageToast.show && (
@@ -52,14 +63,56 @@ const PromoClubRoot = (props) => {
         />
       )}
       <Suspense fallback={<LoadingPage text="Loading..." />}>
-        {currentPage !== "SignPage" ? (
-          <header>
-            <AppHeader />
-          </header>
-        ) : null}
-        <main className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}>
-          {getLazyComponent(currentPage)}
-        </main>
+        <Router>
+          {currentPage !== "SignPage" ? (
+            <>
+              <header>
+                <AppHeader />
+              </header>
+            </>
+          ) : null}
+          {!["LoginPage", "Sign UpPage"].currentPage ? (
+            <>
+              <div className="homepage-app-tabs">
+                <AppTabs dispatch={dispatch} currentTab={currentTab} />
+              </div>
+            </>
+          ) : null}
+          <div>
+            <img className="pc-root-background" src={dscImg}></img>
+          </div>
+
+          <main
+            className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
+          >
+            <div>
+              <Switch>
+                <Route exact path="/">
+                  <LazyHomePage />
+                </Route>
+                <Route exact path="/home">
+                  <LazyHomePage />
+                </Route>
+                <Route path="/landing" component={LazyLandingPage}>
+                  <LazyLandingPage />
+                </Route>
+                <Route path="/login" component={LazyLoginPage}>
+                  <LazyLoginPage />
+                </Route>
+                <Route path="/signup" component={LazyRegisterPage}>
+                  <LazyRegisterPage />
+                </Route>
+                <Route
+                  path="/latest-photos"
+                  component={LazyPhotoViewerComponent}
+                ></Route>
+                <Route path="*">
+                  <LazyHomePage />
+                </Route>
+              </Switch>
+            </div>
+          </main>
+        </Router>
       </Suspense>
     </>
   );

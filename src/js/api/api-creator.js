@@ -33,7 +33,7 @@ export const loginUser = (payload) => {
     method: "POST",
     url: "loginUser",
     payload: payload,
-    isLocal: false,
+    isLocal: true,
     isMock: false,
   });
 };

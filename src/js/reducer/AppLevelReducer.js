@@ -11,6 +11,23 @@ export const reducer = (state, action) => {
           subPage: action.payload.subPage,
         },
       };
+    case action.type === "PAGE_CLICK_ACTION":
+      return {
+        ...state,
+        navigation: {
+          ...state.navigation,
+          currentPage: action.payload.currentPage,
+          subPage: action.payload.subPage,
+        },
+      };
+    case action.type === "CURRENT_TAB_ACTION":
+      return {
+        ...state,
+        navigation: {
+          ...state.navigation,
+          currentTab: action.payload,
+        },
+      };
     case action.type === "SET_USER_DETAILS_ACTION":
       return {
         ...state,
@@ -51,8 +68,14 @@ export const reducer = (state, action) => {
         ...state,
         languageCodes: action.payload,
       };
+    case action.type === "PHOTO_CLICK_ACTION":
+      return {
+        ...state,
+        selectedPhotoDetails: action.payload,
+      };
     case action.type.includes("MISC"):
       return miscReducer(state, action);
+
     default:
       return state;
   }

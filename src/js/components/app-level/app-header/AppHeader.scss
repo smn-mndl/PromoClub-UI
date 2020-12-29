@@ -4,12 +4,14 @@
   width: 100%;
   display: flex;
   color: $default-pc-color;
+  position: relative;
+  z-index: 2;
 }
 .pc-hdr {
   height: 44px;
   line-height: 44px;
   width: 100vw;
-  background: $default-pc-background;
+  // background: $default-pc-background;
   // background: rgb(83, 131, 7);
   color: rgb(54, 54, 54) !important;
   padding: 0 1.5em;
@@ -34,6 +36,7 @@
   display: flex;
   align-items: center;
   padding: 0 0.5em;
+  z-index: 101;
   &:hover {
     background: $default-pc-hovercolor;
   }
@@ -64,10 +67,10 @@
   }
   z-index: 101;
   overflow: auto;
-  -webkit-transform: scaleY(0);
-  transform: scaleY(0);
-  -webkit-transform-origin: top;
-  transform-origin: top;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: right;
+  transform-origin: right;
   height: auto;
   visibility: visible;
 }
@@ -78,7 +81,7 @@
 .hdr-drpdwn-cont-open {
   opacity: 1;
   transition: all 0.3s cubic-bezier(0.65, -0.01, 0.26, 1);
-  transform: scaleY(1);
+  transform: scaleX(1);
 }
 .sign-elem {
   padding: 0 1em 0 1em;

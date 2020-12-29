@@ -1,9 +1,20 @@
 import React, { useContext } from "react";
 import "./UserDetails.scss";
-import { goToPagesAction } from "../../../actions/ApplevelActions";
+import {
+  goToPagesAction,
+  userLoginStatusAction,
+} from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
 
-const config = ["Profile", "Inbox", "Notifications", "Settings", "Log Out"];
+const config = [
+  "Profile",
+  "Inbox",
+  "Notifications",
+  "Settings",
+  "About Us",
+  "Contact Us",
+  "Log Out",
+];
 
 const UserDetails = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch }) => {
   const createUserDtlsList = () => {
@@ -16,6 +27,8 @@ const UserDetails = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch }) => {
               goToPagesAction(dispatch, "UserProfilePage", "");
             } else if (each === "Inbox") {
               goToPagesAction(dispatch, "UserInboxPage", "");
+            } else if (each === "Log Out") {
+              userLoginStatusAction(dispatch, false);
             }
           }}
         >

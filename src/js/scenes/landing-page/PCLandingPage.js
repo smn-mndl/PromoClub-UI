@@ -6,7 +6,8 @@ const PCLandingPage = () => {
   return (
     <section className="pc-landing-page-cont">
       <main className="pc-app-content">
-        <AppContent />
+        {/* <AppContent /> */}
+        landing page
       </main>
     </section>
   );

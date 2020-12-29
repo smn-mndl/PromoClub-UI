@@ -1,0 +1,127 @@
+.stockers-bay-photo-grid {
+}
+// ff nightly or chrome with flags enabled
+// https://www.youtube.com/watch?v=Dz9BzY21Zks&list=PLQkVA6z3dFvbnBJetfYDAF3-cG_ubgdZR
+// http://gridbyexample.com/
+// Rachel Andrew F.T.W
+
+.grid-layout {
+  //   display: grid;
+  //   grid-template-columns: repeat(4, minmax(180px, 1fr));
+  //   grid-gap: 10px;
+  //   grid-auto-rows: minmax(180px, auto);
+  //   grid-auto-flow: row dense;
+  //   display: flex;
+  //   height: 230px;
+  //   grid-template-columns: repeat(4, minmax(180px, 1fr));
+  //   grid-gap: 10px;
+  //   grid-auto-rows: minmax(180px, auto);
+  //   grid-auto-flow: row dense;
+  min-height: 1500px;
+  overflow: auto;
+  padding-bottom: 75px;
+  :first-child {
+    margin-top: 0;
+  }
+}
+
+.grid-item {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #929796;
+  background-color: #333;
+  border-radius: 5px;
+  height: 180px;
+}
+.each-row {
+  display: flex;
+  height: 225px;
+  margin: 10px 0;
+  width: 100%;
+  transition: all 0.4s;
+  img {
+    margin: 0 10px 0 0;
+    border: 1px solid white;
+    border-radius: 15px;
+    transition: all 0.5s;
+  }
+  //   :first-child {
+  //     margin: 0;
+  //   }
+  :last-child {
+    margin: 0 0 0 0px;
+  }
+  //   :last-child(:nth-last-child()) {
+  //     margin: 0;
+  //   }
+}
+#photos {
+  /* Prevent vertical gaps */
+  line-height: 0;
+
+  -webkit-column-count: 4;
+  -webkit-column-gap: 0px;
+  -moz-column-count: 5;
+  -moz-column-gap: 0px;
+  column-count: 4;
+  column-gap: 5px;
+}
+
+#photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 1200px) {
+  #photos {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+  }
+}
+@media (max-width: 1000px) {
+  #photos {
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+  }
+}
+@media (max-width: 800px) {
+  #photos {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+@media (max-width: 400px) {
+  #photos {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}
+
+.masonry-with-columns {
+  display: flex;
+  flex-wrap: wrap;
+  div {
+    height: 150px;
+    line-height: 150px;
+    background: #ec985a;
+    color: white;
+    margin: 0 1rem 1rem 0;
+    text-align: center;
+    font-family: system-ui;
+    font-weight: 900;
+    font-size: 2rem;
+    flex: 1 0 auto;
+  }
+  //   @for $i from 1 through 36 {
+  //     div:nth-child(#{$i}) {
+  //       $h: (random(400) + 70) + px;
+  //       width: $h;
+  //     }
+  //   }
+}

@@ -5,6 +5,7 @@
   height: 70vh;
   padding: 1.25em;
   max-width: 600px;
+  transition: all 0.3s;
 }
 .register-rows {
   display: flex;
@@ -33,7 +34,15 @@
   padding-left: 15px;
   font-size: 1.1em;
 }
+@media (max-width: 1000px) {
+  .register-cont {
+    width: 75%;
+  }
+}
 @media (max-width: 500px) {
+  .register-cont {
+    width: 90%;
+  }
   .register-rows {
     flex-direction: column;
     align-items: unset;
@@ -125,7 +134,7 @@
       opacity: unset;
     }
   }
-  .register-link--isloading{
+  .register-link--isloading {
     justify-content: space-between !important;
   }
   .login-link-cont {
@@ -163,10 +172,10 @@
     transform: rotate(360deg);
   }
 }
-.email-error-txt{
+.email-error-txt {
   margin-top: -15px;
   font-size: 1.08em;
-  .email-error-asterisk{
+  .email-error-asterisk {
     color: red;
   }
 }

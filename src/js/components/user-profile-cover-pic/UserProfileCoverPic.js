@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./UserProfileCoverPic.scss";
+import LineChart from "../../scenes/user-inbox/Test";
 import CoverPic from "./CoverPic";
 
 const UserCoverPic = (props) => {

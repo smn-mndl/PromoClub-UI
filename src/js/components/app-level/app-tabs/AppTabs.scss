@@ -1,0 +1,84 @@
+.app-tabs-navbar {
+  mask-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    #ffffff 25%,
+    #ffffff 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  margin: 0 auto;
+}
+
+.app-tabs-navbar-items-list {
+  text-align: center;
+  //   background: linear-gradient(
+  //     90deg,
+  //     rgba(255, 255, 255, 0) 0%,
+  //     rgba(255, 255, 255, 0.2) 25%,
+  //     rgba(255, 255, 255, 0.2) 75%,
+  //     rgba(255, 255, 255, 0) 100%
+  //   );
+
+  //   background: linear-gradient(
+  //     90deg,
+  //     rgba(255, 255, 255, 0.25) 0%,
+  //     rgba(255, 255, 255, 0.4) 25%,
+  //     rgba(255, 255, 255, 0.4) 75%,
+  //     rgba(255, 255, 255, 0.25) 100%
+  //   );
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 25%,
+    rgba(255, 255, 255, 0.4) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1),
+    inset 0 0 1px rgba(255, 255, 255, 0.6);
+  flex-direction: row;
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 10%;
+}
+
+.app-tabs-navbar-items {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 10px 0 10px;
+  transition: 0.3s;
+  .app-tabs-tools-drpdwn {
+    margin-left: 10px;
+  }
+}
+.app-tabs-navbar-items-selected {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1),
+    inset 0 0 1px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.app-tabs-navbar-items a {
+  text-transform: uppercase;
+  color: rgba(0, 35, 122, 0.5);
+  font-size: 18px;
+  text-decoration: none;
+  height: 100%;
+  align-items: center;
+  display: flex;
+}
+
+.app-tabs-navbar-items:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1),
+    inset 0 0 1px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 35, 122, 0.7);
+}
+
+.down-arrow {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+
+  border-top: 10px solid #f00;
+}

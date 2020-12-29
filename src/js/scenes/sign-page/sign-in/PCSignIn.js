@@ -1,14 +1,15 @@
 import React from "react";
 import "./PCSignIn.scss";
 import Login from "../login/Login";
+import LOGIN_CONFIG from "../login/login-config";
 
-const PCSignIn = props => {
+const PCSignIn = () => {
   return (
     <>
       <Login
-        loginConfig={props.loginConfig}
-        buttonTxt={props.buttonTxt}
-        txt={props.txt}
+        loginConfig={LOGIN_CONFIG}
+        buttonTxt={["Login", "Register"]}
+        txt={"Not a member? Please"}
       />
     </>
   );

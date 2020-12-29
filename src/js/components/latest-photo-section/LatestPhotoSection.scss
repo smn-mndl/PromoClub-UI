@@ -1,0 +1,178 @@
+@import "../../../styles/variables.scss";
+
+.latest-photo-section {
+  font-family: $app-font-regular;
+  font-size: 1.75em;
+  padding: 0 1em;
+  position: relative;
+  .section-title {
+    font-family: $app-font-medium;
+  }
+  .section-cards {
+    display: flex;
+    // -ms-overflow-style: none; /* IE and Edge */
+    // scrollbar-width: none;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+
+    .latest-photo-cards {
+      position: relative;
+      height: 212px;
+      /* width: 255px; */
+      background: white;
+      opacity: 1;
+      min-width: 250px;
+      margin-right: 10px;
+
+      box-shadow: 10px 20px -9px rgba(0, 0, 0, 0.5);
+      transition: all 0.4s;
+
+      cursor: pointer;
+      //   -webkit-transition: border-color 0.3s, -webkit-box-shadow 0.3s;
+      //   transition: border-color 0.3s, -webkit-box-shadow 0.3s;
+      //   transition: box-shadow 0.3s, border-color 0.3s;
+      //   transition: box-shadow 0.3s, border-color 0.3s, -webkit-box-shadow 0.3s;
+      &:hover {
+        box-shadow: 0px 18px 20px -9px rgba(0, 10, 30, 0.75);
+        .color-overlay {
+          background: rgba(0, 0, 0, 0.2);
+        }
+        .title-content {
+          margin-top: 70px;
+          a {
+            text-shadow: 0px 8px 20px rgba(0, 0, 0, 0.95);
+          }
+        }
+        .card-info {
+          opacity: 1;
+          bottom: 80px;
+        }
+      }
+    }
+  }
+  .anticon-left-circle {
+    position: absolute;
+    z-index: 5;
+    top: 100px;
+    font-size: 1.25em;
+    padding: 1em 1em 1em 0em;
+    color: #d7d4d4;
+    cursor: pointer;
+    :hover {
+      color: white;
+    }
+  }
+  .anticon-right-circle {
+    position: absolute;
+    z-index: 5;
+    top: 100px;
+    right: 26px;
+    font-size: 1.25em;
+    padding: 1em 0em 1em 1em;
+    cursor: pointer;
+    color: #d7d4d4;
+    :hover {
+      color: white;
+    }
+  }
+}
+.section-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.blog-card {
+  max-width: 100%;
+  width: 100%;
+  height: 324px;
+  position: absolute;
+  color: #fff;
+  top: 49%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  //   overflow: hidden;
+  border-radius: 0px;
+  box-shadow: 0px 10px 20px -9px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transition: all 0.4s;
+  background: url(https://unsplash.it/600/800?image=1061) center no-repeat;
+  background-size: 100%;
+}
+.color-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: background 0.3s ease-in-out;
+}
+.title-content {
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  margin: 170px 0 0 0;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+  font-size: 0.75em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 0;
+  display: inline-block;
+  z-index: 1;
+  a {
+    color: #fff;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s;
+  }
+}
+
+.card-info {
+  box-sizing: border-box;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  margin: 0 auto;
+  padding: 0 50px;
+  font-size: 13px;
+  line-height: 24px;
+  z-index: 20;
+  opacity: 0;
+  transition: bottom 0.34s, opacity 0.35s ease-in-out;
+}
+
+.card-info a {
+  display: block;
+  width: 80px;
+  margin: 15px auto;
+  background: #fff;
+  color: #444;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 0.8em;
+}
+.card-info a:hover {
+  background: #8e7c49;
+  color: #fff;
+}
+.card-info a:hover span {
+  filter: brightness(10);
+  opacity: 1;
+}
+
+#myDIV {
+  height: 250px;
+  width: 250px;
+  overflow: auto;
+}
+
+#content {
+  height: 800px;
+  width: 2000px;
+  background-color: coral;
+}

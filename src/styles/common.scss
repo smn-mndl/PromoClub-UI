@@ -1,8 +1,9 @@
 @import "./variables.scss";
 .pc-root-main-cont {
   font-family: $app-font-regular;
-  background: $default-pc-hovercolor;
+  // background: $default-pc-hovercolor;
   height: calc(100vh - 44px);
+  position: relative;
 }
 .pc-root-main-cont-SignPage {
   height: 100vh;
@@ -10,4 +11,35 @@
 .pc-root-main-cont-LandingPage {
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.pc-root-background {
+  // background: url(../images/DSC_2850.JPG);
+  width: 100%;
+  object-fit: cover;
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+}
+.homepage-app-tabs {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+ *  STYLE 8
+ */
+
+webkit-scrollbar-track {
+  border: 1px solid black;
+  background-color: #f5f5f5;
+}
+
+webkit-scrollbar {
+  width: 4px !important;
+  background-color: #f5f5f5;
+}
+
+webkit-scrollbar-thumb {
+  background-color: #000000;
 }
