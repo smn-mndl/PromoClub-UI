@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import SignIn from "../sign-in/SignIn";
 import SignUp from "../sign-up/SignUp";
@@ -14,14 +14,21 @@ import {
   LinkedinOutlined,
   WhatsAppOutlined,
 } from "@ant-design/icons";
-import { goToPagesAction } from "../../../actions/ApplevelActions";
+import {
+  goToPagesAction,
+  setNavigationRouteAction,
+} from "../../../actions/ApplevelActions";
 
 const SideNav = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch, isLoggedIn }) => {
   const [visible, setVisible] = useState(false);
   const loginState = isLoggedIn;
   let history = useHistory();
+
   const loginClickHandler = (each) => {
-    debugger;
+    setNavigationRouteAction(
+      dispatch,
+      `${history.location.pathname}${history.location.search}`
+    );
     history.push(`/${each.id.toLowerCase()}`);
     setShowDrpdwnOpt(false);
     goToPagesAction(dispatch, `${each.display}Page`);
@@ -74,19 +81,9 @@ const SideNav = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch, isLoggedIn }) => {
   const tooptipText = () => {
     return (
       <>
-        {" "}
         <Tag icon={<WhatsAppOutlined />} color="#55acee">
           <a href="whatsapp://send?text=http://www.example.com">WhatsApp</a>
         </Tag>
-        {/* <Tag icon={<YoutubeOutlined />} color="#cd201f">
-          Youtube
-        </Tag>
-        <Tag icon={<FacebookOutlined />} color="#3b5999">
-          Facebook
-        </Tag>
-        <Tag icon={<TwitterOutlined />} color="#55acee">
-          Twitter
-        </Tag> */}
       </>
     );
   };

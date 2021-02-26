@@ -1,7 +1,65 @@
+@import "../../../../styles/variables.scss";
 .app-footer {
   height: 400px;
-  background: rgb(253, 253, 253);
+  position: relative;
   width: 100%;
   margin-top: 50px;
   opacity: 1;
+  color: #d6d3d3;
+  .footer-title {
+    font-size: 2em;
+    text-align: center;
+    padding: 0.75em 0;
+    font-family: $app-font-medium;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+  }
+  .footer-cont {
+    padding: 0.75em 0;
+    z-index: 10;
+    position: absolute;
+    width: 100%;
+    top: 6em;
+    .footer-cont-list {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+
+      div {
+        padding: 0.3em 0.3em;
+        :first-child {
+          font-size: 1.5em;
+          margin-bottom: 0.5em;
+          font-family: $app-font-medium;
+        }
+        :not(:first-child) {
+          cursor: pointer;
+          &:hover {
+            color: rgb(139, 110, 110);
+          }
+        }
+      }
+    }
+  }
+  .footer-overlay {
+    position: absolute;
+    top: 0;
+    z-index: 4;
+    background: #000000;
+    opacity: 0.75;
+    height: 100%;
+    width: 100%;
+  }
+  .secondary-footer-cont {
+    position: absolute;
+    z-index: 5;
+    bottom: 15px;
+    height: 5em;
+    width: 100%;
+    border-top: 1px solid;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 }

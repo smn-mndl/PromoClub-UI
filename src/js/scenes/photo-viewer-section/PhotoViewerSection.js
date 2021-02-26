@@ -1,17 +1,40 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./PhotoViewerSection.scss";
 import { Store } from "../../store/Store";
 import { FullscreenOutlined } from "@ant-design/icons";
 import Modal from "antd/lib/modal/Modal";
 import PhotoViwerRightSection from "./PhotoViewerRightSection";
 import PhotoViewerBottomSection from "./PhotoViewerBottomSection";
+import { useQuery } from "../../PCRoot";
+import {
+  getPhotoDetailsAction,
+  photoClickAction,
+} from "../../actions/PhotoDetailsActions";
+import { isEmpty } from "lodash";
+import { useHistory } from "react-router";
 
 const PhotoViewerSection = () => {
   const {
     dispatch,
-    state: { selectedPhotoDetails },
+    state: {
+      selectedPhotoDetails,
+      isLoggedIn,
+      userDetails: { cart },
+    },
   } = useContext(Store);
   const [showFullScreenImg, setShowFullScreenImg] = useState(false);
+
+  let query = useQuery(),
+    history = useHistory();
+  let name = query.get("name"),
+    id = query.get("id");
+
+  useEffect(() => {
+    let photoId = selectedPhotoDetails && selectedPhotoDetails._id;
+    if (photoId !== id) {
+      photoClickAction(dispatch, id);
+    }
+  }, [selectedPhotoDetails]);
   return (
     <>
       <div className="photoviewer-section">
@@ -24,12 +47,27 @@ const PhotoViewerSection = () => {
           </div>
           <img
             className="photo-section-img"
-            src={selectedPhotoDetails.img}
+            src={
+              selectedPhotoDetails &&
+              selectedPhotoDetails["attributes"] &&
+              selectedPhotoDetails["attributes"]["image_src"]["480p"]
+            }
+            alt={
+              selectedPhotoDetails &&
+              selectedPhotoDetails["attributes"] &&
+              selectedPhotoDetails["attributes"]["alt"]
+            }
           ></img>
           <div className="background-color-gradient"></div>
         </div>
         <div className="photo-desc-section">
-          <PhotoViwerRightSection />
+          <PhotoViwerRightSection
+            dispatch={dispatch}
+            selectedPhotoDetails={selectedPhotoDetails}
+            isLoggedIn={isLoggedIn}
+            history={history}
+            cart={cart}
+          />
           <div className="background-color-gradient"></div>
         </div>
       </div>
@@ -45,7 +83,16 @@ const PhotoViewerSection = () => {
         >
           <img
             className="photo-section-img"
-            src={selectedPhotoDetails.img}
+            src={
+              selectedPhotoDetails &&
+              selectedPhotoDetails["attributes"] &&
+              selectedPhotoDetails["attributes"]["image_src"]["480p"]
+            }
+            alt={
+              selectedPhotoDetails &&
+              selectedPhotoDetails["attributes"] &&
+              selectedPhotoDetails["attributes"]["alt"]
+            }
           ></img>
         </Modal>
       )}

@@ -8,7 +8,11 @@ import img5 from "../../../images/latest/download(4).jpg";
 import img6 from "../../../images/latest/download(5).jpg";
 import img7 from "../../../images/latest/download(6).jpg";
 import { useHistory } from "react-router";
-import { photoClickAction } from "../../actions/PhotoDetailsActions";
+import {
+  photoClickAction,
+  getLatestPhotosAction,
+  setSeletedPhotoBlankAction,
+} from "../../actions/PhotoDetailsActions";
 import { Store } from "../../store/Store";
 import {
   ArrowLeftOutlined,
@@ -17,53 +21,7 @@ import {
   RightCircleFilled,
 } from "@ant-design/icons";
 
-const imgDtls = [
-  {
-    url: "../../../../images/DSC_0121.JPG",
-    img: img1,
-    title: "img1",
-    desc: "img1",
-  },
-  {
-    url: "../../../../images/DSC_0122.JPG",
-    img: img2,
-    title: "img2",
-    desc: "img1",
-  },
-  {
-    url: "../../../../images/DSC_0174.JPG",
-    img: img3,
-    title: "img3",
-    desc: "img1",
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img4,
-    title: "img4",
-    desc: "img1",
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img5,
-    title: "img5",
-    desc: "img1",
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img6,
-    title: "img6",
-    desc: "img1",
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img7,
-    title: "img7",
-    desc: "img1",
-  },
-];
-
 var isItScrollableWithoutVisibleScrollbars = function (el) {
-  debugger;
   return (
     el &&
     el.scrollHeight > el.offsetHeight &&
@@ -72,38 +30,44 @@ var isItScrollableWithoutVisibleScrollbars = function (el) {
 };
 
 const photoClickHandler = (clickedPhotoDtls, dispatch, history) => {
-  history.push(`/latest-photos/${clickedPhotoDtls.title}`);
-  photoClickAction(dispatch, clickedPhotoDtls);
+  let title = clickedPhotoDtls["attributes"]["title"],
+    id = clickedPhotoDtls._id;
+  history.push(`/latest-photos/?name=${title}&id=${id}`, { id });
+  // photoClickAction(dispatch, clickedPhotoDtls);
+  setSeletedPhotoBlankAction(dispatch);
 };
 
-const getPhotoCards = (dispatch, history) => {
-  return imgDtls.map((each) => {
-    return (
-      <div
-        className="latest-photo-cards blog-card spring-fever"
-        onClick={() => photoClickHandler(each, dispatch, history)}
-      >
-        <img
-          src={each.img}
-          style={{ objectFit: "cover", width: "100%", height: "100%" }}
-        ></img>
-        <div class="title-content">
-          <h5>
-            <a href="#">{each.title}</a>
-          </h5>
+const getPhotoCards = (dispatch, history, latestPhotos) => {
+  return (
+    latestPhotos &&
+    latestPhotos.map((each) => {
+      return (
+        <div
+          className="latest-photo-cards blog-card spring-fever"
+          onClick={() => photoClickHandler(each, dispatch, history)}
+        >
+          <img
+            src={each["attributes"]["image_src"]["240p"]}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            alt={each["attributes"]["alt"]}
+          ></img>
+          <div class="title-content">
+            <h5>
+              <a href="#">{each.attributes.title}</a>
+            </h5>
+          </div>
+          <div class="card-info">{each.attributes.description}</div>
+          <div class="color-overlay"></div>
         </div>
-        <div class="card-info">{each.title}</div>
-        <div class="color-overlay"></div>
-      </div>
-    );
-  });
+      );
+    })
+  );
 };
 
 const determineScrollState = (textarea, showArrowObj) => {
   const scrollState = JSON.parse(JSON.stringify(showArrowObj));
   let left = false,
     right = false;
-  debugger;
   if (textarea && textarea.getBoundingClientRect() && scrollState.left === 0) {
     right = true;
   } else if (
@@ -125,7 +89,10 @@ const determineScrollState = (textarea, showArrowObj) => {
 };
 
 const LatestPhotoSection = () => {
-  const { dispatch } = useContext(Store);
+  const {
+    dispatch,
+    state: { latestPhotos },
+  } = useContext(Store);
   const [showArrowObj, setShowArrowObj] = useState({
     left: 0,
     scrollWidth: 0,
@@ -174,13 +141,18 @@ const LatestPhotoSection = () => {
   };
 
   const getScrollState = determineScrollState(cardsContElem, showArrowObj);
-  console.log("showArrowObj", showArrowObj);
 
   function myFunction() {
     var elmnt = document.getElementById("abc");
     elmnt.scrollLeft += 50;
     // elmnt.scrollTop += 10;
   }
+
+  useEffect(() => {
+    if (!latestPhotos) {
+      getLatestPhotosAction(dispatch);
+    }
+  }, []);
   return (
     <>
       <div className="latest-photo-section">
@@ -193,7 +165,7 @@ const LatestPhotoSection = () => {
           />
         )}
         <div className="section-cards" id="abc">
-          {getPhotoCards(dispatch, history)}
+          {getPhotoCards(dispatch, history, latestPhotos)}
         </div>
         {getScrollState.right && (
           <RightCircleFilled

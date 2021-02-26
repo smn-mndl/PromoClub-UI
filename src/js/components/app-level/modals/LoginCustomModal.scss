@@ -1,0 +1,12 @@
+.login-modal {
+  .ant-modal-body {
+    span {
+      color: #b5c64c !important;
+      cursor: pointer;
+      &:hover {
+        color: #d9363e !important;
+        opacity: 0.7;
+      }
+    }
+  }
+}

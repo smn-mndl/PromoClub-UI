@@ -1,4 +1,5 @@
 import { miscReducer } from "./MiscReducer";
+import { each } from "lodash";
 
 export const reducer = (state, action) => {
   switch (true) {
@@ -31,7 +32,10 @@ export const reducer = (state, action) => {
     case action.type === "SET_USER_DETAILS_ACTION":
       return {
         ...state,
-        userDetails: action.payload,
+        userDetails: {
+          ...state.userDetails,
+          profile: action.payload,
+        },
       };
     case action.type === "SET_USER_LOGIN_STATUS_ACTION":
       return {
@@ -72,6 +76,40 @@ export const reducer = (state, action) => {
       return {
         ...state,
         selectedPhotoDetails: action.payload,
+      };
+    case action.type === "SET_LATEST_PHOTOS":
+      return {
+        ...state,
+        latestPhotos: action.payload,
+      };
+    case action.type === "SET_SELETED_PHOTO_BLANK_ACTION":
+      return {
+        ...state,
+        selectedPhotoDetails: {},
+      };
+    case action.type === "SET_ROUTE_PATH":
+      return {
+        ...state,
+        navigation: {
+          ...state.navigation,
+          route: action.payload,
+        },
+      };
+    case action.type === "ADD_TO_CART_ACTION":
+      return {
+        ...state,
+        userDetails: {
+          ...state.userDetails,
+          cart: action.payload,
+        },
+      };
+    case action.type === "USER_UPDATE_ACTION":
+      return {
+        ...state,
+        userDetails: {
+          ...state.userDetails,
+          userUpdates: action.payload,
+        },
       };
     case action.type.includes("MISC"):
       return miscReducer(state, action);

@@ -11,6 +11,8 @@ import {
   Route,
   Link,
   useRouteMatch,
+  useLocation,
+  useParams,
 } from "react-router-dom";
 import dscImg from "../images/DSC_2850.JPG";
 import AppTabs from "./components/app-level/app-tabs/AppTabs";
@@ -26,7 +28,11 @@ const LazyRegisterPage = lazy(() =>
   import("./scenes/sign-page/sign-up/PCSignUp")
 );
 const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
+const LazyUserCart = lazy(() => import("./scenes/user-cart/UserCart"));
 
+export const useQuery = () => {
+  return new URLSearchParams(useLocation().search);
+};
 const PromoClubRoot = (props) => {
   const {
     state,
@@ -41,11 +47,39 @@ const PromoClubRoot = (props) => {
 
   const LazyPhotoViewerComponent = () => {
     let match = useRouteMatch();
-    const photoId = selectedPhotoDetails.title;
+    let query = useQuery();
+    let name = query.get("name"),
+      id = query.get("id");
+
     return (
       <Switch>
-        <Route path={`${match.path}/${photoId}`}>
+        <Route
+          path={{
+            pathname: `${match.path}/`,
+            search: `?name=${name}&?${id}`,
+          }}
+        >
           <LazyPhotoViewerSection />
+        </Route>
+        <Route path="*">
+          <LazyHomePage />
+        </Route>
+      </Switch>
+    );
+  };
+  const CartComponent = () => {
+    let match = useRouteMatch();
+    let email = "suman.mondal1240@gmail.com";
+    let query = useQuery();
+    return (
+      <Switch>
+        <Route
+          path={{
+            pathname: `${match.path}/`,
+            search: `?email=${email}`,
+          }}
+        >
+          <LazyUserCart />
         </Route>
         <Route path="*">
           <LazyHomePage />
@@ -71,7 +105,7 @@ const PromoClubRoot = (props) => {
               </header>
             </>
           ) : null}
-          {!["LoginPage", "Sign UpPage"].currentPage ? (
+          {!["LoginPage", "SignUpPage"].currentPage ? (
             <>
               <div className="homepage-app-tabs">
                 <AppTabs dispatch={dispatch} currentTab={currentTab} />
@@ -85,32 +119,33 @@ const PromoClubRoot = (props) => {
           <main
             className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
           >
-            <div>
-              <Switch>
-                <Route exact path="/">
-                  <LazyHomePage />
-                </Route>
-                <Route exact path="/home">
-                  <LazyHomePage />
-                </Route>
-                <Route path="/landing" component={LazyLandingPage}>
-                  <LazyLandingPage />
-                </Route>
-                <Route path="/login" component={LazyLoginPage}>
-                  <LazyLoginPage />
-                </Route>
-                <Route path="/signup" component={LazyRegisterPage}>
-                  <LazyRegisterPage />
-                </Route>
-                <Route
-                  path="/latest-photos"
-                  component={LazyPhotoViewerComponent}
-                ></Route>
-                <Route path="*">
-                  <LazyHomePage />
-                </Route>
-              </Switch>
-            </div>
+            {/* <div> */}
+            <Switch>
+              <Route exact path="/">
+                <LazyHomePage />
+              </Route>
+              <Route exact path="/home">
+                <LazyHomePage />
+              </Route>
+              <Route path="/landing" component={LazyLandingPage}>
+                <LazyLandingPage />
+              </Route>
+              <Route path="/login" component={LazyLoginPage}>
+                <LazyLoginPage />
+              </Route>
+              <Route path="/signup" component={LazyRegisterPage}>
+                <LazyRegisterPage />
+              </Route>
+              <Route
+                path="/latest-photos"
+                component={LazyPhotoViewerComponent}
+              ></Route>
+              <Route path="/cart" component={CartComponent}></Route>
+              <Route path="*">
+                <LazyHomePage />
+              </Route>
+            </Switch>
+            {/* </div> */}
           </main>
         </Router>
       </Suspense>

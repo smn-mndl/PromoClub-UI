@@ -7,6 +7,7 @@ import { getPublisedDataAction } from "../../../actions/LandingPageActions";
 import { Tooltip } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router";
+import { changeUserUpdateAction } from "../../../actions/UserDetailsActions";
 
 const LazySignInCont = lazy(() => import("./SignInCont"));
 const LAzyUserDetails = lazy(() => import("../user-details/UserDetails"));
@@ -18,6 +19,7 @@ const AppHeader = () => {
     state,
     state: {
       navigation: { currentPage },
+      userDetails: { userUpdates },
     },
   } = useContext(Store);
   const { isLoggedIn } = state;
@@ -63,17 +65,23 @@ const AppHeader = () => {
 
             <div
               className="sign-in-opt"
-              onClick={() => setShowDrpdwnOpt(!showDrpdwnOpt)}
+              onClick={() => {
+                setShowDrpdwnOpt(!showDrpdwnOpt);
+                changeUserUpdateAction(dispatch, false);
+              }}
             >
               {!showDrpdwnOpt ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+              {userUpdates && <div className="notification-dot"></div>}
             </div>
           </div>
         </header>
         {isLoggedIn ? (
           <LAzyUserDetails
+            state={state}
             dispatch={dispatch}
             showDrpdwnOpt={showDrpdwnOpt}
             setShowDrpdwnOpt={setShowDrpdwnOpt}
+            history={history}
           />
         ) : (
           <LazySideNav

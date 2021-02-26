@@ -12,7 +12,6 @@ const PhotoGrid = (props) => {
     });
   };
   const getEachImg = (each, width) => {
-    console.log(width, "width");
     return (
       <img
         src={each.img}

@@ -1,0 +1,141 @@
+{
+  "result": {
+    "latestPhotos": [
+      {
+        "imageSize": "large_jpg",
+        "photoDtls": {
+          "_id": "1",
+          "attributes": {
+            "alt": "Morning Kanchenjunga!",
+            "description": "Morning Kanchenjunga!",
+            "details": {
+              "collection_name": "Nature",
+              "location": "Darjeeling, India",
+              "date": "06/01/2019 13:23"
+            },
+            "image_src": {
+              "240p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0122_edited.jpg",
+              "480p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0122_edited.jpg",
+              "1080p": "https://latest-original-photos.s3.ap-south-1.amazonaws.com/DSC_0122.jpg"
+            },
+            "keywords": [
+              "texture",
+              "abstract",
+              "mountain",
+              "backdrop",
+              "background",
+              "snow",
+              "rock",
+              "nature"
+            ],
+            "sizes": {
+              "large_jpg": {
+                "display_name": "Large",
+                "dpi": 300,
+                "format": "jpg",
+                "height": 4000,
+                "width": 6000,
+                "height_inch": "20 inch",
+                "width_inch": "30 inch",
+                "height_cm": "50.8 cm",
+                "width_cm": "76.2 cm"
+              },
+              "medium_jpg": {
+                "display_name": "Medium",
+                "dpi": 300,
+                "format": "jpg",
+                "height": 800,
+                "width": 1200,
+                "height_inch": "4 inch",
+                "width_inch": "5 inch",
+                "height_cm": "10.16 cm",
+                "width_cm": "15.24 cm"
+              },
+              "small_jpg": {
+                "display_name": "Small",
+                "dpi": 300,
+                "format": "jpg",
+                "height": 400,
+                "width": 600,
+                "height_inch": "2 inch",
+                "width_inch": "3 inch",
+                "height_cm": "5.08 cm",
+                "width_cm": "7.62 cm"
+              }
+            },
+            "title": "Kanchenjunga"
+          },
+          "type": "image"
+        }
+      },
+      {
+        "imageSize": "large_jpg",
+        "photoDtls": {
+          "_id": "2",
+          "attributes": {
+            "alt": "Sunrays through trees",
+            "description": "Sunrays through trees",
+            "details": {
+              "collection_name": "Nature",
+              "location": "Darjeeling, India",
+              "date": "06/01/2019 13:23"
+            },
+            "image_src": {
+              "240p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0174_edited.jpg",
+              "480p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0174_edited.jpg",
+              "1080p": "https://latest-original-photos.s3.ap-south-1.amazonaws.com/DSC_0174.jpg"
+            },
+            "keywords": [
+              "texture",
+              "abstract",
+              "mountain",
+              "backdrop",
+              "background",
+              "snow",
+              "rock",
+              "nature"
+            ],
+            "sizes": {
+              "large_jpg": {
+                "display_name": "Large",
+                "dpi": 300,
+                "format": "jpg",
+                "height": 4000,
+                "width": 6000,
+                "height_inch": "20 inch",
+                "width_inch": "30 inch",
+                "height_cm": "50.8 cm",
+                "width_cm": "76.2 cm"
+              },
+              "medium_jpg": {
+                "display_name": "Medium",
+                "dpi": 300,
+                "format": "jpg",
+                "height": 800,
+                "width": 1200,
+                "height_inch": "4 inch",
+                "width_inch": "5 inch",
+                "height_cm": "10.16 cm",
+                "width_cm": "15.24 cm"
+              },
+              "small_jpg": {
+                "display_name": "Small",
+                "dpi": 300,
+                "format": "jpg",
+                "height": 400,
+                "width": 600,
+                "height_inch": "2 inch",
+                "width_inch": "3 inch",
+                "height_cm": "5.08 cm",
+                "width_cm": "7.62 cm"
+              }
+            },
+            "title": "Woods"
+          },
+          "type": "image"
+        }
+      }
+    ]
+  },
+  "status": "success"
+}

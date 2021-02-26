@@ -1,9 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Register.scss";
 import REGISTER_CONFIG from "./register-config";
 import RegisterInput from "./RegisterInput";
 import Axios from "axios";
-import { userLoginStatusAction } from "../../../actions/ApplevelActions";
+import {
+  userLoginStatusAction,
+  goToPagesAction,
+} from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
 import makeApiCall from "../../../api/api";
 import { useHistory } from "react-router";
@@ -34,7 +37,7 @@ const checkIfInptFldValid = (registerData) => {
 const Register = () => {
   const { dispatch, state } = useContext(Store);
   const {
-    navigation: { subPage },
+    navigation: { route, currentPage },
   } = state;
   const [registerData, setRegisterData] = useState({});
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -92,17 +95,23 @@ const Register = () => {
   const ifInptFldValid = checkIfInptFldValid(registerData);
   console.log("errorInEmail", errorInEmail, registerData);
   const arrow = `<`;
+
+  useEffect(() => {
+    if (currentPage !== "SignUpPage") {
+      goToPagesAction(dispatch, "SignUpPage", "");
+    }
+  }, []);
   return (
     <>
       <div
         className="back-to-home"
         onClick={() => {
-          history.push("/");
-          // goToPagesAction(dispatch, "LandingPage", "");
+          // history.push("/");
+          history.push(route);
         }}
       >
         <span>{arrow}</span>
-        <span>Back to home</span>
+        <span>Back</span>
       </div>
       <div className="register-cont">
         <div className="register-inpt-cont">{registerInptFlds()}</div>

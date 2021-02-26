@@ -4,6 +4,7 @@
   // background: $default-pc-hovercolor;
   height: calc(100vh - 44px);
   position: relative;
+  z-index: 1;
 }
 .pc-root-main-cont-SignPage {
   height: 100vh;
@@ -11,6 +12,13 @@
 .pc-root-main-cont-LandingPage {
   overflow-y: auto;
   overflow-x: hidden;
+}
+.back-to-home {
+  cursor: pointer;
+  padding-left: 1.5em;
+  :first-child {
+    margin-right: 5px;
+  }
 }
 
 .pc-root-background {
@@ -20,6 +28,7 @@
   height: 100vh;
   position: absolute;
   top: 0px;
+  z-index: -2;
 }
 .homepage-app-tabs {
   position: relative;

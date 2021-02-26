@@ -45,8 +45,7 @@ export const userLoginAction = async (
 ) => {
   const userDtls = await loginUser(payload);
   setIsLoggingIn(false);
-  console.log("userDtls", userDtls);
-  const isValid = userDtls.data.result.isValid;
+  const isValid = userDtls.data.data.UserLogin.email ? true : false;
   userLoginStatusAction(dispatch, isValid);
   if (isValid) {
     setPageToastAction(dispatch, {
@@ -55,10 +54,10 @@ export const userLoginAction = async (
       toastMsg: "Logged In!",
     });
     goToPagesAction(dispatch, "LandingPage", "");
-    history.push("/");
+    history.goBack();
     return dispatch({
       type: "SET_USER_DETAILS_ACTION",
-      payload: userDtls.data.result,
+      payload: userDtls.data.data.UserLogin,
     });
   } else {
     setPageToastAction(dispatch, {
@@ -85,4 +84,18 @@ export const getLanguageCodesAction = async (dispatch, languageCodes) => {
 
 export const getGoogleTranslateAction = async (dispatch, payload) => {
   const reponse = await getTranslation(payload);
+};
+
+export const setNavigationRouteAction = (dispatch, locationPath) => {
+  dispatch({
+    type: "SET_ROUTE_PATH",
+    payload: locationPath,
+  });
+};
+
+export const setUserActivityAction = (dispatch, payload) => {
+  dispatch({
+    type: "SET_USER_ACTIVITY",
+    payload: payload,
+  });
 };

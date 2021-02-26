@@ -13,8 +13,25 @@
     padding: 0.5em 0em;
     text-indent: 1em;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
     &:hover {
       background: $default-pc-hovercolor;
+    }
+    .user-details-counter {
+      color: #b65b5b;
+      /* padding-left: 9px; */
+      width: 22px;
+      height: 18px;
+      background: #d6d2d2;
+      margin-left: 10px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      text-indent: 0;
     }
   }
 }

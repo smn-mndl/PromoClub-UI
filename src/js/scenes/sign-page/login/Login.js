@@ -14,7 +14,7 @@ import { useHistory } from "react-router";
 const Login = (props) => {
   const { dispatch, state } = useContext(Store);
   const {
-    navigation: { subPage },
+    navigation: { route },
   } = state;
   const [loginData, setLoginData] = useState({});
   const [isLoggingIn, setIsLoggingIn] = useState(false);
@@ -49,12 +49,14 @@ const Login = (props) => {
       <div
         className="back-to-home"
         onClick={() => {
-          history.push("/");
+          // history.push("/");
+          // history.goBack();
+          history.push(route);
           // goToPagesAction(dispatch, "LandingPage", "");
         }}
       >
         <span>{arrow}</span>
-        <span>Back to home</span>
+        <span>Back</span>
       </div>
       <div className="login-cont">
         <div className="login-inpt-cont">{loginInptFlds()}</div>
