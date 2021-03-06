@@ -111,7 +111,7 @@ export const getLatestPhotos = () => {
     method: "GET",
     url: "latestPhotos",
     payload: null,
-    isLocal: true,
+    isLocal: false,
     isMock: false,
   });
 };

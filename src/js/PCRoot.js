@@ -127,13 +127,13 @@ const PromoClubRoot = (props) => {
               <Route exact path="/">
                 <LazyHomePage />
               </Route>
-              {/* <Route exact path="/home">
+              <Route exact path="/home">
                 <LazyHomePage />
               </Route>
               <Route path="/landing" component={LazyLandingPage}>
                 <LazyLandingPage />
               </Route>
-              <Route path="/login" component={LazyLoginPage}>
+              {/*<Route path="/login" component={LazyLoginPage}>
                 <LazyLoginPage />
               </Route>
               <Route path="/signup" component={LazyRegisterPage}>
