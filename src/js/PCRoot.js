@@ -105,7 +105,7 @@ const PromoClubRoot = (props) => {
               </header>
             </>
           ) : null}
-          {/*{!["LoginPage", "SignUpPage"].currentPage ? (
+          {!["LoginPage", "SignUpPage"].currentPage ? (
             <>
               <div className="homepage-app-tabs">
                 <AppTabs dispatch={dispatch} currentTab={currentTab} />
@@ -115,8 +115,7 @@ const PromoClubRoot = (props) => {
           <div>
             <img className="pc-root-background" src={dscImg}></img>
           </div>
-
-          <main
+          {/* <main
             className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
           >
             <Switch>
