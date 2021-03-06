@@ -17,12 +17,12 @@ import {
 import dscImg from "../images/DSC_2850.JPG";
 import AppTabs from "./components/app-level/app-tabs/AppTabs";
 
-// const LazyPhotoViewerSection = lazy(() =>
-//   import("./scenes/photo-viewer-section/PhotoViewerSection")
-// );
-// const LazyLandingPage = lazy(() =>
-//   import("./scenes/landing-page/PCLandingPage")
-// );
+const LazyPhotoViewerSection = lazy(() =>
+  import("./scenes/photo-viewer-section/PhotoViewerSection")
+);
+const LazyLandingPage = lazy(() =>
+  import("./scenes/landing-page/PCLandingPage")
+);
 // const LazyLoginPage = lazy(() => import("./scenes/sign-page/sign-in/PCSignIn"));
 // const LazyRegisterPage = lazy(() =>
 //   import("./scenes/sign-page/sign-up/PCSignUp")
@@ -145,7 +145,7 @@ const PromoClubRoot = (props) => {
               </Route>
             </Switch>
           </main> */}
-          test1
+          test2
         </Router>
       </Suspense>
     </>
