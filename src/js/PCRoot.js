@@ -98,14 +98,14 @@ const PromoClubRoot = (props) => {
       )}
       <Suspense fallback={<LoadingPage text="Loading..." />}>
         <Router>
-          {/* {currentPage !== "SignPage" ? (
+          {currentPage !== "SignPage" ? (
             <>
               <header>
                 <AppHeader />
               </header>
             </>
           ) : null}
-          {!["LoginPage", "SignUpPage"].currentPage ? (
+          {/*{!["LoginPage", "SignUpPage"].currentPage ? (
             <>
               <div className="homepage-app-tabs">
                 <AppTabs dispatch={dispatch} currentTab={currentTab} />
@@ -145,7 +145,7 @@ const PromoClubRoot = (props) => {
               </Route>
             </Switch>
           </main> */}
-          test3
+          test4
         </Router>
       </Suspense>
     </>
