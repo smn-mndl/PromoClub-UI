@@ -113,7 +113,12 @@ const PromoClubRoot = (props) => {
             </>
           ) : null}
           <div>
-            <img className="pc-root-background" src={dscImg}></img>
+            <img
+              className="pc-root-background"
+              src={
+                "https://photos-round1.s3.ap-south-1.amazonaws.com/DSC_2850.JPG"
+              }
+            ></img>
           </div>
           {/* <main
             className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
