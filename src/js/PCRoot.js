@@ -120,14 +120,14 @@ const PromoClubRoot = (props) => {
               }
             ></img>
           </div>
-          {/* <main
+          <main
             className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
           >
             <Switch>
               <Route exact path="/">
                 <LazyHomePage />
               </Route>
-              <Route exact path="/home">
+              {/* <Route exact path="/home">
                 <LazyHomePage />
               </Route>
               <Route path="/landing" component={LazyLandingPage}>
@@ -143,12 +143,12 @@ const PromoClubRoot = (props) => {
                 path="/latest-photos"
                 component={LazyPhotoViewerComponent}
               ></Route>
-              <Route path="/cart" component={CartComponent}></Route>
+              <Route path="/cart" component={CartComponent}></Route> */}
               <Route path="*">
                 <LazyHomePage />
               </Route>
             </Switch>
-          </main> */}
+          </main>
           test4
         </Router>
       </Suspense>
