@@ -2,7 +2,7 @@ import React, { useContext, lazy, Suspense } from "react";
 import { Store } from "./store/Store";
 import Fallback from "./components/common/fallback/Fallback";
 import LoadingPage from "./components/common/loading-page/LoadingPage";
-import AppHeader from "./components/app-level/app-header/AppHeader";
+// import AppHeader from "./components/app-level/app-header/AppHeader";
 import "../styles/common.scss";
 import PageToast from "./components/common/page-toast/PageToast";
 import {
@@ -14,21 +14,21 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import dscImg from "../images/DSC_2850.JPG";
-import AppTabs from "./components/app-level/app-tabs/AppTabs";
+// import dscImg from "../images/DSC_2850.JPG";
+// import AppTabs from "./components/app-level/app-tabs/AppTabs";
 
-const LazyPhotoViewerSection = lazy(() =>
-  import("./scenes/photo-viewer-section/PhotoViewerSection")
-);
-const LazyLandingPage = lazy(() =>
-  import("./scenes/landing-page/PCLandingPage")
-);
-const LazyLoginPage = lazy(() => import("./scenes/sign-page/sign-in/PCSignIn"));
-const LazyRegisterPage = lazy(() =>
-  import("./scenes/sign-page/sign-up/PCSignUp")
-);
-const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
-const LazyUserCart = lazy(() => import("./scenes/user-cart/UserCart"));
+// const LazyPhotoViewerSection = lazy(() =>
+//   import("./scenes/photo-viewer-section/PhotoViewerSection")
+// );
+// const LazyLandingPage = lazy(() =>
+//   import("./scenes/landing-page/PCLandingPage")
+// );
+// const LazyLoginPage = lazy(() => import("./scenes/sign-page/sign-in/PCSignIn"));
+// const LazyRegisterPage = lazy(() =>
+//   import("./scenes/sign-page/sign-up/PCSignUp")
+// );
+// const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
+// const LazyUserCart = lazy(() => import("./scenes/user-cart/UserCart"));
 
 export const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -45,48 +45,48 @@ const PromoClubRoot = (props) => {
   } = useContext(Store);
   console.log("state", state);
 
-  const LazyPhotoViewerComponent = () => {
-    let match = useRouteMatch();
-    let query = useQuery();
-    let name = query.get("name"),
-      id = query.get("id");
+  // const LazyPhotoViewerComponent = () => {
+  //   let match = useRouteMatch();
+  //   let query = useQuery();
+  //   let name = query.get("name"),
+  //     id = query.get("id");
 
-    return (
-      <Switch>
-        <Route
-          path={{
-            pathname: `${match.path}/`,
-            search: `?name=${name}&?${id}`,
-          }}
-        >
-          <LazyPhotoViewerSection />
-        </Route>
-        <Route path="*">
-          <LazyHomePage />
-        </Route>
-      </Switch>
-    );
-  };
-  const CartComponent = () => {
-    let match = useRouteMatch();
-    let email = "suman.mondal1240@gmail.com";
-    let query = useQuery();
-    return (
-      <Switch>
-        <Route
-          path={{
-            pathname: `${match.path}/`,
-            search: `?email=${email}`,
-          }}
-        >
-          <LazyUserCart />
-        </Route>
-        <Route path="*">
-          <LazyHomePage />
-        </Route>
-      </Switch>
-    );
-  };
+  //   return (
+  //     <Switch>
+  //       <Route
+  //         path={{
+  //           pathname: `${match.path}/`,
+  //           search: `?name=${name}&?${id}`,
+  //         }}
+  //       >
+  //         <LazyPhotoViewerSection />
+  //       </Route>
+  //       <Route path="*">
+  //         <LazyHomePage />
+  //       </Route>
+  //     </Switch>
+  //   );
+  // };
+  // const CartComponent = () => {
+  //   let match = useRouteMatch();
+  //   let email = "suman.mondal1240@gmail.com";
+  //   let query = useQuery();
+  //   return (
+  //     <Switch>
+  //       <Route
+  //         path={{
+  //           pathname: `${match.path}/`,
+  //           search: `?email=${email}`,
+  //         }}
+  //       >
+  //         <LazyUserCart />
+  //       </Route>
+  //       <Route path="*">
+  //         <LazyHomePage />
+  //       </Route>
+  //     </Switch>
+  //   );
+  // };
 
   return (
     <>
@@ -98,7 +98,7 @@ const PromoClubRoot = (props) => {
       )}
       <Suspense fallback={<LoadingPage text="Loading..." />}>
         <Router>
-          {currentPage !== "SignPage" ? (
+          {/* {currentPage !== "SignPage" ? (
             <>
               <header>
                 <AppHeader />
@@ -119,7 +119,6 @@ const PromoClubRoot = (props) => {
           <main
             className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
           >
-            {/* <div> */}
             <Switch>
               <Route exact path="/">
                 <LazyHomePage />
@@ -145,8 +144,7 @@ const PromoClubRoot = (props) => {
                 <LazyHomePage />
               </Route>
             </Switch>
-            {/* </div> */}
-          </main>
+          </main> */}
         </Router>
       </Suspense>
     </>
