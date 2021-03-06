@@ -23,12 +23,12 @@ const LazyPhotoViewerSection = lazy(() =>
 const LazyLandingPage = lazy(() =>
   import("./scenes/landing-page/PCLandingPage")
 );
-// const LazyLoginPage = lazy(() => import("./scenes/sign-page/sign-in/PCSignIn"));
-// const LazyRegisterPage = lazy(() =>
-//   import("./scenes/sign-page/sign-up/PCSignUp")
-// );
-// const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
-// const LazyUserCart = lazy(() => import("./scenes/user-cart/UserCart"));
+const LazyLoginPage = lazy(() => import("./scenes/sign-page/sign-in/PCSignIn"));
+const LazyRegisterPage = lazy(() =>
+  import("./scenes/sign-page/sign-up/PCSignUp")
+);
+const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
+const LazyUserCart = lazy(() => import("./scenes/user-cart/UserCart"));
 
 export const useQuery = () => {
   return new URLSearchParams(useLocation().search);
