@@ -145,6 +145,7 @@ const PromoClubRoot = (props) => {
               </Route>
             </Switch>
           </main> */}
+          test
         </Router>
       </Suspense>
     </>
