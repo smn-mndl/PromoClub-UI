@@ -14,8 +14,8 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-// import dscImg from "../images/DSC_2850.JPG";
-// import AppTabs from "./components/app-level/app-tabs/AppTabs";
+import dscImg from "../images/DSC_2850.JPG";
+import AppTabs from "./components/app-level/app-tabs/AppTabs";
 
 // const LazyPhotoViewerSection = lazy(() =>
 //   import("./scenes/photo-viewer-section/PhotoViewerSection")
@@ -145,7 +145,7 @@ const PromoClubRoot = (props) => {
               </Route>
             </Switch>
           </main> */}
-          test
+          test1
         </Router>
       </Suspense>
     </>
