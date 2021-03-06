@@ -45,48 +45,48 @@ const PromoClubRoot = (props) => {
   } = useContext(Store);
   console.log("state", state);
 
-  // const LazyPhotoViewerComponent = () => {
-  //   let match = useRouteMatch();
-  //   let query = useQuery();
-  //   let name = query.get("name"),
-  //     id = query.get("id");
+  const LazyPhotoViewerComponent = () => {
+    let match = useRouteMatch();
+    let query = useQuery();
+    let name = query.get("name"),
+      id = query.get("id");
 
-  //   return (
-  //     <Switch>
-  //       <Route
-  //         path={{
-  //           pathname: `${match.path}/`,
-  //           search: `?name=${name}&?${id}`,
-  //         }}
-  //       >
-  //         <LazyPhotoViewerSection />
-  //       </Route>
-  //       <Route path="*">
-  //         <LazyHomePage />
-  //       </Route>
-  //     </Switch>
-  //   );
-  // };
-  // const CartComponent = () => {
-  //   let match = useRouteMatch();
-  //   let email = "suman.mondal1240@gmail.com";
-  //   let query = useQuery();
-  //   return (
-  //     <Switch>
-  //       <Route
-  //         path={{
-  //           pathname: `${match.path}/`,
-  //           search: `?email=${email}`,
-  //         }}
-  //       >
-  //         <LazyUserCart />
-  //       </Route>
-  //       <Route path="*">
-  //         <LazyHomePage />
-  //       </Route>
-  //     </Switch>
-  //   );
-  // };
+    return (
+      <Switch>
+        <Route
+          path={{
+            pathname: `${match.path}/`,
+            search: `?name=${name}&?${id}`,
+          }}
+        >
+          <LazyPhotoViewerSection />
+        </Route>
+        <Route path="*">
+          <LazyHomePage />
+        </Route>
+      </Switch>
+    );
+  };
+  const CartComponent = () => {
+    let match = useRouteMatch();
+    let email = "suman.mondal1240@gmail.com";
+    let query = useQuery();
+    return (
+      <Switch>
+        <Route
+          path={{
+            pathname: `${match.path}/`,
+            search: `?email=${email}`,
+          }}
+        >
+          <LazyUserCart />
+        </Route>
+        <Route path="*">
+          <LazyHomePage />
+        </Route>
+      </Switch>
+    );
+  };
 
   return (
     <>
