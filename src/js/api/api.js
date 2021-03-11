@@ -16,7 +16,7 @@ const createStaticHeader = () => {
     xsrfHeaderName: "X-XSRF-TOKEN",
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "https://https://www.photosbay.com/",
+      "Access-Control-Allow-Origin": "https://www.photosbay.com/",
     },
   };
 };
