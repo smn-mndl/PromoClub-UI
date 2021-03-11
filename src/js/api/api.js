@@ -15,8 +15,9 @@ const createStaticHeader = () => {
     xsrfCookieName: "XSRF-TOKEN",
     xsrfHeaderName: "X-XSRF-TOKEN",
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "https://https://www.photosbay.com/",
+    },
   };
 };
 
@@ -27,7 +28,7 @@ const makeApiCall = async ({ method, url, payload, isLocal, isMock }) => {
     ...staticHeader,
     url: apiurl,
     method: method,
-    data: payload
+    data: payload,
   };
   const response = axios(apiHeader);
   return response;

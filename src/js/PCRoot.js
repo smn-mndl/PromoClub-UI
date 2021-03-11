@@ -133,7 +133,7 @@ const PromoClubRoot = (props) => {
               <Route path="/landing" component={LazyLandingPage}>
                 <LazyLandingPage />
               </Route>
-              {/*<Route path="/login" component={LazyLoginPage}>
+              <Route path="/login" component={LazyLoginPage}>
                 <LazyLoginPage />
               </Route>
               <Route path="/signup" component={LazyRegisterPage}>
@@ -143,13 +143,12 @@ const PromoClubRoot = (props) => {
                 path="/latest-photos"
                 component={LazyPhotoViewerComponent}
               ></Route>
-              <Route path="/cart" component={CartComponent}></Route> */}
+              <Route path="/cart" component={CartComponent}></Route>
               <Route path="*">
                 <LazyHomePage />
               </Route>
             </Switch>
           </main>
-          test4
         </Router>
       </Suspense>
     </>

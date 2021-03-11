@@ -23,7 +23,7 @@ export const registerUsers = (payload) => {
     method: "POST",
     url: "registerUsers",
     payload: payload,
-    isLocal: true,
+    isLocal: false,
     isMock: false,
   });
 };
@@ -50,7 +50,7 @@ export const loginUser = (payload) => {
     method: "POST",
     url: "loginUser",
     payload: data,
-    isLocal: true,
+    isLocal: false,
     isMock: false,
   });
 };
@@ -120,7 +120,7 @@ export const getClickedPhotoDetails = (payload) => {
     method: "POST",
     url: "getPhotoDetails",
     payload,
-    isLocal: true,
+    isLocal: false,
     isMock: false,
   });
 };
@@ -130,7 +130,7 @@ export const getPhotoDetails = (payload) => {
     method: "POST",
     url: "photoDetails",
     payload,
-    isLocal: true,
+    isLocal: false,
     isMock: false,
   });
 };
@@ -140,7 +140,7 @@ export const updateCartImageSize = (payload) => {
     method: "POST",
     url: "updateCart",
     payload,
-    isLocal: true,
+    isLocal: false,
     isMock: false,
   });
 };
