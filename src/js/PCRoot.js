@@ -14,7 +14,6 @@ import {
   useLocation,
   useParams,
 } from "react-router-dom";
-import dscImg from "../images/DSC_2850.JPG";
 import AppTabs from "./components/app-level/app-tabs/AppTabs";
 
 const LazyPhotoViewerSection = lazy(() =>

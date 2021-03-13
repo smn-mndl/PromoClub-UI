@@ -26,6 +26,12 @@
     font-weight: 600;
     color: rgb(54, 54, 54) !important;
   }
+  .app-header-icon {
+    background: url(../../../../images/PhotosBayHeader.png);
+    height: 30px;
+    width: 30px;
+    background-size: 100%;
+  }
 }
 .pc-hdr-menu {
   margin-left: auto;

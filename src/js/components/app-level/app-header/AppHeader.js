@@ -39,7 +39,8 @@ const AppHeader = () => {
               goToPagesAction(dispatch, "LandingPage", "");
             }}
           >
-            Stocker's Bay
+            {/* <span className="app-header-icon"></span> */}
+            Photos Bay
           </a>
           <div className="pc-hdr-menu">
             {/* <div>
