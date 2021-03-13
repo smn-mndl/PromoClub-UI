@@ -26,7 +26,7 @@ const AppFooter = () => {
             {getFooterHtmlElems()}
           </div>
         </div>
-        <div className="secondary-footer-cont">© 2020 Stocker's Bay</div>
+        <div className="secondary-footer-cont">© 2021 Photos Bay</div>
         <div className="footer-overlay"></div>
       </div>
     </>
