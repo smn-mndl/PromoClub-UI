@@ -53,14 +53,15 @@ const AppTabs = ({ dispatch, currentTab, isLoggedIn }) => {
   };
   const getHTMLForSmallerScreen = () => {
     return (
-      <div
-        className="app-tab-optns"
-        onClick={() => {
-          setShowDrpdwnOpt(!showDrpdwnOpt);
-        }}
-      >
+      <div className="app-tab-optns">
         <Search />
-        {!showDrpdwnOpt ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+        <span
+          onClick={() => {
+            setShowDrpdwnOpt(!showDrpdwnOpt);
+          }}
+        >
+          {!showDrpdwnOpt ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+        </span>
 
         <AppSideTabs
           dispatch={dispatch}
