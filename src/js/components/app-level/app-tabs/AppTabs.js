@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Tabs, Button } from "antd";
 import "./AppTabs.scss";
 import Search from "../search/Search";
 import { goToTabsAction } from "../../../actions/ApplevelActions";
 import APP_TAB_CONFIG from "./app-tab-config";
 import { useHistory } from "react-router";
-import { DownOutlined } from "@ant-design/icons";
+import { useCurrentWidth } from "../../../customhooks/customResizeHook";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  DownOutlined,
+} from "@ant-design/icons";
+import AppSideTabs from "./AppSideTabs";
 
 const { TabPane } = Tabs;
 const operations = <Button>Extra Action</Button>;
 
-const AppTabs = ({ dispatch, currentTab }) => {
+const AppTabs = ({ dispatch, currentTab, isLoggedIn }) => {
   let history = useHistory();
-
+  const [showDrpdwnOpt, setShowDrpdwnOpt] = useState(false);
+  const currentScreenWidth = useCurrentWidth();
   const createTabs = () => {
     return APP_TAB_CONFIG.map((each) => (
       <li
@@ -44,11 +51,36 @@ const AppTabs = ({ dispatch, currentTab }) => {
       </li>
     ));
   };
+  const getHTMLForSmallerScreen = () => {
+    return (
+      <div
+        className="app-tab-optns"
+        onClick={() => {
+          setShowDrpdwnOpt(!showDrpdwnOpt);
+        }}
+      >
+        <Search />
+        {!showDrpdwnOpt ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
+
+        <AppSideTabs
+          dispatch={dispatch}
+          showDrpdwnOpt={showDrpdwnOpt}
+          setShowDrpdwnOpt={setShowDrpdwnOpt}
+          isLoggedIn={isLoggedIn}
+        />
+      </div>
+    );
+  };
   return (
     <>
-      <nav className="app-tabs-navbar">
-        <ul className="app-tabs-navbar-items-list">{createTabs()}</ul>
-      </nav>
+      {currentScreenWidth < 550 ? (
+        getHTMLForSmallerScreen()
+      ) : (
+        <nav className="app-tabs-navbar">
+          <ul className="app-tabs-navbar-items-list">{createTabs()}</ul>
+        </nav>
+      )}
+
       {/* <div className="down-arrow"></div> */}
     </>
   );

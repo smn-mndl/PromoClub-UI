@@ -13,64 +13,24 @@ import {
   FacebookOutlined,
   LinkedinOutlined,
   WhatsAppOutlined,
+  DownOutlined,
 } from "@ant-design/icons";
 import {
   goToPagesAction,
   setNavigationRouteAction,
 } from "../../../actions/ApplevelActions";
 
-const SideNav = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch, isLoggedIn }) => {
+const SideNav = ({
+  showDrpdwnOpt,
+  setShowDrpdwnOpt,
+  dispatch,
+  isLoggedIn,
+  sidenavConfig,
+}) => {
   const [visible, setVisible] = useState(false);
   const loginState = isLoggedIn;
   let history = useHistory();
 
-  const loginClickHandler = (each) => {
-    setNavigationRouteAction(
-      dispatch,
-      `${history.location.pathname}${history.location.search}`
-    );
-    history.push(`/${each.id.toLowerCase()}`);
-    setShowDrpdwnOpt(false);
-    goToPagesAction(dispatch, `${each.display}Page`);
-  };
-  const logoutClickHandler = (id) => {
-    history.push(`/home`);
-    setShowDrpdwnOpt(false);
-  };
-  const SIDE_BAR_ITEMS = [
-    { display: "Preview", id: "Preview", tooltip: false, onClickFunc: null },
-    { display: "Share", id: "Share", tooltip: true, onClickFunc: null },
-    {
-      display: "Login",
-      id: "Login",
-      tooltip: false,
-      onClickFunc: loginClickHandler,
-    },
-    {
-      display: "LogOut!",
-      id: "Logout",
-      tooltip: false,
-      onClickFunc: logoutClickHandler,
-    },
-    {
-      display: "Sign Up",
-      id: "SignUp",
-      tooltip: false,
-      onClickFunc: loginClickHandler,
-    },
-    {
-      display: "About Us",
-      id: "AboutUs",
-      tooltip: false,
-      onClickFunc: null,
-    },
-    {
-      display: "Contact Us",
-      id: "ContactUs",
-      tooltip: false,
-      onClickFunc: null,
-    },
-  ];
   const hide = () => {
     setVisible(false);
   };
@@ -102,14 +62,23 @@ const SideNav = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch, isLoggedIn }) => {
             : "hdr-drpdwn-cont hdr-signin-cont hdr-drpdwn-cont-close"
         }
       >
-        {SIDE_BAR_ITEMS.map((each) => {
+        {sidenavConfig.map((each) => {
           let elem = null;
           if (each.id === "Logout") {
             if (loginState) {
               elem = (
                 <div
                   className="hdr-drpdwn-elem"
-                  onClick={() => each.onClickFunc(each)}
+                  onClick={() =>
+                    each.onClickFunc({
+                      each,
+                      setNavigationRouteAction,
+                      dispatch,
+                      history,
+                      setShowDrpdwnOpt,
+                      goToPagesAction,
+                    })
+                  }
                 >
                   {each.tooltip ? (
                     <Popover
@@ -131,7 +100,16 @@ const SideNav = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch, isLoggedIn }) => {
             elem = (
               <div
                 className="hdr-drpdwn-elem"
-                onClick={() => each.onClickFunc(each)}
+                onClick={() =>
+                  each.onClickFunc({
+                    each,
+                    setNavigationRouteAction,
+                    dispatch,
+                    history,
+                    setShowDrpdwnOpt,
+                    goToPagesAction,
+                  })
+                }
               >
                 {each.tooltip ? (
                   <Popover
@@ -145,6 +123,11 @@ const SideNav = ({ showDrpdwnOpt, setShowDrpdwnOpt, dispatch, isLoggedIn }) => {
                   </Popover>
                 ) : (
                   each.display
+                )}
+                {each.child && (
+                  <span>
+                    <DownOutlined />
+                  </span>
                 )}
               </div>
             );

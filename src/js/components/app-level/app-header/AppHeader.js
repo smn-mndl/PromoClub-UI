@@ -8,6 +8,7 @@ import { Tooltip } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router";
 import { changeUserUpdateAction } from "../../../actions/UserDetailsActions";
+import PAGE_METADATA from "../../../model/PageMetadata";
 
 const LazySignInCont = lazy(() => import("./SignInCont"));
 const LAzyUserDetails = lazy(() => import("../user-details/UserDetails"));
@@ -39,13 +40,9 @@ const AppHeader = () => {
               goToPagesAction(dispatch, "LandingPage", "");
             }}
           >
-            {/* <span className="app-header-icon"></span> */}
             Photos Bay
           </a>
           <div className="pc-hdr-menu">
-            {/* <div>
-              <Search />
-            </div> */}
             <Tooltip
               placement="bottom"
               title={isLoggedIn ? "" : "Please login to publish"}
@@ -90,6 +87,7 @@ const AppHeader = () => {
             showDrpdwnOpt={showDrpdwnOpt}
             setShowDrpdwnOpt={setShowDrpdwnOpt}
             isLoggedIn={isLoggedIn}
+            sidenavConfig={PAGE_METADATA.SIDE_NAV_METADATA}
           />
         )}
       </section>

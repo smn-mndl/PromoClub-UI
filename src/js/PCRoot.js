@@ -39,6 +39,7 @@ const PromoClubRoot = (props) => {
       navigation: { currentPage, currentTab },
       pageToast,
       selectedPhotoDetails,
+      isLoggedIn,
     },
     dispatch,
   } = useContext(Store);
@@ -107,7 +108,11 @@ const PromoClubRoot = (props) => {
           {!["LoginPage", "SignUpPage"].currentPage ? (
             <>
               <div className="homepage-app-tabs">
-                <AppTabs dispatch={dispatch} currentTab={currentTab} />
+                <AppTabs
+                  dispatch={dispatch}
+                  currentTab={currentTab}
+                  isLoggedIn={isLoggedIn}
+                />
               </div>
             </>
           ) : null}
