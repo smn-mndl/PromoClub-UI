@@ -103,15 +103,18 @@ const Register = () => {
   }, []);
   return (
     <>
-      <div
-        className="back-to-home"
-        onClick={() => {
-          // history.push("/");
-          history.push(route);
-        }}
-      >
-        <span>{arrow}</span>
-        <span>Back</span>
+      <div className="back-to-home">
+        <span
+          onClick={() => {
+            // history.push("/");
+            // history.goBack();
+            history.push(route);
+            // goToPagesAction(dispatch, "LandingPage", "");
+          }}
+        >
+          <span>{arrow}</span>
+          <span>Back</span>
+        </span>
       </div>
       <div className="register-cont">
         <div className="register-inpt-cont">{registerInptFlds()}</div>
