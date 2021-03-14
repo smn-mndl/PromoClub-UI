@@ -16,6 +16,9 @@
     overflow-y: hidden;
     scroll-behavior: smooth;
 
+    .shadow-cards {
+      opacity: 0.6 !important;
+    }
     .latest-photo-cards {
       position: relative;
       height: 212px;

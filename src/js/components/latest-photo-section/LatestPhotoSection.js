@@ -1,12 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./LatestPhotoSection.scss";
-import img1 from "../../../images/latest/download.jpg";
-import img2 from "../../../images/latest/download(1).jpg";
-import img3 from "../../../images/latest/download(2).jpg";
-import img4 from "../../../images/latest/download(3).jpg";
-import img5 from "../../../images/latest/download(4).jpg";
-import img6 from "../../../images/latest/download(5).jpg";
-import img7 from "../../../images/latest/download(6).jpg";
 import { useHistory } from "react-router";
 import {
   photoClickAction,
@@ -14,20 +7,7 @@ import {
   setSeletedPhotoBlankAction,
 } from "../../actions/PhotoDetailsActions";
 import { Store } from "../../store/Store";
-import {
-  ArrowLeftOutlined,
-  ArrowRightOutlined,
-  LeftCircleFilled,
-  RightCircleFilled,
-} from "@ant-design/icons";
-
-var isItScrollableWithoutVisibleScrollbars = function (el) {
-  return (
-    el &&
-    el.scrollHeight > el.offsetHeight &&
-    !(el.offsetWidth > el.scrollWidth)
-  );
-};
+import { LeftCircleFilled, RightCircleFilled } from "@ant-design/icons";
 
 const photoClickHandler = (clickedPhotoDtls, dispatch, history) => {
   let title = clickedPhotoDtls["attributes"]["title"],
@@ -37,31 +17,42 @@ const photoClickHandler = (clickedPhotoDtls, dispatch, history) => {
   setSeletedPhotoBlankAction(dispatch);
 };
 
+const getShadowCards = () => {
+  let shadowCards = [];
+  for (let i = 0; i < 10; i++) {
+    shadowCards.push(
+      <div className="latest-photo-cards blog-card spring-fever shadow-cards">
+        <div class="color-overlay"></div>
+      </div>
+    );
+  }
+  return shadowCards;
+};
+
 const getPhotoCards = (dispatch, history, latestPhotos) => {
-  return (
-    latestPhotos &&
-    latestPhotos.map((each) => {
-      return (
-        <div
-          className="latest-photo-cards blog-card spring-fever"
-          onClick={() => photoClickHandler(each, dispatch, history)}
-        >
-          <img
-            src={each["attributes"]["image_src"]["240p"]}
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
-            alt={each["attributes"]["alt"]}
-          ></img>
-          <div class="title-content">
-            <h5>
-              <a href="#">{each.attributes.title}</a>
-            </h5>
+  return latestPhotos && latestPhotos.length > 0
+    ? latestPhotos.map((each) => {
+        return (
+          <div
+            className="latest-photo-cards blog-card spring-fever"
+            onClick={() => photoClickHandler(each, dispatch, history)}
+          >
+            <img
+              src={each["attributes"]["image_src"]["240p"]}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+              alt={each["attributes"]["alt"]}
+            ></img>
+            <div class="title-content">
+              <h5>
+                <a href="#">{each.attributes.title}</a>
+              </h5>
+            </div>
+            <div class="card-info">{each.attributes.description}</div>
+            <div class="color-overlay"></div>
           </div>
-          <div class="card-info">{each.attributes.description}</div>
-          <div class="color-overlay"></div>
-        </div>
-      );
-    })
-  );
+        );
+      })
+    : getShadowCards();
 };
 
 const determineScrollState = (textarea, showArrowObj) => {
@@ -98,6 +89,7 @@ const LatestPhotoSection = () => {
     scrollWidth: 0,
   });
   const [cardsContElem, setCardsContElem] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
   let history = useHistory();
 
   useEffect(() => {
@@ -141,12 +133,6 @@ const LatestPhotoSection = () => {
   };
 
   const getScrollState = determineScrollState(cardsContElem, showArrowObj);
-
-  function myFunction() {
-    var elmnt = document.getElementById("abc");
-    elmnt.scrollLeft += 50;
-    // elmnt.scrollTop += 10;
-  }
 
   useEffect(() => {
     if (!latestPhotos) {

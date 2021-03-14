@@ -33,6 +33,8 @@
   flex: 1;
   padding-left: 15px;
   font-size: 1.1em;
+  font-family: $app-font-medium;
+  color: white;
 }
 @media (max-width: 1000px) {
   .register-cont {
@@ -44,6 +46,7 @@
     width: 90%;
   }
   .register-rows {
+    padding: 0.5em 0;
     flex-direction: column;
     align-items: unset;
     .register-rows-inptlabel {

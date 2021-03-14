@@ -12,25 +12,25 @@ const imgDtls = [
   {
     url: "../../../../images/DSC_0121.JPG",
     img: img1,
-    title: "img1",
+    title: "Abstract",
     desc: "img1",
   },
   {
     url: "../../../../images/DSC_0122.JPG",
     img: img2,
-    title: "img2",
+    title: "Indoor",
     desc: "img1",
   },
   {
     url: "../../../../images/DSC_0174.JPG",
     img: img3,
-    title: "img3",
+    title: "Background",
     desc: "img1",
   },
   {
     url: "../../../../images/DSC_0247.JPG",
     img: img4,
-    title: "img4",
+    title: "Nature",
     desc: "img1",
   },
 ];
@@ -55,7 +55,7 @@ const FeaturedPhotoSection = () => {
                 ></img>
               </div>
             </div>
-            <div className="grid-title">Nature</div>
+            <div className="grid-title">{each.title}</div>
             <div class="gradient-overlay"></div>
             <div class="color-overlay"></div>
           </div>
