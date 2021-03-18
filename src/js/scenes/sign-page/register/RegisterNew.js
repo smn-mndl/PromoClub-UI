@@ -22,16 +22,54 @@ const checkIfNonEmptyInptFld = (registerData) => {
 
 const checkIfPassMatch = (registerData) => {
   return registerData["firstpassword"] &&
-    registerData["firstpassword"].length > 3 &&
+    registerData["confirmpassword"] &&
     registerData["firstpassword"] === registerData["confirmpassword"]
     ? true
     : false;
 };
+const checkIfPassLengthMatch = (registerData) => {
+  return registerData["firstpassword"] &&
+    registerData["confirmpassword"] &&
+    registerData["firstpassword"].length >= 8 &&
+    registerData["confirmpassword"].length >= 8
+    ? true
+    : false;
+};
 
-const checkIfInptFldValid = (registerData) => {
+const checkIfEmailIsValid = (registerData) => {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return (
+    registerData["email"] && re.test(String(registerData.email).toLowerCase())
+  );
+};
+
+const checkIfInptFldValid = (registerData, setErrorInEmail) => {
   const iIfEmptyInptFld = checkIfNonEmptyInptFld(registerData),
-    ifPassMatch = checkIfPassMatch(registerData);
-  return iIfEmptyInptFld && ifPassMatch ? true : false;
+    ifPassMatch = checkIfPassMatch(registerData),
+    ifPassLengthMatch = checkIfPassLengthMatch(registerData),
+    ifEmailValid = checkIfEmailIsValid(registerData);
+  if (!iIfEmptyInptFld) {
+    setErrorInEmail({
+      error: true,
+      errorText: "Fields can't be empty!",
+    });
+  } else if (!ifPassMatch) {
+    setErrorInEmail({
+      error: true,
+      errorText: "Password didn't match! Please try again.",
+    });
+  } else if (!ifPassLengthMatch) {
+    setErrorInEmail({
+      error: true,
+      errorText: "Password length shouldn't be less than 8!",
+    });
+  } else if (!ifEmailValid) {
+    setErrorInEmail({
+      error: true,
+      errorText: "Invalid email id!",
+    });
+  }
+  return iIfEmptyInptFld && ifPassMatch && ifEmailValid ? true : false;
 };
 
 const Register = () => {
@@ -70,29 +108,32 @@ const Register = () => {
       isLoading: true,
       errorText: "",
     });
-    const res = await makeApiCall({
-      method: "POST",
-      url: "registerUsers",
-      payload: JSON.stringify(registerData),
-      isLocal: true,
-      isMock: false,
-    });
-    if (!res.data.result.isValid) {
-      setErrorInEmail({
-        error: true,
-        isLoading: false,
-        errorText: res.data.result.errorText,
+    const ifInptFldValid = checkIfInptFldValid(registerData, setErrorInEmail);
+    if (ifInptFldValid) {
+      const res = await makeApiCall({
+        method: "POST",
+        url: "registerUsers",
+        payload: JSON.stringify(registerData),
+        isLocal: true,
+        isMock: false,
       });
-    } else {
-      setErrorInEmail({
-        error: false,
-        isLoading: false,
-        errorText: "",
-      });
-      setShowRegisterModal(true);
+      if (!res.data.result.isValid) {
+        setErrorInEmail({
+          error: true,
+          isLoading: false,
+          errorText: res.data.result.errorText,
+        });
+      } else {
+        setErrorInEmail({
+          error: false,
+          isLoading: false,
+          errorText: "",
+        });
+        setShowRegisterModal(true);
+      }
     }
   };
-  const ifInptFldValid = checkIfInptFldValid(registerData);
+
   console.log("errorInEmail", errorInEmail, registerData);
   const arrow = `<`;
 
@@ -120,20 +161,19 @@ const Register = () => {
         <div className="register-inpt-cont">{registerInptFlds()}</div>
         {errorInEmail.error ? (
           <div className="email-error-txt">
-            <span className="email-error-asterisk">* </span>This email is
-            already registered. Please try with different email id.
+            <span className="email-error-asterisk">* </span>
+            {errorInEmail.errorText}
           </div>
         ) : null}
         <div className="register-btn-cont">
           <div
             className={
-              ifInptFldValid
-                ? errorInEmail.isLoading
-                  ? "register-link register-link--isloading"
-                  : "register-link"
-                : "register-link register-link-disabled"
+              errorInEmail.isLoading
+                ? "register-link register-link--isloading"
+                : "register-link"
+              // : "register-link register-link-disabled"
             }
-            onClick={() => (ifInptFldValid ? onSubmit() : null)}
+            onClick={() => onSubmit()}
           >
             Register
             {errorInEmail.isLoading ? <div class="loader"></div> : null}

@@ -144,3 +144,13 @@ export const updateCartImageSize = (payload) => {
     isMock: false,
   });
 };
+
+export const downloadImage = () => {
+  return makeApiCall({
+    method: "POST",
+    url: "downloadImages",
+    payload: {},
+    isLocal: true,
+    isMock: false,
+  });
+};

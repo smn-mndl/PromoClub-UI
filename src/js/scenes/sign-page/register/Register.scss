@@ -28,6 +28,9 @@
     padding-left: 10px;
     line-height: 1.75em;
   }
+  label {
+    color: white;
+  }
 }
 .register-rows-inptlabel {
   flex: 1;
@@ -178,6 +181,7 @@
 .email-error-txt {
   margin-top: -15px;
   font-size: 1.08em;
+  color: white;
   .email-error-asterisk {
     color: red;
   }
