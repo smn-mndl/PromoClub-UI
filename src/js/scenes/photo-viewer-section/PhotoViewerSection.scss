@@ -1,3 +1,4 @@
+@import "../../../styles/variables.scss";
 .photoviewer-section {
   padding: 1em 1.5em;
   display: flex;
@@ -73,6 +74,28 @@
         z-index: 2;
         //   position: absolute;
         padding: 25px;
+      }
+    }
+  }
+}
+
+.section-title-keywards {
+  margin-top: 1.5em;
+  padding: 0 1.75em;
+  .section-title {
+    font-family: $app-font-medium;
+    font-size: 1.75em;
+  }
+  .keywords {
+    display: flex;
+    .each-keyword {
+      padding: 0.35em 1em;
+      margin: 0.5em 0.5em;
+      border: 1px solid gray;
+      border-radius: 4px;
+      cursor: pointer;
+      &:hover {
+        background: rgba(138, 138, 138, 0.4);
       }
     }
   }

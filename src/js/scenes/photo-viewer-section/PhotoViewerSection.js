@@ -35,6 +35,20 @@ const PhotoViewerSection = () => {
       photoClickAction(dispatch, id);
     }
   }, [selectedPhotoDetails]);
+
+  const getKeywardsHTML = (selectedPhotoDetails) => {
+    const keywords =
+      selectedPhotoDetails && selectedPhotoDetails["attributes"]
+        ? selectedPhotoDetails["attributes"]["keywords"]
+        : ["None"];
+    return (
+      <div className="keywords">
+        {keywords.map((each) => {
+          return <div className="each-keyword">{each}</div>;
+        })}
+      </div>
+    );
+  };
   return (
     <>
       <div className="photoviewer-section">
@@ -69,6 +83,12 @@ const PhotoViewerSection = () => {
             cart={cart}
           />
           <div className="background-color-gradient"></div>
+        </div>
+      </div>
+      <div className="section-title-keywards">
+        <div className="section-title">Keywards</div>
+        <div className="section-cards">
+          {getKeywardsHTML(selectedPhotoDetails)}
         </div>
       </div>
       <PhotoViewerBottomSection />

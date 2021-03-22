@@ -6,7 +6,8 @@ import { UpOutlined, DownOutlined } from "@ant-design/icons";
 import data from "./data.json";
 import { each } from "lodash";
 import { updateCartImageSizeAction } from "../../actions/CartActions";
-
+import { downloadImage } from "../../api/api-creator";
+import Axios from "axios";
 const UserCart = () => {
   let {
     dispatch,
@@ -23,7 +24,6 @@ const UserCart = () => {
   const [viewSizeDropdown, setViewSizeDropdown] = useState(false);
 
   const getImageSizeHTML = (sizes, imageSize, photoDtls) => {
-    debugger;
     let HTMLContent = [];
     HTMLContent = Object.keys(sizes).map((each) => {
       let disp_name = sizes[each].display_name,
@@ -48,7 +48,6 @@ const UserCart = () => {
             className={cssSelectedCls}
             onClick={() => {
               // setImageSize(each);
-              debugger;
               // cart.map((each) => {
               //   if (each.photoDtls._id === imageID) {
               //     each.imageSize = each;
@@ -74,7 +73,6 @@ const UserCart = () => {
     return HTMLContent;
   };
   const getImageSizeSelector = (picObj) => {
-    debugger;
     let imageSize = picObj.imageSize;
     let picDtls = picObj.photoDtls,
       size =
@@ -183,6 +181,73 @@ const UserCart = () => {
       </>
     );
   };
+  const downloadSizeConfig = {
+    large_jpg: "1080p",
+    medium_jpg: "480p",
+    small_jpg: "240p",
+  };
+  const handleDownload = async (event, cart) => {
+    event.preventDefault();
+    const urls = cart.map(
+      (each) =>
+        each["photoDtls"]["attributes"]["image_src"][
+          downloadSizeConfig[each.imageSize]
+        ]
+    );
+
+    const response = await fetch(
+      "arn:aws:s3:::latest-photos/DSC_0122_edited.jpg"
+    );
+    debugger;
+    if (response.status === 200) {
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "image";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      return { success: true };
+    }
+  };
+  const cartPriceCalculator = (cart) => {
+    return (
+      <>
+        <div>
+          <div className="order-summary">Order Summary</div>
+          <div className="order-summary-elems">
+            <span>Total Price: </span>{" "}
+            <span>
+              <span>&#8377;</span>600
+            </span>
+          </div>
+          <div className="order-summary-elems">
+            <span>Discount: </span>{" "}
+            <span>
+              <span>&#8377;</span>600
+            </span>
+          </div>
+          <div className="order-summary-sepertor">
+            <span></span>
+          </div>
+          <div className="order-summary-elems">
+            <span>Total Amount: </span>{" "}
+            <span>
+              <span>&#8377;</span>0
+            </span>
+          </div>
+          <div
+            className="download-btn"
+            onClick={(e) => handleDownload(e, cart)}
+          >
+            Download
+          </div>
+        </div>
+        <div className="cart-opaque"></div>
+      </>
+    );
+  };
   const getCartHTML = () => {
     console.log("cart", cart);
     return (
@@ -192,7 +257,7 @@ const UserCart = () => {
 
           <div className="cart-opaque"></div>
         </div>
-        <div className="cart-total-price"></div>
+        <div className="cart-total-price">{cartPriceCalculator(cart)}</div>
       </>
     );
   };
