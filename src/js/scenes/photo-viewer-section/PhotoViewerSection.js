@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./PhotoViewerSection.scss";
 import { Store } from "../../store/Store";
-import { FullscreenOutlined } from "@ant-design/icons";
 import Modal from "antd/lib/modal/Modal";
 import PhotoViwerRightSection from "./PhotoViewerRightSection";
 import PhotoViewerBottomSection from "./PhotoViewerBottomSection";
@@ -12,6 +11,7 @@ import {
 } from "../../actions/PhotoDetailsActions";
 import { isEmpty } from "lodash";
 import { useHistory } from "react-router";
+import PhotoViewerContainer from "./PhotoViewContainer";
 
 const PhotoViewerSection = () => {
   const {
@@ -36,11 +36,10 @@ const PhotoViewerSection = () => {
     }
   }, [selectedPhotoDetails]);
 
-  const getKeywardsHTML = (selectedPhotoDetails) => {
-    const keywords =
-      selectedPhotoDetails && selectedPhotoDetails["attributes"]
-        ? selectedPhotoDetails["attributes"]["keywords"]
-        : ["None"];
+  const getKeywardsHTML = (selectedPhotoAttributes) => {
+    const keywords = !isEmpty(selectedPhotoAttributes)
+      ? selectedPhotoAttributes["keywords"]
+      : ["None"];
     return (
       <div className="keywords">
         {keywords.map((each) => {
@@ -49,30 +48,19 @@ const PhotoViewerSection = () => {
       </div>
     );
   };
+  const selectedPhotoAttributes =
+    selectedPhotoDetails && selectedPhotoDetails["attributes"]
+      ? selectedPhotoDetails["attributes"]
+      : {};
   return (
     <>
       <div className="photoviewer-section">
         <div className="photo-section">
-          <div
-            className="full-screen-icon"
-            onClick={() => setShowFullScreenImg(!showFullScreenImg)}
-          >
-            <FullscreenOutlined />
-          </div>
-          <img
-            className="photo-section-img"
-            src={
-              selectedPhotoDetails &&
-              selectedPhotoDetails["attributes"] &&
-              selectedPhotoDetails["attributes"]["image_src"]["480p"]
-            }
-            alt={
-              selectedPhotoDetails &&
-              selectedPhotoDetails["attributes"] &&
-              selectedPhotoDetails["attributes"]["alt"]
-            }
-          ></img>
-          <div className="background-color-gradient"></div>
+          <PhotoViewerContainer
+            setShowFullScreenImg={setShowFullScreenImg}
+            showFullScreenImg={showFullScreenImg}
+            selectedPhotoAttributes={selectedPhotoAttributes}
+          />
         </div>
         <div className="photo-desc-section">
           <PhotoViwerRightSection
@@ -88,7 +76,7 @@ const PhotoViewerSection = () => {
       <div className="section-title-keywards">
         <div className="section-title">Keywards</div>
         <div className="section-cards">
-          {getKeywardsHTML(selectedPhotoDetails)}
+          {getKeywardsHTML(selectedPhotoAttributes)}
         </div>
       </div>
       <PhotoViewerBottomSection />
@@ -104,15 +92,10 @@ const PhotoViewerSection = () => {
           <img
             className="photo-section-img"
             src={
-              selectedPhotoDetails &&
-              selectedPhotoDetails["attributes"] &&
-              selectedPhotoDetails["attributes"]["image_src"]["480p"]
+              selectedPhotoAttributes["image_src"] &&
+              selectedPhotoAttributes["image_src"]["480p"]
             }
-            alt={
-              selectedPhotoDetails &&
-              selectedPhotoDetails["attributes"] &&
-              selectedPhotoDetails["attributes"]["alt"]
-            }
+            alt={selectedPhotoAttributes["alt"]}
           ></img>
         </Modal>
       )}

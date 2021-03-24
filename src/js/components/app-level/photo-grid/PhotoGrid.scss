@@ -19,7 +19,8 @@
   //   grid-auto-flow: row dense;
   min-height: 1500px;
   overflow: auto;
-  padding-bottom: 75px;
+  // padding-bottom: 75px;
+  overflow-x: hidden;
   :first-child {
     margin-top: 0;
   }

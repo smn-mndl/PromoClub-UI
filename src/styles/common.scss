@@ -1,10 +1,23 @@
 @import "./variables.scss";
 .pc-root-main-cont {
   font-family: $app-font-regular;
-  // background: $default-pc-hovercolor;
-  height: calc(100vh - 44px);
+  height: calc(100vh - 110px);
   position: relative;
   z-index: 1;
+}
+@media (max-width: 550px) {
+  .pc-root-main-cont {
+    height: calc(100vh - 80px);
+  }
+  .app-footer {
+    height: 500px;
+    .footer-cont .footer-cont-list {
+      flex-wrap: wrap;
+      div {
+        width: 50%;
+      }
+    }
+  }
 }
 .pc-root-main-cont-SignPage {
   height: 100vh;
