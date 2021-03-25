@@ -10,13 +10,22 @@
     height: calc(100vh - 80px);
   }
   .app-footer {
-    height: 500px;
+    height: 500px !important;
     .footer-cont .footer-cont-list {
       flex-wrap: wrap;
       div {
         width: 50%;
       }
     }
+  }
+}
+@media (max-width: 400px) {
+  .grid {
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    // grid-gap: 10px;
+    // gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
   }
 }
 .pc-root-main-cont-SignPage {

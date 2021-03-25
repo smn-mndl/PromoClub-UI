@@ -88,6 +88,7 @@
   }
   .keywords {
     display: flex;
+    flex-wrap: wrap;
     .each-keyword {
       padding: 0.35em 1em;
       margin: 0.5em 0.5em;
