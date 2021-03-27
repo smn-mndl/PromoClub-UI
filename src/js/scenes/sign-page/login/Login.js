@@ -64,7 +64,7 @@ const Login = (props) => {
         <div className="login-btn-cont">
           <div className="login-link" onClick={() => onSubmit()}>
             {props.buttonTxt[0]}
-            {!isLoggingIn ? <div className="btn-loader"></div> : null}
+            {isLoggingIn ? <div className="btn-loader"></div> : null}
           </div>
           <div className="register-link-cont">
             {props.txt}
