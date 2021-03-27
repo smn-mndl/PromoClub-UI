@@ -209,3 +209,16 @@
     column-count: 4;
   }
 }
+
+@media (max-width: 600px) {
+  .user-cart-container {
+    flex-direction: column;
+    .cart-cards {
+      width: 100%;
+    }
+    .cart-total-price {
+      width: 100%;
+      margin-left: 0%;
+    }
+  }
+}
