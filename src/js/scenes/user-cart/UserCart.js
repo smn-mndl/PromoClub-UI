@@ -188,28 +188,64 @@ const UserCart = () => {
   };
   const handleDownload = async (event, cart) => {
     event.preventDefault();
-    const urls = cart.map(
-      (each) =>
-        each["photoDtls"]["attributes"]["image_src"][
-          downloadSizeConfig[each.imageSize]
-        ]
-    );
-
-    const response = await fetch(
-      "arn:aws:s3:::latest-photos/DSC_0122_edited.jpg"
-    );
     debugger;
-    if (response.status === 200) {
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "image";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      return { success: true };
-    }
+
+    const urlObj = cart.map((eachCartElem) => {
+      let obj = {};
+      obj["url"] =
+        eachCartElem["photoDtls"]["attributes"]["image_src"][
+          downloadSizeConfig[eachCartElem.imageSize]
+        ];
+      obj["method"] = "GET";
+      obj["responseType"] = "blob";
+      // Axios({
+      //   url: obj.url,
+      //   method: "GET",
+      //   responseType: "blob",
+      // }).then((response) => {
+      //   debugger;
+      //   const url = window.URL.createObjectURL(new Blob([response.data]));
+      //   const link = document.createElement("a");
+      //   link.href = url;
+      //   link.setAttribute(
+      //     "download",
+      //     eachCartElem["photoDtls"]["attributes"]["title"]
+      //   );
+      //   document.body.appendChild(link);
+      //   link.click();
+      // });
+      Axios({
+        url:
+          eachCartElem["photoDtls"]["attributes"]["image_src"][
+            downloadSizeConfig[eachCartElem.imageSize]
+          ],
+        method: "GET",
+        responseType: "blob",
+      }).then((response) => {
+        debugger;
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "test.jpg");
+        document.body.appendChild(link);
+        link.click();
+      });
+    });
+
+    // Axios({
+    //   url:
+    //     "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0122_edited.jpg",
+    //   method: "GET",
+    //   responseType: "blob",
+    // }).then((response) => {
+    //   debugger;
+    //   const url = window.URL.createObjectURL(new Blob([response.data]));
+    //   const link = document.createElement("a");
+    //   link.href = url;
+    //   link.setAttribute("download", "test.jpg");
+    //   document.body.appendChild(link);
+    //   link.click();
+    // });
   };
   const cartPriceCalculator = (cart) => {
     return (
