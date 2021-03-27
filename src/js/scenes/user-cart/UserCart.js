@@ -217,7 +217,7 @@ const UserCart = () => {
       Axios({
         url:
           eachCartElem["photoDtls"]["attributes"]["image_src"][
-            downloadSizeConfig[eachCartElem.imageSize]
+            downloadSizeConfig["small_jpg"]
           ],
         method: "GET",
         responseType: "blob",
