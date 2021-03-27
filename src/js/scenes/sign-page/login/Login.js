@@ -63,11 +63,11 @@ const Login = (props) => {
         <div className="login-inpt-cont">{loginInptFlds()}</div>
         <div className="login-btn-cont">
           <div className="login-link" onClick={() => onSubmit()}>
-            {props.buttonTxt[0]}{" "}
-            {isLoggingIn ? <div class="loader"></div> : null}
+            {props.buttonTxt[0]}
+            {!isLoggingIn ? <div className="btn-loader"></div> : null}
           </div>
           <div className="register-link-cont">
-            {props.txt}{" "}
+            {props.txt}
             <span
               className="register-link"
               onClick={

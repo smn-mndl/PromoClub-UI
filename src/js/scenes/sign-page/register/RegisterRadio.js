@@ -1,7 +1,7 @@
 import React from "react";
 
 const RegisterRadio = ({ rowDtls, registerData, setRegisterData }) => {
-  return rowDtls.values.map(each => {
+  return rowDtls.values.map((each) => {
     return (
       <>
         <label for={each.type}>
@@ -10,7 +10,7 @@ const RegisterRadio = ({ rowDtls, registerData, setRegisterData }) => {
             type={rowDtls.type}
             name={each.name}
             value={each.type}
-            onChange={evt => {
+            onChange={(evt) => {
               const tempObj = JSON.parse(JSON.stringify(registerData));
               tempObj[rowDtls.key] = evt.target.value;
               setRegisterData(tempObj);

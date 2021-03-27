@@ -176,11 +176,11 @@ const Register = () => {
             onClick={() => onSubmit()}
           >
             Register
-            {errorInEmail.isLoading ? <div class="loader"></div> : null}
+            {errorInEmail.isLoading ? <div className="btn-loader"></div> : null}
             {/* <div class="loader"></div> */}
           </div>
           <div className="login-link-cont">
-            Already a member? Please{" "}
+            Already a member? Please
             <span
               className="login-link"
               onClick={

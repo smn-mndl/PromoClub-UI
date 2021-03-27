@@ -28,16 +28,13 @@
     padding-left: 10px;
     line-height: 1.75em;
   }
-  label {
-    color: white;
-  }
 }
 .register-rows-inptlabel {
   flex: 1;
   padding-left: 15px;
   font-size: 1.1em;
   font-family: $app-font-medium;
-  color: white;
+  // color: white;
 }
 @media (max-width: 1000px) {
   .register-cont {
@@ -50,7 +47,7 @@
   }
   .register-rows {
     padding: 0.5em 0;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: unset;
     .register-rows-inptlabel {
       padding-left: unset;
@@ -59,9 +56,16 @@
   input[type="radio"] {
     justify-content: right;
     width: 100%;
+    margin: 0 3px;
     &:hover {
       cursor: pointer;
     }
+  }
+  input[type="radio"] {
+    padding: 10px;
+  }
+  input[type="radio"]:checked {
+    background: black;
   }
   .register-rows-inptfld {
     justify-content: unset;
@@ -160,7 +164,7 @@
   }
 }
 
-.loader {
+.btn-loader {
   border: 2px solid #f3f3f3;
   -webkit-animation: spin 1s linear infinite;
   animation: spin 1s linear infinite;
