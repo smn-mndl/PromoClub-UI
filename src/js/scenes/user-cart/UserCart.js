@@ -5,7 +5,10 @@ import { useHistory } from "react-router";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 import data from "./data.json";
 import { each } from "lodash";
-import { updateCartImageSizeAction } from "../../actions/CartActions";
+import {
+  updateCartImageSizeAction,
+  downloadImageAction,
+} from "../../actions/CartActions";
 import { downloadImage } from "../../api/api-creator";
 import Axios from "axios";
 const UserCart = () => {
@@ -221,6 +224,11 @@ const UserCart = () => {
           ],
         method: "GET",
         responseType: "blob",
+        mode: "cors",
+        headers: {
+          "Content-Type": "image/jpeg",
+          "Access-Control-Allow-Origin": "*",
+        },
       }).then((response) => {
         debugger;
         const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -278,7 +286,10 @@ const UserCart = () => {
           </div>
           <div
             className="download-btn"
-            onClick={(e) => handleDownload(e, cart)}
+            onClick={(e) => {
+              handleDownload(e, cart);
+              // downloadImageAction(dispatch);
+            }}
           >
             Download
           </div>
