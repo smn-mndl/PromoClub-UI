@@ -4,25 +4,26 @@ import { Store } from "../../store/Store";
 import { useHistory } from "react-router";
 import { UpOutlined, DownOutlined } from "@ant-design/icons";
 import data from "./data.json";
-import { each } from "lodash";
+import ServiceLoadingPage from "../../components/common/service-loader/ServiceLoader";
 import {
   updateCartImageSizeAction,
   downloadImageAction,
 } from "../../actions/CartActions";
 import { downloadImage } from "../../api/api-creator";
-import Axios from "axios";
+
+import { setDataLoadingStatusAction } from "../../actions/ApplevelActions";
 const UserCart = () => {
   let {
     dispatch,
     state: {
-      selectedPhotoDetails,
+      isDataLoading,
       isLoggedIn,
       userDetails: { cart },
     },
   } = useContext(Store);
-  cart = data.result.latestPhotos;
+  // cart = data.result.latestPhotos;
   let history = useHistory();
-  // const [imageSize, setImageSize] = useState("large_jpg");
+  const [imageDownloading, setImageDownloading] = useState(false);
   const [imageID, setImageID] = useState(null);
   const [viewSizeDropdown, setViewSizeDropdown] = useState(false);
 
@@ -191,72 +192,30 @@ const UserCart = () => {
   };
   const handleDownload = async (event, cart) => {
     event.preventDefault();
-    debugger;
-
+    const getService = async (eachCartElem, url) => {
+      setImageDownloading(true);
+      const res = await downloadImage(url);
+      setImageDownloading(false);
+      let src = "data:image/jpeg;base64,";
+      src += res.data;
+      const link = document.createElement("a");
+      link.href = src;
+      link.setAttribute(
+        "download",
+        `${eachCartElem["photoDtls"]["attributes"]["title"]}.jpg`
+      );
+      document.body.appendChild(link);
+      link.click();
+    };
+    setImageDownloading(true);
     const urlObj = cart.map((eachCartElem) => {
       let obj = {};
       obj["url"] =
         eachCartElem["photoDtls"]["attributes"]["image_src"][
           downloadSizeConfig[eachCartElem.imageSize]
         ];
-      obj["method"] = "GET";
-      obj["responseType"] = "blob";
-      // Axios({
-      //   url: obj.url,
-      //   method: "GET",
-      //   responseType: "blob",
-      // }).then((response) => {
-      //   debugger;
-      //   const url = window.URL.createObjectURL(new Blob([response.data]));
-      //   const link = document.createElement("a");
-      //   link.href = url;
-      //   link.setAttribute(
-      //     "download",
-      //     eachCartElem["photoDtls"]["attributes"]["title"]
-      //   );
-      //   document.body.appendChild(link);
-      //   link.click();
-      // });
-      Axios({
-        url:
-          eachCartElem["photoDtls"]["attributes"]["image_src"][
-            downloadSizeConfig["small_jpg"]
-          ],
-        method: "GET",
-        responseType: "blob",
-        mode: "cors",
-        headers: {
-          "Content-Type": "image/jpeg",
-          "Access-Control-Allow-Origin": "*",
-        },
-      }).then((response) => {
-        debugger;
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute(
-          "download",
-          `${eachCartElem["photoDtls"]["attributes"]["title"]}.jpg`
-        );
-        document.body.appendChild(link);
-        link.click();
-      });
+      const res = getService(eachCartElem, obj.url);
     });
-
-    // Axios({
-    //   url:
-    //     "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0122_edited.jpg",
-    //   method: "GET",
-    //   responseType: "blob",
-    // }).then((response) => {
-    //   debugger;
-    //   const url = window.URL.createObjectURL(new Blob([response.data]));
-    //   const link = document.createElement("a");
-    //   link.href = url;
-    //   link.setAttribute("download", "test.jpg");
-    //   document.body.appendChild(link);
-    //   link.click();
-    // });
   };
   const cartPriceCalculator = (cart) => {
     return (
@@ -288,7 +247,6 @@ const UserCart = () => {
             className="download-btn"
             onClick={(e) => {
               handleDownload(e, cart);
-              // downloadImageAction(dispatch);
             }}
           >
             Download
@@ -299,7 +257,6 @@ const UserCart = () => {
     );
   };
   const getCartHTML = () => {
-    console.log("cart", cart);
     return (
       <>
         <div className="cart-cards">
@@ -313,6 +270,7 @@ const UserCart = () => {
   };
   return (
     <>
+      {imageDownloading && <ServiceLoadingPage />}
       {cart.length > 0 ? (
         <div className="user-cart-container">{getCartHTML()}</div>
       ) : isLoggedIn ? (

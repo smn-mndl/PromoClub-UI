@@ -28,7 +28,12 @@ export const userLoginStatusAction = async (dispatch, loginStatus) => {
     payload: loginStatus,
   });
 };
-
+export const setDataLoadingStatusAction = async (dispatch, loadingStatus) => {
+  return dispatch({
+    type: "SET_DATA_LOADING_STATUS_ACTION",
+    payload: loadingStatus,
+  });
+};
 export const userRegisterAction = async (dispatch, payload) => {
   const reponse = await registerUsers(payload);
   return dispatch({

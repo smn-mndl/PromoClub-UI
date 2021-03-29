@@ -42,6 +42,11 @@ export const reducer = (state, action) => {
         ...state,
         isLoggedIn: action.payload,
       };
+    case action.type === "SET_DATA_LOADING_STATUS_ACTION":
+      return {
+        ...state,
+        isDataLoading: action.payload,
+      };
     case action.type === "PUBLISHED_DATA_LENGTH_ACTION":
       return {
         ...state,

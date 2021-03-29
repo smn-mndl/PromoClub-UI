@@ -1,4 +1,4 @@
-import { updateCartImageSize } from "../api/api-creator";
+import { updateCartImageSize, downloadImage } from "../api/api-creator";
 
 export const updateCartImageSizeAction = async (
   dispatch,

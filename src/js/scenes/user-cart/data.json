@@ -16,7 +16,7 @@
             "image_src": {
               "240p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0122_edited.jpg",
               "480p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0122_edited.jpg",
-              "1080p": "https://latest-original-photos.s3.ap-south-1.amazonaws.com/DSC_0122.jpg"
+              "1080p": "https://latest-original-photos.s3.ap-south-1.amazonaws.com/DSC_0122.JPG"
             },
             "keywords": [
               "texture",
@@ -83,7 +83,7 @@
             "image_src": {
               "240p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0174_edited.jpg",
               "480p": "https://latest-photos.s3.ap-south-1.amazonaws.com/DSC_0174_edited.jpg",
-              "1080p": "https://latest-original-photos.s3.ap-south-1.amazonaws.com/DSC_0174.jpg"
+              "1080p": "https://latest-original-photos.s3.ap-south-1.amazonaws.com/DSC_0174.JPG"
             },
             "keywords": [
               "texture",

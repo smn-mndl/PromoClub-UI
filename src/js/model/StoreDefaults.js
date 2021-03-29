@@ -1,6 +1,6 @@
 export const STORE_DEFAULTS = {
   isLoggedIn: false,
-  isPublishDataLoading: false,
+  isDataLoading: false,
   languageCodes: [],
   latestPhotos: null,
   navigation: {

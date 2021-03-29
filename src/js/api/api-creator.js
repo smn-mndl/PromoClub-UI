@@ -145,12 +145,12 @@ export const updateCartImageSize = (payload) => {
   });
 };
 
-export const downloadImage = () => {
+export const downloadImage = (url) => {
   return makeApiCall({
     method: "POST",
-    url: "downloadImages",
-    payload: {},
-    isLocal: true,
+    url: "download",
+    payload: { url },
+    isLocal: false,
     isMock: false,
   });
 };

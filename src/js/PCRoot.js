@@ -16,6 +16,9 @@ import {
 } from "react-router-dom";
 import AppTabs from "./components/app-level/app-tabs/AppTabs";
 
+const LazyServiceLoader = lazy(() =>
+  import("./components/common/service-loader/ServiceLoader")
+);
 const LazyPhotoViewerSection = lazy(() =>
   import("./scenes/photo-viewer-section/PhotoViewerSection")
 );
@@ -40,6 +43,7 @@ const PromoClubRoot = (props) => {
       pageToast,
       selectedPhotoDetails,
       isLoggedIn,
+      isDataLoading,
     },
     dispatch,
   } = useContext(Store);
@@ -96,6 +100,7 @@ const PromoClubRoot = (props) => {
           toastMsg={pageToast.toastMsg}
         />
       )}
+      {isDataLoading && <LazyServiceLoader />}
       <Suspense fallback={<LoadingPage text="Loading..." />}>
         <Router>
           {currentPage !== "SignPage" ? (
