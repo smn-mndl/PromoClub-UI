@@ -212,7 +212,7 @@ const UserCart = () => {
       let obj = {};
       obj["url"] =
         eachCartElem["photoDtls"]["attributes"]["image_src"][
-          downloadSizeConfig[eachCartElem.imageSize]
+          downloadSizeConfig["small_jpg"]
         ];
       const res = getService(eachCartElem, obj.url);
     });
