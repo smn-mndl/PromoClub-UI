@@ -3,6 +3,7 @@ import "./UserDetails.scss";
 import {
   goToPagesAction,
   userLoginStatusAction,
+  updateLocalStorage,
 } from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
 
@@ -50,6 +51,11 @@ const UserDetails = ({
               goToPagesAction(dispatch, "UserInboxPage", "");
             } else if (each === "Log Out") {
               userLoginStatusAction(dispatch, false);
+              const cloneLocalStorage = JSON.parse(
+                localStorage.getItem("appStorage")
+              );
+              cloneLocalStorage["isLoggedIn"] = false;
+              updateLocalStorage(JSON.stringify(cloneLocalStorage));
             } else if (each === "Cart") {
               history.push(`/cart/${state.userDetails.profile.email}`);
             }

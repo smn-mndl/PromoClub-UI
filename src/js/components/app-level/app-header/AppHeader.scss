@@ -44,7 +44,8 @@
   padding: 0 0.5em;
   // z-index: 101;
   &:hover {
-    background: $default-pc-hovercolor;
+    // background: $default-pc-hovercolor;
+    background: #f0f0f0;
   }
   svg {
     margin-left: 4px;
@@ -63,10 +64,11 @@
   display: flex;
   top: 44px;
   right: 0px;
-  background: rgb(224, 233, 170);
+  // background: rgb(224, 233, 170);
+  background: #d9d9d9;
   overflow-y: auto;
-  box-shadow: 0 8px 4px -6px rgb(224, 233, 170);
-  -webkit-box-shadow: 0 8px 4px -6px rgb(224, 233, 170);
+  box-shadow: 0 8px 4px -6px #d9d9d9;
+  -webkit-box-shadow: 0 8px 4px -6px #d9d9d9;
   p {
     font-size: 1.2em;
     line-height: 1.5em;

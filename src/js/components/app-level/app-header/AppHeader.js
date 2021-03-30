@@ -14,16 +14,22 @@ const LazySignInCont = lazy(() => import("./SignInCont"));
 const LAzyUserDetails = lazy(() => import("../user-details/UserDetails"));
 const LazySideNav = lazy(() => import("../side-navbar/SideNav"));
 
-const AppHeader = () => {
-  const {
-    dispatch,
-    state,
-    state: {
-      navigation: { currentPage },
-      userDetails: { userUpdates },
-    },
-  } = useContext(Store);
-  const { isLoggedIn } = state;
+const AppHeader = ({
+  state,
+  dispatch,
+  currentPage,
+  userUpdates,
+  isLoggedIn,
+}) => {
+  // const {
+  //   dispatch,
+  //   state,
+  //   state: {
+  //     navigation: { currentPage },
+  //     userDetails: { userUpdates },
+  //   },
+  // } = useContext(Store);
+  // const { isLoggedIn } = state;
   const [showDrpdwnOpt, setShowDrpdwnOpt] = useState(false);
   let history = useHistory();
 

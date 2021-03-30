@@ -1,6 +1,10 @@
 import { loginUser, registerUsers, getTranslation } from "../api/api-creator";
 import { setPageToastAction } from "./MiscActions";
 
+export const updateLocalStorage = (newStorage) => {
+  localStorage.setItem("appStorage", newStorage);
+};
+
 export const signInBtnClickHandler = async (dispatch, currentPage, subPage) => {
   return dispatch({
     type: "SIGNIN_BTN_CLICK_ACTION",
@@ -21,13 +25,31 @@ export const goToTabsAction = async (dispatch, currentTab) => {
     payload: currentTab,
   });
 };
-
 export const userLoginStatusAction = async (dispatch, loginStatus) => {
   return dispatch({
     type: "SET_USER_LOGIN_STATUS_ACTION",
     payload: loginStatus,
   });
 };
+
+export const setUserDetailsAction = async (dispatch, userDtls) => {
+  return dispatch({
+    type: "SET_USER_DETAILS_ACTION",
+    payload: userDtls,
+  });
+};
+
+export const setUserCredentialsFromStorageAction = async (dispatch) => {
+  let userDetails, isLoggedIn;
+  const appStorage = localStorage.appStorage;
+  if (appStorage.userDetails) {
+    userDetails = JSON.parse(appStorage.userDetails);
+    isLoggedIn = Boolean(JSON.parse(appStorage.isLoggedIn));
+  }
+  setUserDetailsAction(dispatch, userDetails);
+  userLoginStatusAction(dispatch, isLoggedIn);
+};
+
 export const setDataLoadingStatusAction = async (dispatch, loadingStatus) => {
   return dispatch({
     type: "SET_DATA_LOADING_STATUS_ACTION",
@@ -60,10 +82,15 @@ export const userLoginAction = async (
     });
     goToPagesAction(dispatch, "LandingPage", "");
     history.goBack();
-    return dispatch({
-      type: "SET_USER_DETAILS_ACTION",
-      payload: userDtls.data.data.UserLogin,
-    });
+
+    let cloneLocalStorage = JSON.parse(localStorage.getItem("appStorage"));
+    if (!cloneLocalStorage) {
+      cloneLocalStorage = {};
+    }
+    cloneLocalStorage["isLoggedIn"] = true;
+    cloneLocalStorage["userDetails"] = userDtls.data.data.UserLogin;
+    updateLocalStorage(JSON.stringify(cloneLocalStorage));
+    setUserDetailsAction(dispatch, userDtls.data.data.UserLogin);
   } else {
     setPageToastAction(dispatch, {
       show: true,

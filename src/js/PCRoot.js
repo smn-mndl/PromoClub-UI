@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from "react";
+import React, { useContext, lazy, Suspense, useEffect } from "react";
 import { Store } from "./store/Store";
 import Fallback from "./components/common/fallback/Fallback";
 import LoadingPage from "./components/common/loading-page/LoadingPage";
@@ -15,6 +15,7 @@ import {
   useParams,
 } from "react-router-dom";
 import AppTabs from "./components/app-level/app-tabs/AppTabs";
+import { setUserCredentialsFromStorageAction } from "./actions/ApplevelActions";
 
 const LazyServiceLoader = lazy(() =>
   import("./components/common/service-loader/ServiceLoader")
@@ -36,7 +37,7 @@ export const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 const PromoClubRoot = (props) => {
-  const {
+  let {
     state,
     state: {
       navigation: { currentPage, currentTab },
@@ -44,11 +45,17 @@ const PromoClubRoot = (props) => {
       selectedPhotoDetails,
       isLoggedIn,
       isDataLoading,
+      userDetails,
     },
     dispatch,
   } = useContext(Store);
   console.log("state", state);
 
+  useEffect(() => {
+    if (localStorage.appStorage && localStorage.appStorage.userDetails) {
+      setUserCredentialsFromStorageAction(dispatch);
+    }
+  }, []);
   const LazyPhotoViewerComponent = () => {
     let match = useRouteMatch();
     let query = useQuery();
@@ -106,11 +113,17 @@ const PromoClubRoot = (props) => {
           {currentPage !== "SignPage" ? (
             <>
               <header>
-                <AppHeader />
+                <AppHeader
+                  dispatch={dispatch}
+                  currentTab={currentTab}
+                  currentPage={currentPage}
+                  isLoggedIn={isLoggedIn}
+                  state={state}
+                />
               </header>
             </>
           ) : null}
-          {!["LoginPage", "SignUpPage"].currentPage ? (
+          {!["LoginPage", "SignUpPage"].includes(currentPage) ? (
             <>
               <div className="homepage-app-tabs">
                 <AppTabs
@@ -121,6 +134,7 @@ const PromoClubRoot = (props) => {
               </div>
             </>
           ) : null}
+
           <main
             className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
           >
