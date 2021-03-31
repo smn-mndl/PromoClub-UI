@@ -14,6 +14,7 @@ const PAGE_METADATA = {
         setShowDrpdwnOpt,
         goToPagesAction,
       }) => {
+        debugger;
         setNavigationRouteAction(
           dispatch,
           `${history.location.pathname}${history.location.search}`
@@ -63,7 +64,10 @@ const PAGE_METADATA = {
       display: "Contact Us",
       id: "ContactUs",
       tooltip: false,
-      onClickFunc: null,
+      onClickFunc: ({ history, setShowDrpdwnOpt }) => {
+        history.push(`/support`);
+        setShowDrpdwnOpt(false);
+      },
     },
   ],
   APP_TABS_METADATA: [

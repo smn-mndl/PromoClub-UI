@@ -49,7 +49,7 @@ const AppHeader = ({
             Photos Bay
           </a>
           <div className="pc-hdr-menu">
-            <Tooltip
+            {/* <Tooltip
               placement="bottom"
               title={isLoggedIn ? "" : "Please login to publish"}
             >
@@ -65,7 +65,7 @@ const AppHeader = ({
               >
                 Publish
               </div>
-            </Tooltip>
+            </Tooltip> */}
 
             <div
               className="sign-in-opt"

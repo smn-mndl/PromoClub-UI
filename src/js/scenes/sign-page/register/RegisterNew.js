@@ -6,6 +6,7 @@ import Axios from "axios";
 import {
   userLoginStatusAction,
   goToPagesAction,
+  setNavigationRouteAction,
 } from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
 import makeApiCall from "../../../api/api";
@@ -147,10 +148,8 @@ const Register = () => {
       <div className="back-to-home">
         <span
           onClick={() => {
-            // history.push("/");
-            // history.goBack();
-            history.push(route);
-            // goToPagesAction(dispatch, "LandingPage", "");
+            history.goBack();
+            // history.push(route);
           }}
         >
           <span>{arrow}</span>
@@ -184,7 +183,13 @@ const Register = () => {
             <span
               className="login-link"
               onClick={
-                () => history.push("/login")
+                () => {
+                  setNavigationRouteAction(
+                    dispatch,
+                    `${history.location.pathname}${history.location.search}`
+                  );
+                  history.push("/login");
+                }
                 // signInBtnClickHandler(dispatch, "SignPage", "SignIn")
               }
             >

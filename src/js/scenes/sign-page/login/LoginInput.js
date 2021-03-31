@@ -1,6 +1,6 @@
 import React from "react";
 
-const LoginInput = ({ rowDtls, loginData, setLoginData }) => {
+const LoginInput = ({ rowDtls, loginData, setLoginData, onChangeHandler }) => {
   return (
     <>
       <div className="login-rows">
@@ -8,10 +8,8 @@ const LoginInput = ({ rowDtls, loginData, setLoginData }) => {
           <input
             name={rowDtls.key}
             type={rowDtls.type}
-            onChange={evt => {
-              const tempObj = JSON.parse(JSON.stringify(loginData));
-              tempObj[rowDtls.key] = evt.target.value;
-              setLoginData(tempObj);
+            onChange={(evt) => {
+              onChangeHandler(rowDtls.key, evt.target.value);
             }}
             autoComplete={true}
           ></input>

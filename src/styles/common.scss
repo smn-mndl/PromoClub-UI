@@ -21,12 +21,11 @@
 }
 @media (max-width: 400px) {
   .grid {
-    // display: grid;
-    // grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    // grid-gap: 10px;
-    // gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
   }
+}
+.pc-root-main-cont-LoginPage {
+  height: calc(100vh - 44px) !important;
 }
 .pc-root-main-cont-SignPage {
   height: 100vh;
@@ -72,4 +71,36 @@ webkit-scrollbar {
 
 webkit-scrollbar-thumb {
   background-color: #000000;
+}
+
+@mixin input-class {
+  width: 100%;
+  border-radius: 6px;
+  outline: none;
+  border: 1px solid #cccccc;
+  color: #2e2d2d;
+  padding-left: 10px;
+  line-height: 1.75em;
+}
+
+@mixin button-class {
+  align-items: center;
+  text-align: center;
+  font-size: 1.2em;
+  border: 1px solid $default-pc-background;
+  width: 6em;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+  border-radius: 6px;
+  margin-top: 1.3em;
+  cursor: pointer;
+  background: $default-pc-background;
+  color: $default-pc-color;
+  padding: 0.4em;
+  outline: none;
+  &:hover {
+    background: $default-pc-background;
+    opacity: 0.8;
+  }
 }

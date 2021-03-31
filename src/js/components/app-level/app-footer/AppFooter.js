@@ -1,6 +1,7 @@
 import React from "react";
 import "./AppFooter.scss";
 import { APP_FOOTER_CONFIG } from "./app-footer-config";
+import SecondFooter from "./SecondFooter";
 
 const AppFooter = () => {
   const getFooterHtmlElems = () => {
@@ -26,7 +27,7 @@ const AppFooter = () => {
             {getFooterHtmlElems()}
           </div>
         </div>
-        <div className="secondary-footer-cont">© 2021 Photos Bay</div>
+        <SecondFooter />
         <div className="footer-overlay"></div>
       </div>
     </>

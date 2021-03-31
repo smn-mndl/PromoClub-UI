@@ -10,3 +10,10 @@ export const setPageToastAction = async (
     payload: toast,
   });
 };
+
+export const saveCustomerSupportComplaintAction = async (
+  // dispatch,
+  complaint
+) => {
+  const response = await saveCustomerComplaint(complaint);
+};

@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import AppTabs from "./components/app-level/app-tabs/AppTabs";
 import { setUserCredentialsFromStorageAction } from "./actions/ApplevelActions";
+import SecondFooter from "./components/app-level/app-footer/SecondFooter";
 
 const LazyServiceLoader = lazy(() =>
   import("./components/common/service-loader/ServiceLoader")
@@ -32,6 +33,9 @@ const LazyRegisterPage = lazy(() =>
 );
 const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
 const LazyUserCart = lazy(() => import("./scenes/user-cart/UserCart"));
+const LazyCustomerSupport = lazy(() =>
+  import("./scenes/app-customer-support/CustomerSupport")
+);
 
 export const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -159,6 +163,7 @@ const PromoClubRoot = (props) => {
                 component={LazyPhotoViewerComponent}
               ></Route>
               <Route path="/cart" component={CartComponent}></Route>
+              <Route path="/support" component={LazyCustomerSupport}></Route>
               <Route path="*">
                 <LazyHomePage />
               </Route>

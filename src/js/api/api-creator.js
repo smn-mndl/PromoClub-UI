@@ -154,3 +154,13 @@ export const downloadImage = (url) => {
     isMock: false,
   });
 };
+
+export const saveCustomerComplaint = (complaint) => {
+  return makeApiCall({
+    method: "POST",
+    url: "customerSupport",
+    payload: { complaint },
+    isLocal: false,
+    isMock: false,
+  });
+};
