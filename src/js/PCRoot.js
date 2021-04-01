@@ -56,7 +56,10 @@ const PromoClubRoot = (props) => {
   console.log("state", state);
 
   useEffect(() => {
-    if (localStorage.appStorage && localStorage.appStorage.userDetails) {
+    if (
+      localStorage.appStorage &&
+      JSON.parse(localStorage.appStorage).userDetails
+    ) {
       setUserCredentialsFromStorageAction(dispatch);
     }
   }, []);

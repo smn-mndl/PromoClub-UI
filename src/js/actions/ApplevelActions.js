@@ -42,9 +42,9 @@ export const setUserDetailsAction = async (dispatch, userDtls) => {
 export const setUserCredentialsFromStorageAction = async (dispatch) => {
   let userDetails, isLoggedIn;
   const appStorage = localStorage.appStorage;
-  if (appStorage.userDetails) {
-    userDetails = JSON.parse(appStorage.userDetails);
-    isLoggedIn = Boolean(JSON.parse(appStorage.isLoggedIn));
+  if (JSON.parse(appStorage).userDetails) {
+    userDetails = JSON.parse(appStorage).userDetails;
+    isLoggedIn = Boolean(JSON.parse(appStorage).isLoggedIn);
   }
   setUserDetailsAction(dispatch, userDetails);
   userLoginStatusAction(dispatch, isLoggedIn);
