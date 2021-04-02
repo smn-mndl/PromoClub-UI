@@ -56,12 +56,14 @@ const UserDetails = ({
               );
               cloneLocalStorage["isLoggedIn"] = false;
               updateLocalStorage(JSON.stringify(cloneLocalStorage));
+              setShowDrpdwnOpt(false);
             } else if (each === "Cart") {
               history.push(`/cart/${state.userDetails.profile.email}`);
+              setShowDrpdwnOpt(false);
             }
           }}
         >
-          <span>{each}</span>
+          <a>{each}</a>
           {logCounter(each) && (
             <span className={"user-details-counter"}>
               <span>{logCounter(each)}</span>

@@ -22,6 +22,12 @@ export const setClickPhotoAction = async (dispatch, clickedPhotoDtls) => {
     payload: clickedPhotoDtls,
   });
 };
+export const setImageSizeAction = async (dispatch, imgSize) => {
+  return dispatch({
+    type: "IMAGE_SIZE_ACTION",
+    payload: imgSize,
+  });
+};
 
 export const setSeletedPhotoBlankAction = async (dispatch) => {
   return dispatch({

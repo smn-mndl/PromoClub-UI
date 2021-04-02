@@ -56,12 +56,13 @@ const getRadioGroupHTML = (onChange, value) => {
 const PhotoViwerRightSection = (props) => {
   const photoDtls = props.selectedPhotoDetails,
     loginStatus = props.isLoggedIn,
-    dispatch = props.dispatch;
+    dispatch = props.dispatch,
+    setImageSize = props.setImageSize,
+    imageSize = props.imageSize;
 
   let sizes = photoDtls && photoDtls.attributes && photoDtls.attributes.sizes;
-
   const [value, setValue] = useState(1);
-  const [imageSize, setImageSize] = useState("large_jpg");
+
   const [viewSizeDropdown, setViewSizeDropdown] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
 

@@ -6,7 +6,7 @@ import PhotoViwerRightSection from "./PhotoViewerRightSection";
 import PhotoViewerBottomSection from "./PhotoViewerBottomSection";
 import { useQuery } from "../../PCRoot";
 import {
-  getPhotoDetailsAction,
+  setImageSizeAction,
   photoClickAction,
 } from "../../actions/PhotoDetailsActions";
 import { isEmpty } from "lodash";
@@ -17,24 +17,27 @@ const PhotoViewerSection = () => {
   const {
     dispatch,
     state: {
-      selectedPhotoDetails,
+      selectedPhotoDetails: { imageSize, image },
       isLoggedIn,
       userDetails: { cart },
     },
   } = useContext(Store);
   const [showFullScreenImg, setShowFullScreenImg] = useState(false);
 
+  const setImageSize = (imgSize) => {
+    setImageSizeAction(dispatch, imgSize);
+  };
   let query = useQuery(),
     history = useHistory();
   let name = query.get("name"),
     id = query.get("id");
 
   useEffect(() => {
-    let photoId = selectedPhotoDetails && selectedPhotoDetails._id;
+    let photoId = image && image._id;
     if (photoId !== id) {
       photoClickAction(dispatch, id);
     }
-  }, [selectedPhotoDetails]);
+  }, [image]);
 
   const getKeywardsHTML = (selectedPhotoAttributes) => {
     const keywords = !isEmpty(selectedPhotoAttributes)
@@ -49,9 +52,7 @@ const PhotoViewerSection = () => {
     );
   };
   const selectedPhotoAttributes =
-    selectedPhotoDetails && selectedPhotoDetails["attributes"]
-      ? selectedPhotoDetails["attributes"]
-      : {};
+    image && image["attributes"] ? image["attributes"] : {};
   return (
     <>
       <div className="photoviewer-section">
@@ -65,16 +66,18 @@ const PhotoViewerSection = () => {
         <div className="photo-desc-section">
           <PhotoViwerRightSection
             dispatch={dispatch}
-            selectedPhotoDetails={selectedPhotoDetails}
+            selectedPhotoDetails={image}
             isLoggedIn={isLoggedIn}
             history={history}
             cart={cart}
+            imageSize={imageSize}
+            setImageSize={setImageSize}
           />
           <div className="background-color-gradient"></div>
         </div>
       </div>
       <div className="section-title-keywards">
-        <div className="section-title">Keywards</div>
+        <div className="section-title">Keywords</div>
         <div className="section-cards">
           {getKeywardsHTML(selectedPhotoAttributes)}
         </div>

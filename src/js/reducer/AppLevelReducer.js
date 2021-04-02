@@ -80,7 +80,18 @@ export const reducer = (state, action) => {
     case action.type === "PHOTO_CLICK_ACTION":
       return {
         ...state,
-        selectedPhotoDetails: action.payload,
+        selectedPhotoDetails: {
+          ...state.selectedPhotoDetails,
+          image: action.payload,
+        },
+      };
+    case action.type === "IMAGE_SIZE_ACTION":
+      return {
+        ...state,
+        selectedPhotoDetails: {
+          ...state.selectedPhotoDetails,
+          imageSize: action.payload,
+        },
       };
     case action.type === "SET_LATEST_PHOTOS":
       return {

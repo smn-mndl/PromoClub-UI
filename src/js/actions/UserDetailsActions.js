@@ -20,7 +20,9 @@ export const addToCartAction = async (dispatch, photoDtls, cart, imageSize) => {
   const dbResp = true;
   if (dbResp) {
     const updatedCart = cart;
-    const ifPresnt = updatedCart.filter((each) => each._id === photoDtls._id);
+    const ifPresnt = updatedCart.filter(
+      (each) => each.photoDtls._id === photoDtls._id
+    );
     if (ifPresnt.length > 0) {
       //already present
       //error msg

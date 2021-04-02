@@ -21,7 +21,10 @@ export const STORE_DEFAULTS = {
   },
   publishedData: [],
   publishedDataCount: null,
-  selectedPhotoDetails: {},
+  selectedPhotoDetails: {
+    imageSize: "large_jpg",
+    image: {},
+  },
   userActivity: {},
   userDetails: {
     profile: null,
