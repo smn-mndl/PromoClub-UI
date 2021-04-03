@@ -11,6 +11,7 @@ const HomePage = () => {
   const {
     state,
     state: {
+      isLoggedIn,
       navigation: { currentTab, currentPage },
       pageToast,
     },
@@ -18,7 +19,7 @@ const HomePage = () => {
   } = useContext(Store);
   return (
     <div className="homepage-cont">
-      {!["LoginPage", "SignUpPage"].currentPage ? (
+      {!["LoginPage", "SignUpPage"].currentPage && !isLoggedIn ? (
         <>
           <div className="homepage-joining-banner">
             <JoiningBanner dispatch={dispatch} currentTab={currentTab} />
