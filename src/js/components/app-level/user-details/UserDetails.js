@@ -25,7 +25,7 @@ const UserDetails = ({
   state,
   history,
 }) => {
-  const cart = state.userDetails.cart;
+  const cart = state.userDetails.profile.cart;
   const logCounter = (each) => {
     let counter = 0;
     if (each === "Profile") {
@@ -35,7 +35,7 @@ const UserDetails = ({
     } else if (each === "Log Out") {
       // userLoginStatusAction(dispatch, false);
     } else if (each === "Cart") {
-      counter = cart.length;
+      counter = cart && cart.length;
     }
     return counter > 0 && counter;
   };

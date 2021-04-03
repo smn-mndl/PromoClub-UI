@@ -1,4 +1,8 @@
-import { uploadCoverPic, getUserPublishedData } from "../api/api-creator";
+import {
+  uploadCoverPic,
+  getUserPublishedData,
+  saveToCart,
+} from "../api/api-creator";
 
 export const uploadCoverPicAction = async ({ dispatch, data }) => {
   const publishedData = await uploadCoverPic(data);
@@ -14,10 +18,22 @@ export const getUserPublisedDataAction = async (dispatch, payload) => {
   });
 };
 
-export const addToCartAction = async (dispatch, photoDtls, cart, imageSize) => {
+export let addToCartAction = async ({
+  dispatch,
+  photoDtls,
+  cart,
+  imageSize,
+  email,
+}) => {
   //make service call and add it user details object in db.
   //if successful then show notification in UI else show error msg in UI
-  const dbResp = true;
+  let dbCart = cart && JSON.parse(JSON.stringify(cart));
+  if (!dbCart) {
+    dbCart = [];
+  }
+  dbCart.push({ photoDtls, imageSize });
+
+  const dbResp = await saveToCart({ email, updatedCart: dbCart });
   if (dbResp) {
     const updatedCart = cart;
     const ifPresnt = updatedCart.filter(

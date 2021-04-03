@@ -18,7 +18,9 @@ const UserCart = () => {
     state: {
       isDataLoading,
       isLoggedIn,
-      userDetails: { cart },
+      userDetails: {
+        profile: { cart },
+      },
     },
   } = useContext(Store);
   // cart = data.result.latestPhotos;
@@ -114,11 +116,12 @@ const UserCart = () => {
         <div
           className="cart-item-size"
           onClick={() => {
-            cart.map((each) => {
-              if (each._id === imageID) {
-                each.imageSize = size;
-              }
-            });
+            cart &&
+              cart.map((each) => {
+                if (each._id === imageID) {
+                  each.imageSize = size;
+                }
+              });
             setImageID(id);
 
             setViewSizeDropdown(!viewSizeDropdown);
@@ -271,7 +274,7 @@ const UserCart = () => {
   return (
     <>
       {imageDownloading && <ServiceLoadingPage />}
-      {cart.length > 0 ? (
+      {cart && cart.length > 0 ? (
         <div className="user-cart-container">{getCartHTML()}</div>
       ) : isLoggedIn ? (
         <div className="cart-no-data">

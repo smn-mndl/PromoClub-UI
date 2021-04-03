@@ -4,6 +4,7 @@ import img1 from "../../../images/albumart/abstract.jpg";
 import img2 from "../../../images/albumart/indoor.jpg";
 import img3 from "../../../images/albumart/flowers.jpg";
 import img4 from "../../../images/albumart/trees.jpg";
+import { useHistory } from "react-router";
 // import img5 from "../../../../images/albumart/download(4).jpg";
 // import img6 from "../../../../images/albumart/download(5).jpg";
 // import img7 from "../../../../images/albumart/download(6).jpg";
@@ -36,11 +37,15 @@ const imgDtls = [
 ];
 
 const FeaturedPhotoSection = () => {
+  let history = useHistory();
+  const albumClickHandler = (albumName) => {
+    history.push(`/featured-albums/${albumName.toLowerCase()}`);
+  };
   const getPhotoCards = () => {
     return imgDtls.map((each) => {
       return (
         <>
-          <div class="grid__item">
+          <a class="grid__item" onClick={() => albumClickHandler(each.title)}>
             <div class="content">
               <div class="content-inside">
                 <img
@@ -58,7 +63,7 @@ const FeaturedPhotoSection = () => {
             <div className="grid-title">{each.title}</div>
             <div class="gradient-overlay"></div>
             <div class="color-overlay"></div>
-          </div>
+          </a>
         </>
       );
     });

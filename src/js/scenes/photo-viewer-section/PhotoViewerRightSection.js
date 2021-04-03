@@ -58,7 +58,8 @@ const PhotoViwerRightSection = (props) => {
     loginStatus = props.isLoggedIn,
     dispatch = props.dispatch,
     setImageSize = props.setImageSize,
-    imageSize = props.imageSize;
+    imageSize = props.imageSize,
+    profile = props.profile;
 
   let sizes = photoDtls && photoDtls.attributes && photoDtls.attributes.sizes;
   const [value, setValue] = useState(1);
@@ -109,7 +110,13 @@ const PhotoViwerRightSection = (props) => {
   const addToCartClickHandler = () => {
     if (loginStatus) {
       //add to cart and show it to notification
-      addToCartAction(dispatch, photoDtls, props.cart, imageSize);
+      addToCartAction({
+        dispatch,
+        photoDtls,
+        cart: props.cart,
+        imageSize,
+        email: profile.email,
+      });
     } else {
       //show modal to login/register
       setShowLoginModal(true);

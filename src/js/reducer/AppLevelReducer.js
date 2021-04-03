@@ -83,6 +83,7 @@ export const reducer = (state, action) => {
         selectedPhotoDetails: {
           ...state.selectedPhotoDetails,
           image: action.payload,
+          imageSize: "large_jpg",
         },
       };
     case action.type === "IMAGE_SIZE_ACTION":
@@ -116,7 +117,10 @@ export const reducer = (state, action) => {
         ...state,
         userDetails: {
           ...state.userDetails,
-          cart: action.payload,
+          profile: {
+            ...state.userDetails.profile,
+            cart: action.payload,
+          },
         },
       };
     case action.type === "USER_UPDATE_ACTION":

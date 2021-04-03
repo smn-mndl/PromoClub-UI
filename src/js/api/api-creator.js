@@ -29,7 +29,9 @@ export const registerUsers = (payload) => {
 };
 
 export const loginUser = (payload) => {
-  var email = JSON.parse(payload).email;
+  /**
+   * 
+   var email = JSON.parse(payload).email;
   var password = JSON.parse(payload).password;
   var query = `query login($email: String, $password: String) {
     login(email: $email, password: $password)
@@ -46,10 +48,14 @@ export const loginUser = (payload) => {
   }`,
     variables: {},
   });
+   * 
+   * 
+   * */
+
   return makeApiCall({
     method: "POST",
     url: "loginUser",
-    payload: data,
+    payload: payload,
     isLocal: false,
     isMock: false,
   });
@@ -134,7 +140,15 @@ export const getPhotoDetails = (payload) => {
     isMock: false,
   });
 };
-
+export const saveToCart = (payload) => {
+  return makeApiCall({
+    method: "POST",
+    url: "saveToCart",
+    payload,
+    isLocal: false,
+    isMock: false,
+  });
+};
 export const updateCartImageSize = (payload) => {
   return makeApiCall({
     method: "POST",

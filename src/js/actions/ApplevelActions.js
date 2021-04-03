@@ -72,7 +72,7 @@ export const userLoginAction = async (
 ) => {
   const userDtls = await loginUser(payload);
   setIsLoggingIn(false);
-  const isValid = userDtls.data.data.UserLogin.email ? true : false;
+  const isValid = userDtls.data.email ? true : false;
   userLoginStatusAction(dispatch, isValid);
   if (isValid) {
     setPageToastAction(dispatch, {
@@ -88,9 +88,9 @@ export const userLoginAction = async (
       cloneLocalStorage = {};
     }
     cloneLocalStorage["isLoggedIn"] = true;
-    cloneLocalStorage["userDetails"] = userDtls.data.data.UserLogin;
+    cloneLocalStorage["userDetails"] = userDtls.data;
     updateLocalStorage(JSON.stringify(cloneLocalStorage));
-    setUserDetailsAction(dispatch, userDtls.data.data.UserLogin);
+    setUserDetailsAction(dispatch, userDtls.data);
   } else {
     setPageToastAction(dispatch, {
       show: true,

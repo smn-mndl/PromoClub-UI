@@ -4,7 +4,7 @@ import { Store } from "../../store/Store";
 import Modal from "antd/lib/modal/Modal";
 import PhotoViwerRightSection from "./PhotoViewerRightSection";
 import PhotoViewerBottomSection from "./PhotoViewerBottomSection";
-import { useQuery } from "../../PCRoot";
+import { useQuery } from "../../routes/Routes";
 import {
   setImageSizeAction,
   photoClickAction,
@@ -19,7 +19,7 @@ const PhotoViewerSection = () => {
     state: {
       selectedPhotoDetails: { imageSize, image },
       isLoggedIn,
-      userDetails: { cart },
+      userDetails: { profile, cart },
     },
   } = useContext(Store);
   const [showFullScreenImg, setShowFullScreenImg] = useState(false);
@@ -72,6 +72,7 @@ const PhotoViewerSection = () => {
             cart={cart}
             imageSize={imageSize}
             setImageSize={setImageSize}
+            profile={profile}
           />
           <div className="background-color-gradient"></div>
         </div>

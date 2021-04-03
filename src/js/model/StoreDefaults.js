@@ -27,10 +27,9 @@ export const STORE_DEFAULTS = {
   },
   userActivity: {},
   userDetails: {
-    profile: null,
+    profile: {},
     inbox: null,
     notification: null,
-    cart: [],
     settings: null,
     loginStatus: null,
     userUpdates: false,
