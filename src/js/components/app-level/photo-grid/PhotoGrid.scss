@@ -1,25 +1,9 @@
 .stockers-bay-photo-grid {
 }
-// ff nightly or chrome with flags enabled
-// https://www.youtube.com/watch?v=Dz9BzY21Zks&list=PLQkVA6z3dFvbnBJetfYDAF3-cG_ubgdZR
-// http://gridbyexample.com/
-// Rachel Andrew F.T.W
 
 .grid-layout {
-  //   display: grid;
-  //   grid-template-columns: repeat(4, minmax(180px, 1fr));
-  //   grid-gap: 10px;
-  //   grid-auto-rows: minmax(180px, auto);
-  //   grid-auto-flow: row dense;
-  //   display: flex;
-  //   height: 230px;
-  //   grid-template-columns: repeat(4, minmax(180px, 1fr));
-  //   grid-gap: 10px;
-  //   grid-auto-rows: minmax(180px, auto);
-  //   grid-auto-flow: row dense;
-  min-height: 1500px;
+  // min-height: 1500px;
   overflow: auto;
-  // padding-bottom: 75px;
   overflow-x: hidden;
   :first-child {
     margin-top: 0;

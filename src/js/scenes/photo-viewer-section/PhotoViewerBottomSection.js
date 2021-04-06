@@ -1,87 +1,178 @@
 import React, { useContext } from "react";
 import "./PhotoViewerBottomSection.scss";
 import { Store } from "../../store/Store";
-import img1 from "../../../images/latest/download.jpg";
-import img2 from "../../../images/latest/download(1).jpg";
-import img3 from "../../../images/latest/download(2).jpg";
-import img4 from "../../../images/latest/download(3).jpg";
-import img5 from "../../../images/latest/download(4).jpg";
-import img6 from "../../../images/latest/download(5).jpg";
-import img7 from "../../../images/latest/download(6).jpg";
 import { useHistory } from "react-router";
 import { photoClickAction } from "../../actions/PhotoDetailsActions";
 import PhotoGrid from "../../components/app-level/photo-grid/PhotoGrid";
 
 const imgDtls = [
   {
-    url: "../../../../images/DSC_0121.JPG",
-    img: img2,
-    title: "img1",
-    desc: "img1",
-    imageDimension: {
-      x: 275,
-      y: 183,
+    _id: "1001",
+    attributes: {
+      alt: "Landscape of cloudy mountains after sunset",
+      aspectRatio: "1.5",
+      description:
+        "Landscape of cloudy mountains after sunset, taken from Singshore Bridge, Sikkim, India",
+      details: {
+        collection_name: "Nature",
+        location: "Singshore Bridge, Sikkim, India",
+        date: "09/01/2019 17:12",
+      },
+      image_src: {
+        large:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Foriginal%2FDSC_0003.JPG?alt=media&token=b7fdb7fa-36d5-4a02-bc4b-884ffbd87923",
+        medium:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Fmedium%2FDSC_0003.jpg?alt=media&token=9ac2538c-97b1-43a6-8b3c-cc2cd8866cbc",
+        small:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Fsmall%2FDSC_0003.jpg?alt=media&token=a7476b01-648e-40e6-b30b-98f11810547f",
+        extra_small:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Fextrasmall%2FDSC_0003.jpg?alt=media&token=217da2ce-53c9-43a2-945a-746b63412ce1",
+      },
+      keywords: [
+        "texture",
+        "abstract",
+        "mountain",
+        "backdrop",
+        "background",
+        "snow",
+        "rock",
+        "nature",
+        "clouds",
+        "singshore bridge",
+      ],
+      sizes: {
+        large_jpg: {
+          display_name: "Large",
+          dpi: "300",
+          format: "jpg",
+          height: "4000",
+          width: "6000",
+          height_inch: "20 inch",
+          width_inch: "30 inch",
+          height_cm: "50.8 cm",
+          width_cm: "76.2 cm",
+        },
+        medium_jpg: {
+          display_name: "Medium",
+          dpi: "300",
+          format: "jpg",
+          height: "800",
+          width: "1200",
+          height_inch: "4 inch",
+          width_inch: "5 inch",
+          height_cm: "10.16 cm",
+          width_cm: "15.24 cm",
+        },
+        small_jpg: {
+          display_name: "Small",
+          dpi: "96",
+          format: "jpg",
+          height: "533",
+          width: "800",
+          height_inch: "5.55 inch",
+          width_inch: "8.33 inch",
+          height_cm: "14.1 cm",
+          width_cm: "21.15 cm",
+        },
+        extra_small_jpg: {
+          display_name: "Extra Small",
+          dpi: "72",
+          format: "jpg",
+          height: "333",
+          width: "500",
+          height_inch: "4.63 inch",
+          width_inch: "6.94 inch",
+          height_cm: "11.76 cm",
+          width_cm: "17.63 cm",
+        },
+      },
+      title: "Mountains and cloud",
     },
+    type: "image",
   },
   {
-    url: "../../../../images/DSC_0122.JPG",
-    img: img3,
-    title: "img2",
-    desc: "img1",
-    imageDimension: {
-      x: 299,
-      y: 168,
+    _id: "1002",
+    attributes: {
+      alt: "Dawn at the mountains.",
+      aspectRatio: "1.5",
+      description:
+        "Viewed from Tiger Hill observatory, India. Dawn at the mountains.",
+      details: {
+        collection_name: "Nature",
+        location: "Tiger Hill observatory, India",
+        date: "07/01/2019 05:39",
+      },
+      image_src: {
+        large:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Foriginal%2FDSC_0207.JPG?alt=media&token=bcd5f892-3056-4115-a081-2fbeb085a510",
+        medium:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Fmedium%2FDSC_0207.jpg?alt=media&token=e5eeffd7-8ff9-4ff8-a171-ebae9c810f83",
+        small:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Fsmall%2FDSC_0207.jpg?alt=media&token=c679eff7-dbe1-4f5e-a362-4a754fd8745d",
+        extra_small:
+          "https://firebasestorage.googleapis.com/v0/b/photosbay-464cd.appspot.com/o/Nature%2Fextrasmall%2FDSC_0207.jpg?alt=media&token=3374343c-95ce-47ef-9ee9-6dd319ffc896",
+      },
+      keywords: [
+        "texture",
+        "abstract",
+        "mountain",
+        "backdrop",
+        "background",
+        "snow",
+        "rock",
+        "nature",
+        "clouds",
+        "tiger hill",
+      ],
+      sizes: {
+        large_jpg: {
+          display_name: "Large",
+          dpi: "300",
+          format: "jpg",
+          height: "4000",
+          width: "6000",
+          height_inch: "20 inch",
+          width_inch: "30 inch",
+          height_cm: "50.8 cm",
+          width_cm: "76.2 cm",
+        },
+        medium_jpg: {
+          display_name: "Medium",
+          dpi: "300",
+          format: "jpg",
+          height: "800",
+          width: "1200",
+          height_inch: "4 inch",
+          width_inch: "5 inch",
+          height_cm: "10.16 cm",
+          width_cm: "15.24 cm",
+        },
+        small_jpg: {
+          display_name: "Small",
+          dpi: "96",
+          format: "jpg",
+          height: "533",
+          width: "800",
+          height_inch: "5.55 inch",
+          width_inch: "8.33 inch",
+          height_cm: "14.1 cm",
+          width_cm: "21.15 cm",
+        },
+        extra_small_jpg: {
+          display_name: "Extra Small",
+          dpi: "72",
+          format: "jpg",
+          height: "333",
+          width: "500",
+          height_inch: "4.63 inch",
+          width_inch: "6.94 inch",
+          height_cm: "11.76 cm",
+          width_cm: "17.63 cm",
+        },
+      },
+      title: "Dawn at the mountains of the Himalayas",
     },
-  },
-  {
-    url: "../../../../images/DSC_0174.JPG",
-    img: img4,
-    title: "img3",
-    desc: "img1",
-    imageDimension: {
-      x: 183,
-      y: 275,
-    },
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img5,
-    title: "img4",
-    desc: "img1",
-    imageDimension: {
-      x: 300,
-      y: 168,
-    },
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img6,
-    title: "img5",
-    desc: "img1",
-    imageDimension: {
-      x: 300,
-      y: 168,
-    },
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img7,
-    title: "img6",
-    desc: "img1",
-    imageDimension: {
-      x: 275,
-      y: 183,
-    },
-  },
-  {
-    url: "../../../../images/DSC_0247.JPG",
-    img: img1,
-    title: "img7",
-    desc: "img1",
-    imageDimension: {
-      x: 225,
-      y: 225,
-    },
+    type: "image",
   },
 ];
 
@@ -101,7 +192,7 @@ const PhotoViewerBottomSection = () => {
           onClick={() => photoClickHandler(each)}
         >
           <img
-            src={each.img}
+            src={each.attributes.image_src.small}
             style={{ objectFit: "cover", width: "100%", height: "100%" }}
           ></img>
           <div class="title-content">

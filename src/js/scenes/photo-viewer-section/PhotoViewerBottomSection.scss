@@ -18,14 +18,16 @@
     scrollbar-width: none;
     overflow-x: scroll;
     overflow-y: hidden;
+    margin: unset !important;
     .latest-photo-cards {
       position: relative;
+      margin: unset !important;
       height: 212px;
-      /* width: 255px; */
+      width: 255px;
       background: white;
       opacity: 1;
       min-width: 250px;
-      margin-right: 10px;
+      margin-right: 10px !important;
 
       box-shadow: 10px 20px -9px rgba(0, 0, 0, 0.5);
       transition: all 0.4s;
