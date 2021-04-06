@@ -178,3 +178,13 @@ export const saveCustomerComplaint = (complaint) => {
     isMock: false,
   });
 };
+
+export const getAlbumData = (albumName) => {
+  return makeApiCall({
+    method: "POST",
+    url: "getAlbum",
+    payload: { albumName },
+    isLocal: false,
+    isMock: false,
+  });
+};

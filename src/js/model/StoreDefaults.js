@@ -1,4 +1,8 @@
 export const STORE_DEFAULTS = {
+  albums: {
+    allAlbums: {},
+    currentAlbum: null,
+  },
   isLoggedIn: false,
   isDataLoading: false,
   languageCodes: [],

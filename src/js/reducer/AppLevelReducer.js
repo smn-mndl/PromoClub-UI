@@ -1,5 +1,6 @@
 import { miscReducer } from "./MiscReducer";
 import { each } from "lodash";
+import { albumReducer } from "./AlbumLevelReducer";
 
 export const reducer = (state, action) => {
   switch (true) {
@@ -133,7 +134,8 @@ export const reducer = (state, action) => {
       };
     case action.type.includes("MISC"):
       return miscReducer(state, action);
-
+    case action.type.includes("ALBUM_ACTION"):
+      return albumReducer(state, action);
     default:
       return state;
   }

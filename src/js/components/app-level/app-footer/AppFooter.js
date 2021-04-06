@@ -8,8 +8,10 @@ const AppFooter = () => {
     return Object.values(APP_FOOTER_CONFIG).map((each) => {
       return (
         <div className="app-footer-list-block">
-          {each.map((each) => (
-            <div className={`app-footer-list-items`}>{each.disp}</div>
+          {each.map((each1) => (
+            <a href={`/${each1.link}`} className={`app-footer-list-items`}>
+              {each1.disp}
+            </a>
           ))}
         </div>
       );
@@ -21,11 +23,7 @@ const AppFooter = () => {
       <div className="app-footer">
         <div className="footer-title">Welcome to Bay of Stock images!</div>
         <div className="footer-cont">
-          <div className="footer-cont-list">
-            {/* <div className="inner-sec-header">Go To</div>
-            <div className="inner-sec-list"></div> */}
-            {getFooterHtmlElems()}
-          </div>
+          <div className="footer-cont-list">{getFooterHtmlElems()}</div>
         </div>
         <SecondFooter />
         <div className="footer-overlay"></div>

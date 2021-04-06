@@ -1,4 +1,3 @@
-import dist from "@testing-library/user-event";
 export const APP_FOOTER_CONFIG = {
   GO_TO: [
     {
@@ -59,12 +58,12 @@ export const APP_FOOTER_CONFIG = {
     {
       disp: "Call",
       key: "call",
-      link: "#",
+      link: "support",
     },
     {
       disp: "Email",
       key: "email",
-      link: "#",
+      link: "support",
     },
   ],
   LEGAL: [

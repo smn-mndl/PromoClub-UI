@@ -60,6 +60,9 @@ const UserDetails = ({
             } else if (each === "Cart") {
               history.push(`/cart/${state.userDetails.profile.email}`);
               setShowDrpdwnOpt(false);
+            } else if (each === "Contact Us") {
+              history.push(`/support`);
+              setShowDrpdwnOpt(false);
             }
           }}
         >

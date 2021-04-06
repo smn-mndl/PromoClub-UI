@@ -4,17 +4,20 @@ import { useCurrentWidth } from "../../../customhooks/customResizeHook";
 
 const PhotoGrid = (props) => {
   const currentScreenWidth = useCurrentWidth();
-  const photoList = props.imgDtls;
+  const photoList = props.imgDtls ? props.imgDtls : [];
 
   const getEachRow = (photos, totalRowWidth) => {
     return photos.map((each) => {
-      return getEachImg(each, (each.imageDimension.x / totalRowWidth) * 100);
+      return getEachImg(
+        each,
+        (Number(each.attributes.sizes.small_jpg.width) / totalRowWidth) * 100
+      );
     });
   };
   const getEachImg = (each, width) => {
     return (
       <img
-        src={each.img}
+        src={each.attributes.image_src.small}
         style={{ objectFit: "cover", width: `${width}%`, height: "100%" }}
       ></img>
     );
@@ -35,7 +38,7 @@ const PhotoGrid = (props) => {
       }
 
       let totalRowWidth = data
-        .map((each) => each.imageDimension.x)
+        .map((each) => Number(each.attributes.sizes.small_jpg.width))
         .reduce((total, num) => {
           return total + num;
         }, 0);
@@ -56,7 +59,8 @@ const PhotoGrid = (props) => {
     //     return getEachImg(each, (each.imageDimension.x / 1057) * 100);
     //   });
     let dataHTML1 = recursiveFunc(
-      [...photoList, ...photoList, ...photoList],
+      // [...photoList, ...photoList, ...photoList],
+      [...photoList],
       dataHTML,
       rowCount
     );

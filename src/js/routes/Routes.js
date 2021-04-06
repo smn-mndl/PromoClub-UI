@@ -42,7 +42,7 @@ export const LazyPhotoViewerComponent = () => {
 };
 export const LazyFeaturedAlbumsComponent = () => {
   let match = useRouteMatch();
-  let albumName = match.params;
+  let albumName = match.params.album;
   return (
     <Switch>
       <Route
