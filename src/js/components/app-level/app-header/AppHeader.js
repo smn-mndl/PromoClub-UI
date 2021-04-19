@@ -40,6 +40,7 @@ const AppHeader = ({
     <>
       <section className="pc-app-header-cont">
         <header className="pc-hdr">
+          {/* <div className="app-header-icon"></div> */}
           <a
             onClick={() => {
               history.push("/");

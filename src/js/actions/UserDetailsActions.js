@@ -3,6 +3,7 @@ import {
   getUserPublishedData,
   saveToCart,
 } from "../api/api-creator";
+import { updateLocalStorage } from "./ApplevelActions";
 
 export const uploadCoverPicAction = async ({ dispatch, data }) => {
   const publishedData = await uploadCoverPic(data);
@@ -44,6 +45,9 @@ export let addToCartAction = async ({
       //error msg
     } else {
       updatedCart.push({ photoDtls, imageSize });
+      let cloneLocalStorage = JSON.parse(localStorage.getItem("appStorage"));
+      cloneLocalStorage["userDetails"]["cart"] = updatedCart;
+      updateLocalStorage(JSON.stringify(cloneLocalStorage));
     }
     changeUserUpdateAction(dispatch, true);
     return dispatch({

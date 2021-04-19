@@ -17,6 +17,7 @@
   padding: 0 1.5em;
   display: flex;
   font-family: "Roboto-Regular";
+  align-items: center;
   a {
     all: unset;
     cursor: pointer;
@@ -25,12 +26,14 @@
     font-size: 2em;
     font-weight: 600;
     color: rgb(54, 54, 54) !important;
+    padding-left: 3px;
   }
   .app-header-icon {
-    background: url(../../../../images/PhotosBayHeader.png);
+    background: url(../../../../images/PhotosBayHeader-Copy-1.svg);
     height: 30px;
     width: 30px;
     background-size: 100%;
+    cursor: pointer;
   }
 }
 .pc-hdr-menu {

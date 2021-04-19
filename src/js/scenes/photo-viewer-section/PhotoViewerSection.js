@@ -19,7 +19,10 @@ const PhotoViewerSection = () => {
     state: {
       selectedPhotoDetails: { imageSize, image },
       isLoggedIn,
-      userDetails: { profile, cart },
+      userDetails: { profile },
+      userDetails: {
+        profile: { cart },
+      },
     },
   } = useContext(Store);
   const [showFullScreenImg, setShowFullScreenImg] = useState(false);

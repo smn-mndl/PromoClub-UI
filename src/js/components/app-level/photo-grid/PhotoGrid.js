@@ -23,15 +23,16 @@ const PhotoGrid = (props) => {
     );
   };
   const recursiveFunc = (list, dataHTML, rowCount) => {
+    rowCount += 1;
     if (list.length > 0) {
       let data = null;
       if (currentScreenWidth > 1200) {
-        data = list.splice(0, 4);
+        data = list.splice(0, 5);
       } else if (currentScreenWidth < 1200 && currentScreenWidth > 1000) {
         data = list.splice(0, 3);
       } else if (currentScreenWidth < 1000 && currentScreenWidth > 800) {
         data = list.splice(0, 2);
-      } else if (currentScreenWidth < 800 && currentScreenWidth > 700) {
+      } else if (currentScreenWidth < 800 && currentScreenWidth > 500) {
         data = list.splice(0, 2);
       } else {
         data = list.splice(0, 1);
@@ -52,7 +53,7 @@ const PhotoGrid = (props) => {
   };
   const getPhotoCards = () => {
     let dataHTML = [];
-    let rowCount = [0, 3];
+    let rowCount = 0;
     // return [...photoList, ...photoList, ...photoList]
     //   .splice(0, 4)
     //   .map((each, index) => {
