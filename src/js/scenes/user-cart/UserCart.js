@@ -19,7 +19,7 @@ const UserCart = () => {
       isDataLoading,
       isLoggedIn,
       userDetails: {
-        profile: { cart },
+        profile: { cart, email },
       },
     },
   } = useContext(Store);
@@ -59,7 +59,13 @@ const UserCart = () => {
               //     each.imageSize = each;
               //   }
               // });
-              updateCartImageSizeAction(dispatch, imageID, imageSize);
+              updateCartImageSizeAction(
+                dispatch,
+                imageID,
+                imageSize,
+                cart,
+                email
+              );
               setViewSizeDropdown(!viewSizeDropdown);
             }}
           >
@@ -159,11 +165,18 @@ const UserCart = () => {
       </>
     );
   };
+  const priceConfig = {
+    large_jpg: 300,
+    medium_jpg: 200,
+    small_jpg: 100,
+  };
   const getCart = (imgDtls) => {
     let sizes =
       imgDtls.photoDtls &&
       imgDtls.photoDtls.attributes &&
       imgDtls.photoDtls.attributes.sizes;
+    const imageSize = imgDtls.imageSize;
+
     return (
       <>
         <div className="cart">
@@ -182,7 +195,7 @@ const UserCart = () => {
             </div>
           </div>
           <div className="cart-item-price">
-            <span>&#8377;</span> 300
+            <span>&#8377;</span> {priceConfig[imageSize]}
           </div>
         </div>
       </>
@@ -221,6 +234,10 @@ const UserCart = () => {
     });
   };
   const cartPriceCalculator = (cart) => {
+    const priceArr = cart.reduce(
+      (each, b) => Number(each) + priceConfig[b.imageSize],
+      0
+    );
     return (
       <>
         <div>
@@ -228,13 +245,15 @@ const UserCart = () => {
           <div className="order-summary-elems">
             <span>Total Price: </span>{" "}
             <span>
-              <span>&#8377;</span>600
+              <span>&#8377;</span>
+              {priceArr}
             </span>
           </div>
           <div className="order-summary-elems">
             <span>Discount: </span>{" "}
             <span>
-              <span>&#8377;</span>600
+              <span>&#8377;</span>
+              {priceArr}
             </span>
           </div>
           <div className="order-summary-sepertor">
