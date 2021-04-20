@@ -46,9 +46,9 @@ const UserDetails = ({
           className="user-dtls-list-item"
           onClick={() => {
             if (each === "Profile") {
-              goToPagesAction(dispatch, "UserProfilePage", "");
+              // goToPagesAction(dispatch, "UserProfilePage", "");
             } else if (each === "Inbox") {
-              goToPagesAction(dispatch, "UserInboxPage", "");
+              // goToPagesAction(dispatch, "UserInboxPage", "");
             } else if (each === "Log Out") {
               userLoginStatusAction(dispatch, false);
               const cloneLocalStorage = JSON.parse(

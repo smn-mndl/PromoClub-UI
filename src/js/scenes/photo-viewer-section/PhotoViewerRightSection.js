@@ -63,6 +63,10 @@ const PhotoViwerRightSection = (props) => {
 
   let sizes = photoDtls && photoDtls.attributes && photoDtls.attributes.sizes;
   const [value, setValue] = useState(1);
+  const [isAddingToCart, setIsAddingToCart] = useState({
+    status: false,
+    msg: "",
+  });
 
   const [viewSizeDropdown, setViewSizeDropdown] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -110,12 +114,14 @@ const PhotoViwerRightSection = (props) => {
   const addToCartClickHandler = () => {
     if (loginStatus) {
       //add to cart and show it to notification
+      setIsAddingToCart({ status: true, msg: "", code: null });
       addToCartAction({
         dispatch,
         photoDtls,
         cart: props.cart,
         imageSize,
         email: profile.email,
+        setIsAddingToCart,
       });
     } else {
       //show modal to login/register
@@ -162,6 +168,7 @@ const PhotoViwerRightSection = (props) => {
         onClick={() => addToCartClickHandler()}
       >
         Add to Cart
+        {isAddingToCart.status ? <div className="btn-loader"></div> : null}
       </div>
       <div className="photoviewer-right-section-photo-details">
         <div className="photo-details-title">Photo Details</div>

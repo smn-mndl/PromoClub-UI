@@ -26,8 +26,13 @@ const FeaturedAlbums = (props) => {
   return (
     <div className="featured-album-cont">
       <div className="album-header-cont">
-        {allAlbums && currentAlbum && (
+        {allAlbums &&
+        currentAlbum &&
+        allAlbums[currentAlbum] &&
+        allAlbums[currentAlbum].length > 0 ? (
           <PhotoGrid imgDtls={allAlbums[currentAlbum]} />
+        ) : (
+          <div className="album-no-data">Album is empty!</div>
         )}
       </div>
     </div>

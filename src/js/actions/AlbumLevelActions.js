@@ -9,9 +9,15 @@ export const setCurrentAlbumAction = async (dispatch, albumName) => {
 
 export const getAlbumDetailsAction = async (dispatch, albumName) => {
   setCurrentAlbumAction(dispatch, albumName);
-  const response = await getAlbumData(albumName);
+  let response = null;
+  try {
+    response = await getAlbumData(albumName);
+  } catch {
+    response = [];
+  }
+
   dispatch({
     type: "SET_ALL_ALBUM_ACTION",
-    payload: { albumName, response: response.data.result },
+    payload: { albumName, response: response },
   });
 };

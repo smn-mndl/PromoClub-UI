@@ -104,3 +104,14 @@ webkit-scrollbar-thumb {
     opacity: 0.8;
   }
 }
+
+@mixin no-data-class {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  margin-top: 25px;
+}

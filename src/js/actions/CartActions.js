@@ -1,13 +1,17 @@
 import { updateCartImageSize, downloadImage } from "../api/api-creator";
-import { updateLocalStorage } from "./ApplevelActions";
+import {
+  updateLocalStorage,
+  setDataLoadingStatusAction,
+} from "./ApplevelActions";
 
-export const updateCartImageSizeAction = async (
+export const updateCartImageSizeAction = async ({
   dispatch,
   imageID,
   imageSize,
   cart,
-  email
-) => {
+  email,
+}) => {
+  setDataLoadingStatusAction(dispatch, true);
   const updatedCart = cart.map((each) => {
     let data = each;
     if (data.photoDtls._id === imageID) {
@@ -15,10 +19,22 @@ export const updateCartImageSizeAction = async (
     }
     return data;
   });
-  const update = updateCartImageSize({ email, updatedCart: updatedCart });
+  const update = await updateCartImageSize({ email, updatedCart: updatedCart });
+  setDataLoadingStatusAction(dispatch, false);
   if (update) {
     let cloneLocalStorage = JSON.parse(localStorage.getItem("appStorage"));
     cloneLocalStorage["userDetails"]["cart"] = updatedCart;
+    updateLocalStorage(JSON.stringify(cloneLocalStorage));
+  }
+};
+
+export const emptyCartAction = async (dispatch, email) => {
+  setDataLoadingStatusAction(dispatch, true);
+  const update = await updateCartImageSize({ email, updatedCart: [] });
+  setDataLoadingStatusAction(dispatch, false);
+  if (update) {
+    let cloneLocalStorage = JSON.parse(localStorage.getItem("appStorage"));
+    cloneLocalStorage["userDetails"]["cart"] = [];
     updateLocalStorage(JSON.stringify(cloneLocalStorage));
   }
 };

@@ -25,6 +25,7 @@ export let addToCartAction = async ({
   cart,
   imageSize,
   email,
+  setIsAddingToCart,
 }) => {
   //make service call and add it user details object in db.
   //if successful then show notification in UI else show error msg in UI
@@ -43,16 +44,32 @@ export let addToCartAction = async ({
     if (ifPresnt.length > 0) {
       //already present
       //error msg
+      setIsAddingToCart({
+        status: true,
+        msg: "Already added to cart.",
+        code: "error",
+      });
     } else {
       updatedCart.push({ photoDtls, imageSize });
       let cloneLocalStorage = JSON.parse(localStorage.getItem("appStorage"));
       cloneLocalStorage["userDetails"]["cart"] = updatedCart;
       updateLocalStorage(JSON.stringify(cloneLocalStorage));
+      setIsAddingToCart({
+        status: false,
+        msg: "Succuessfully added to cart.",
+        code: "success",
+      });
     }
-    changeUserUpdateAction(dispatch, true);
+    changeUserUpdateAction(dispatch, false);
     return dispatch({
       type: "ADD_TO_CART_ACTION",
       payload: updatedCart,
+    });
+  } else {
+    setIsAddingToCart({
+      status: false,
+      msg: "Something broke! Please try again later.",
+      code: "error",
     });
   }
 };

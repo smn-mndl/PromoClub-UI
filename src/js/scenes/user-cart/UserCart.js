@@ -8,6 +8,7 @@ import ServiceLoadingPage from "../../components/common/service-loader/ServiceLo
 import {
   updateCartImageSizeAction,
   downloadImageAction,
+  emptyCartAction,
 } from "../../actions/CartActions";
 import { downloadImage } from "../../api/api-creator";
 
@@ -59,13 +60,13 @@ const UserCart = () => {
               //     each.imageSize = each;
               //   }
               // });
-              updateCartImageSizeAction(
+              updateCartImageSizeAction({
                 dispatch,
                 imageID,
-                imageSize,
+                imageSize: each,
                 cart,
-                email
-              );
+                email,
+              });
               setViewSizeDropdown(!viewSizeDropdown);
             }}
           >
@@ -232,6 +233,7 @@ const UserCart = () => {
         ];
       const res = getService(eachCartElem, obj.url);
     });
+    emptyCartAction(dispatch, email);
   };
   const cartPriceCalculator = (cart) => {
     const priceArr = cart.reduce(

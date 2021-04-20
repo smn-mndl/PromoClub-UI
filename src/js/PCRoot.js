@@ -62,7 +62,7 @@ const PromoClubRoot = (props) => {
           toastMsg={pageToast.toastMsg}
         />
       )}
-      {isDataLoading && <LazyServiceLoader />}
+
       <Suspense fallback={<LoadingPage text="Loading..." />}>
         <Router>
           {currentPage !== "SignPage" ? (
@@ -89,7 +89,7 @@ const PromoClubRoot = (props) => {
               </div>
             </>
           ) : null}
-
+          {isDataLoading && <LazyServiceLoader />}
           <main
             className={`pc-root-main-cont pc-root-main-cont-${currentPage}`}
           >

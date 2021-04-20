@@ -1,3 +1,7 @@
+@import "../../../styles/common.scss";
 .featured-album-cont {
   padding: 1.5em;
+  .album-no-data {
+    @include no-data-class;
+  }
 }
