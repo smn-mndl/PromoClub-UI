@@ -2,6 +2,7 @@ import { updateCartImageSize, downloadImage } from "../api/api-creator";
 import {
   updateLocalStorage,
   setDataLoadingStatusAction,
+  setUserCredentialsFromStorageAction,
 } from "./ApplevelActions";
 
 export const updateCartImageSizeAction = async ({
@@ -29,12 +30,11 @@ export const updateCartImageSizeAction = async ({
 };
 
 export const emptyCartAction = async (dispatch, email) => {
-  setDataLoadingStatusAction(dispatch, true);
   const update = await updateCartImageSize({ email, updatedCart: [] });
-  setDataLoadingStatusAction(dispatch, false);
   if (update) {
     let cloneLocalStorage = JSON.parse(localStorage.getItem("appStorage"));
     cloneLocalStorage["userDetails"]["cart"] = [];
     updateLocalStorage(JSON.stringify(cloneLocalStorage));
+    setUserCredentialsFromStorageAction(dispatch);
   }
 };

@@ -23,6 +23,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 13px !important;
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 code {
@@ -76,6 +77,7 @@ code {
 
 ::-webkit-scrollbar {
   width: 4px !important;
+  height: 10px;
   background-color: #f5f5f5;
 }
 

@@ -88,24 +88,26 @@ const UserCart = () => {
   const getImageSizeSelector = (picObj) => {
     let imageSize = picObj.imageSize;
     let picDtls = picObj.photoDtls,
+      attr = picDtls && picDtls.attributes,
       size =
-        picDtls.attributes.sizes[
+        attr &&
+        attr.sizes[
           `${
             imageSize.display_name
               ? `${imageSize.display_name.toLowerCase()}_jpg`
               : imageSize
           }`
         ],
-      title = picDtls.attributes.title,
-      desc = picDtls.attributes.description,
+      title = attr && attr.title,
+      desc = attr && attr.description,
       id = picDtls._id;
     let disp_name = size && size.display_name,
-      width = size.width,
-      height = size.height,
-      width_in_cm = size.width_cm,
-      height_in_cm = size.height_cm,
-      dpi = size.dpi,
-      format = size.format,
+      width = size && size.width,
+      height = size && size.height,
+      width_in_cm = size && size.width_cm,
+      height_in_cm = size && size.height_cm,
+      dpi = size && size.dpi,
+      format = size && size.format,
       cssSelectedCls = "cart-image-size";
     let sizes = picDtls && picDtls.attributes && picDtls.attributes.sizes;
     return (
@@ -135,15 +137,21 @@ const UserCart = () => {
             // updateCartImageSizeAction(dispatch, id, )
           }}
         >
-          <span>
-            <b>{disp_name}</b> {<span className="dot-icon"></span>} {width}{" "}
-            {<span className="cross-icon"></span>} {height} px
-          </span>
-          <span>
-            {width_in_cm.split(" ")[0]} {<span className="cross-icon"></span>}{" "}
-            {height_in_cm} {<span className="dot-icon"></span>} {dpi} dpi{" "}
-            {<span className="dot-icon"></span>} {format.toUpperCase()}
-          </span>
+          <div>
+            <span>
+              <b>{disp_name}</b> {<span className="dot-icon"></span>} {width}{" "}
+              {<span className="cross-icon"></span>} {height} px
+            </span>
+            <span>
+              {width_in_cm && width_in_cm.split(" ")[0]}{" "}
+              {<span className="cross-icon"></span>}{" "}
+              {height_in_cm ? height_in_cm : ""}{" "}
+              {<span className="dot-icon"></span>} {dpi ? dpi : ""} dpi{" "}
+              {<span className="dot-icon"></span>}{" "}
+              {format && format.toUpperCase()}
+            </span>
+          </div>
+
           <div className="img-size-arrow">
             {viewSizeDropdown && id === imageID ? (
               <UpOutlined />
@@ -172,20 +180,17 @@ const UserCart = () => {
     small_jpg: 100,
   };
   const getCart = (imgDtls) => {
-    let sizes =
+    let imgSrc =
       imgDtls.photoDtls &&
       imgDtls.photoDtls.attributes &&
-      imgDtls.photoDtls.attributes.sizes;
+      imgDtls.photoDtls.attributes.image_src;
     const imageSize = imgDtls.imageSize;
 
     return (
       <>
         <div className="cart">
           <div className="cart-img">
-            <img
-              alt={"abc"}
-              src={imgDtls.photoDtls.attributes.image_src["240p"]}
-            ></img>
+            <img alt={"abc"} src={imgSrc && imgSrc["240p"]}></img>
           </div>
           <div className="cart-item-dtls">
             <div
@@ -295,12 +300,14 @@ const UserCart = () => {
   return (
     <>
       {imageDownloading && <ServiceLoadingPage />}
-      {cart && cart.length > 0 ? (
-        <div className="user-cart-container">{getCartHTML()}</div>
-      ) : isLoggedIn ? (
-        <div className="cart-no-data">
-          Nothing's on cart. Please choose some first!
-        </div>
+      {isLoggedIn ? (
+        cart && cart.length > 0 ? (
+          <div className="user-cart-container">{getCartHTML()}</div>
+        ) : (
+          <div className="cart-no-data">
+            Nothing's on cart. Please choose some first!
+          </div>
+        )
       ) : (
         <div className="login-redirection cart-no-data">
           You are not logged in. Please{" "}

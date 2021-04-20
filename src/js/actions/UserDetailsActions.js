@@ -4,6 +4,7 @@ import {
   saveToCart,
 } from "../api/api-creator";
 import { updateLocalStorage } from "./ApplevelActions";
+import { setPageToastAction } from "./MiscActions";
 
 export const uploadCoverPicAction = async ({ dispatch, data }) => {
   const publishedData = await uploadCoverPic(data);
@@ -27,6 +28,7 @@ export let addToCartAction = async ({
   email,
   setIsAddingToCart,
 }) => {
+  debugger;
   //make service call and add it user details object in db.
   //if successful then show notification in UI else show error msg in UI
   let dbCart = cart && JSON.parse(JSON.stringify(cart));
@@ -45,9 +47,14 @@ export let addToCartAction = async ({
       //already present
       //error msg
       setIsAddingToCart({
-        status: true,
+        status: false,
         msg: "Already added to cart.",
         code: "error",
+      });
+      setPageToastAction(dispatch, {
+        show: true,
+        toastType: "warning",
+        toastMsg: "Already added to cart.",
       });
     } else {
       updatedCart.push({ photoDtls, imageSize });
@@ -58,6 +65,11 @@ export let addToCartAction = async ({
         status: false,
         msg: "Succuessfully added to cart.",
         code: "success",
+      });
+      setPageToastAction(dispatch, {
+        show: true,
+        toastType: "success",
+        toastMsg: "Succuessfully added to cart.",
       });
     }
     changeUserUpdateAction(dispatch, false);
@@ -70,6 +82,11 @@ export let addToCartAction = async ({
       status: false,
       msg: "Something broke! Please try again later.",
       code: "error",
+    });
+    setPageToastAction(dispatch, {
+      show: true,
+      toastType: "error",
+      toastMsg: "Something broke! Please try again later.",
     });
   }
 };

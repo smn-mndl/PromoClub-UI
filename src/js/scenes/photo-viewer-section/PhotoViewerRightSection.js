@@ -4,6 +4,7 @@ import { Radio } from "antd";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import LoginModal from "../../components/app-level/modals/LoginCustomModal";
 import { addToCartAction } from "../../actions/UserDetailsActions";
+import { isEmpty } from "lodash";
 
 const radioStyle = {
   display: "flex",
@@ -113,16 +114,18 @@ const PhotoViwerRightSection = (props) => {
 
   const addToCartClickHandler = () => {
     if (loginStatus) {
-      //add to cart and show it to notification
-      setIsAddingToCart({ status: true, msg: "", code: null });
-      addToCartAction({
-        dispatch,
-        photoDtls,
-        cart: props.cart,
-        imageSize,
-        email: profile.email,
-        setIsAddingToCart,
-      });
+      if (!isEmpty(photoDtls)) {
+        //add to cart and show it to notification
+        setIsAddingToCart({ status: true, msg: "", code: null });
+        addToCartAction({
+          dispatch,
+          photoDtls,
+          cart: props.cart,
+          imageSize,
+          email: profile.email,
+          setIsAddingToCart,
+        });
+      }
     } else {
       //show modal to login/register
       setShowLoginModal(true);
