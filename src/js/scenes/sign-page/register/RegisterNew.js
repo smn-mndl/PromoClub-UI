@@ -12,6 +12,7 @@ import { Store } from "../../../store/Store";
 import makeApiCall from "../../../api/api";
 import { useHistory } from "react-router";
 import Modal from "antd/lib/modal/Modal";
+import SecondFooter from "../../../components/app-level/app-footer/SecondFooter";
 
 const checkIfNonEmptyInptFld = (registerData) => {
   const keys = Object.keys(registerData);
@@ -212,6 +213,7 @@ const Register = () => {
           <p>Successfully Registered!</p>
         </Modal>
       </div>
+      <SecondFooter />
     </>
   );
 };

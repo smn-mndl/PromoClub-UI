@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./CustomerSupport.scss";
 import { checkEmailInput, checkNonEmptyInptFld } from "../../utils/app-utils";
 import { saveCustomerSupportComplaintAction } from "../../actions/MiscActions";
+import SecondFooter from "../../components/app-level/app-footer/SecondFooter";
 
 const formHTML = (onChangeHandler) => {
   return (
@@ -112,6 +113,7 @@ const CustomerSupport = () => {
             setButtonEnabled,
           })}
       </div>
+      <SecondFooter />
     </>
   );
 };

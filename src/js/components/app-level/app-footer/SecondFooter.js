@@ -1,10 +1,13 @@
 import React from "react";
+import "./SecondFooter.scss";
 
 const SecondFooter = () => {
   return (
     <>
-      <div className="secondary-footer-cont">© 2021 Photos Bay</div>
-      <div className="footer-overlay"></div>
+      <footer className="secondary-footer-cont">
+        <div className="secondary-footer-text">© 2021 Photos Bay</div>
+        <div className="footer-overlay"></div>
+      </footer>
     </>
   );
 };

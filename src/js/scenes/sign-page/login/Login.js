@@ -96,8 +96,17 @@ const Login = (props) => {
             {props.buttonTxt[0]}
             {isLoggingIn ? <div className="btn-loader"></div> : null}
           </div>
+          <div className="forget-password-cont">
+            Recover{" "}
+            <span
+              className="register-link"
+              onClick={() => history.push("/password-recovery")}
+            >
+              Password
+            </span>
+          </div>
           <div className="register-link-cont">
-            {props.txt}
+            {props.txt}{" "}
             <span
               className="register-link"
               onClick={

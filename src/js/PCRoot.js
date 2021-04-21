@@ -29,6 +29,9 @@ const LazyHomePage = lazy(() => import("./scenes/home-page/HomePage"));
 const LazyCustomerSupport = lazy(() =>
   import("./scenes/app-customer-support/CustomerSupport")
 );
+const LazyPasswordRecoverCom = lazy(() =>
+  import("./scenes/sign-page/password-recover/PasswordRecover")
+);
 
 const PromoClubRoot = (props) => {
   let {
@@ -78,7 +81,9 @@ const PromoClubRoot = (props) => {
               </header>
             </>
           ) : null}
-          {!["LoginPage", "SignUpPage"].includes(currentPage) ? (
+          {!["LoginPage", "SignUpPage", "PasswordRecoverPage"].includes(
+            currentPage
+          ) ? (
             <>
               <div className="homepage-app-tabs">
                 <AppTabs
@@ -105,6 +110,12 @@ const PromoClubRoot = (props) => {
               </Route>
               <Route path="/login" component={LazyLoginPage}>
                 <LazyLoginPage />
+              </Route>
+              <Route
+                path="/password-recovery"
+                component={LazyPasswordRecoverCom}
+              >
+                {/* <LazyLoginPage /> */}
               </Route>
               <Route path="/signup" component={LazyRegisterPage}>
                 <LazyRegisterPage />

@@ -62,12 +62,15 @@
   .secondary-footer-cont {
     position: absolute;
     z-index: 5;
-    bottom: 15px;
-    height: 5em;
+    bottom: 6px;
+    height: 65px;
     width: 100%;
     border-top: 1px solid;
     align-items: center;
     display: flex;
     justify-content: center;
+    .footer-overlay {
+      background: transparent;
+    }
   }
 }

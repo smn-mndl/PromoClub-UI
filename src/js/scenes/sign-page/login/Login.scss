@@ -135,16 +135,20 @@
   .register-link-cont {
     font-size: 1.1em;
     margin-top: 2em;
-    .register-link {
-      color: $default-pc-color;
+  }
+  .forget-password-cont {
+    font-size: 1.1em;
+    margin-top: 1em;
+  }
+  .register-link {
+    color: $default-pc-color;
+    background: $default-pc-background;
+    padding: 0.2em;
+    border-radius: 0.25em;
+    cursor: pointer;
+    &:hover {
       background: $default-pc-background;
-      padding: 0.2em;
-      border-radius: 0.25em;
-      cursor: pointer;
-      &:hover {
-        background: $default-pc-background;
-        opacity: 0.8;
-      }
+      opacity: 0.8;
     }
   }
 }

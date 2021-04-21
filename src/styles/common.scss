@@ -27,6 +27,9 @@
 .pc-root-main-cont-LoginPage {
   height: calc(100vh - 44px) !important;
 }
+.pc-root-main-cont-SignUpPage {
+  height: calc(100vh - 44px) !important;
+}
 .pc-root-main-cont-SignPage {
   height: 100vh;
 }
@@ -114,4 +117,26 @@ webkit-scrollbar-thumb {
   justify-content: center;
   font-size: 18px;
   margin-top: 25px;
+}
+
+@mixin footer-overlay {
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  background: #000000;
+  opacity: 0.75;
+  height: 100%;
+  width: 100%;
+}
+@mixin secondary-footer-cont {
+  position: absolute;
+  z-index: 5;
+  bottom: 6px;
+  height: 65px;
+  width: 100%;
+  border-top: 1px solid;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: white;
 }

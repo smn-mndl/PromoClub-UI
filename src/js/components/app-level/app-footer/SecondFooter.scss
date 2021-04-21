@@ -1,0 +1,10 @@
+@import "../../../../styles/common.scss";
+.footer-overlay {
+  @include footer-overlay;
+}
+.secondary-footer-cont {
+  @include secondary-footer-cont;
+}
+.secondary-footer-text {
+  z-index: 5;
+}
