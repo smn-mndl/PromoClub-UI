@@ -39,6 +39,15 @@ const UserDetails = ({
     }
     return counter > 0 && counter;
   };
+  const getHrefLink = (each) => {
+    let href = "#";
+    if (each === "Cart") {
+      href = `/cart/${state.userDetails.profile.email}`;
+    } else if (each === "Contact Us") {
+      href = `/support`;
+    }
+    return href;
+  };
   const createUserDtlsList = () => {
     return config.map((each) => {
       return (
@@ -66,7 +75,7 @@ const UserDetails = ({
             }
           }}
         >
-          <a>{each}</a>
+          <a href={getHrefLink(each)}>{each}</a>
           {logCounter(each) && (
             <span className={"user-details-counter"}>
               <span>{logCounter(each)}</span>

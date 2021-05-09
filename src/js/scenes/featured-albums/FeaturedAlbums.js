@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import "./FeaturedAlbums.scss";
 import { useQuery } from "../../routes/Routes";
 import { useHistory, useRouteMatch } from "react-router";
@@ -15,11 +15,15 @@ const FeaturedAlbums = (props) => {
     },
   } = useContext(Store);
 
+  const [dataLoading, setDataLoading] = useState(false);
+
   let match = useRouteMatch();
+  let history = useHistory();
   let albumName = match.path.search.split("=")[1];
   useEffect(() => {
-    if (!currentAlbum) {
-      getAlbumDetailsAction(dispatch, albumName);
+    if (albumName !== currentAlbum) {
+      setDataLoading(true);
+      getAlbumDetailsAction(dispatch, albumName, setDataLoading);
     }
   }, []);
 
@@ -30,7 +34,9 @@ const FeaturedAlbums = (props) => {
         currentAlbum &&
         allAlbums[currentAlbum] &&
         allAlbums[currentAlbum].length > 0 ? (
-          <PhotoGrid imgDtls={allAlbums[currentAlbum]} />
+          <PhotoGrid imgDtls={allAlbums[currentAlbum]} history={history} />
+        ) : dataLoading ? (
+          <div className="album-no-data">Data is loading...</div>
         ) : (
           <div className="album-no-data">Album is empty!</div>
         )}

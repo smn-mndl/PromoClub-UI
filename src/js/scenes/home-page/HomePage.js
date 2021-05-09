@@ -6,6 +6,7 @@ import LatestPhotoSection from "../../components/latest-photo-section/LatestPhot
 import FeaturedPhotoSection from "../../components/featured-album-section/FeaturedPhotoSection";
 import AppFooter from "../../components/app-level/app-footer/AppFooter";
 import JoiningBanner from "../../components/app-level/joining-banner/JoiningBanner";
+import { useHistory } from "react-router";
 
 const HomePage = () => {
   const {
@@ -17,12 +18,17 @@ const HomePage = () => {
     },
     dispatch,
   } = useContext(Store);
+  let history = useHistory();
   return (
     <div className="homepage-cont">
       {!["LoginPage", "SignUpPage"].currentPage && !isLoggedIn ? (
         <>
           <div className="homepage-joining-banner">
-            <JoiningBanner dispatch={dispatch} currentTab={currentTab} />
+            <JoiningBanner
+              dispatch={dispatch}
+              history={history}
+              currentTab={currentTab}
+            />
           </div>
         </>
       ) : null}

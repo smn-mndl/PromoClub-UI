@@ -1,3 +1,4 @@
+@import "../../../../styles/common.scss";
 .stockers-bay-photo-grid {
 }
 
@@ -25,21 +26,29 @@
   margin: 10px 0;
   width: 100%;
   transition: all 0.4s;
+  div {
+    transition: all 0.5s;
+    margin: 0 10px 0 0;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    .color-overlay {
+      @include image-card-overlay;
+    }
+  }
+  :last-child {
+    margin: 0 0 0 0px;
+  }
   img {
     margin: 0 10px 0 0;
     border: 1px solid white;
     border-radius: 15px;
     transition: all 0.5s;
+    cursor: pointer;
   }
-  //   :first-child {
-  //     margin: 0;
-  //   }
   :last-child {
     margin: 0 0 0 0px;
   }
-  //   :last-child(:nth-last-child()) {
-  //     margin: 0;
-  //   }
 }
 #photos {
   /* Prevent vertical gaps */

@@ -33,41 +33,22 @@ const AppHeader = ({
   const [showDrpdwnOpt, setShowDrpdwnOpt] = useState(false);
   let history = useHistory();
 
-  const publishBtnClickHandler = () => {
-    goToPagesAction(dispatch, "PublishPage", "");
-  };
   return (
     <>
       <section className="pc-app-header-cont">
         <header className="pc-hdr">
-          {/* <div className="app-header-icon"></div> */}
           <a
-            onClick={() => {
+            href="/"
+            onClick={(evt) => {
+              evt.preventDefault();
               history.push("/");
-              goToPagesAction(dispatch, "LandingPage", "");
+              currentPage !== "LandingPage" &&
+                goToPagesAction(dispatch, "LandingPage", "");
             }}
           >
             Photos Bay
           </a>
           <div className="pc-hdr-menu">
-            {/* <Tooltip
-              placement="bottom"
-              title={isLoggedIn ? "" : "Please login to publish"}
-            >
-              <div
-                className={
-                  isLoggedIn
-                    ? currentPage === "PublishPage"
-                      ? "publish-btn slcted-pagetab"
-                      : "publish-btn"
-                    : "publish-btn-disabled"
-                }
-                onClick={() => (isLoggedIn ? publishBtnClickHandler() : null)}
-              >
-                Publish
-              </div>
-            </Tooltip> */}
-
             <div
               className="sign-in-opt"
               onClick={() => {

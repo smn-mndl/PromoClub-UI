@@ -8,11 +8,12 @@ import {
 } from "../../actions/PhotoDetailsActions";
 import { Store } from "../../store/Store";
 import { LeftCircleFilled, RightCircleFilled } from "@ant-design/icons";
+import { LazyImage } from "../app-level/lazy-image-loading/LazyImage";
 
 const photoClickHandler = (clickedPhotoDtls, dispatch, history) => {
   let title = clickedPhotoDtls["attributes"]["title"],
     id = clickedPhotoDtls._id;
-  history.push(`/latest-photos/?name=${title}&id=${id}`, { id });
+  history.push(`/photo-viewer/?name=${title}&id=${id}`, { id });
   // photoClickAction(dispatch, clickedPhotoDtls);
   setSeletedPhotoBlankAction(dispatch);
 };
@@ -31,17 +32,23 @@ const getShadowCards = () => {
 
 const getPhotoCards = (dispatch, history, latestPhotos) => {
   return latestPhotos && latestPhotos.length > 0
-    ? latestPhotos.map((each) => {
+    ? latestPhotos.map((each, index) => {
         return (
           <div
             className="latest-photo-cards blog-card spring-fever"
             onClick={() => photoClickHandler(each, dispatch, history)}
           >
-            <img
+            {/* <img
               src={each["attributes"]["image_src"]["240p"]}
               style={{ objectFit: "cover", width: "100%", height: "100%" }}
               alt={each["attributes"]["alt"]}
-            ></img>
+            ></img> */}
+            <LazyImage
+              key={index}
+              src={each["attributes"]["image_src"]["240p"]}
+              alt={each["attributes"]["alt"]}
+              style={{ objectFit: "cover", width: "100%", height: "100%" }}
+            />
             <div class="title-content">
               <h5>
                 <a href="#">{each.attributes.title}</a>

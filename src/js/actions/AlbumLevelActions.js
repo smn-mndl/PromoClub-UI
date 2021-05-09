@@ -7,15 +7,20 @@ export const setCurrentAlbumAction = async (dispatch, albumName) => {
   });
 };
 
-export const getAlbumDetailsAction = async (dispatch, albumName) => {
+export const getAlbumDetailsAction = async (
+  dispatch,
+  albumName,
+  setDataLoading
+) => {
   setCurrentAlbumAction(dispatch, albumName);
   let response = null;
   try {
-    response = await getAlbumData(albumName);
+    const service = await getAlbumData(albumName);
+    response = service.data.result;
   } catch {
     response = [];
   }
-
+  setDataLoading(false);
   dispatch({
     type: "SET_ALL_ALBUM_ACTION",
     payload: { albumName, response: response },

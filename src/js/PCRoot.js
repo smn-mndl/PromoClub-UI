@@ -121,7 +121,7 @@ const PromoClubRoot = (props) => {
                 <LazyRegisterPage />
               </Route>
               <Route
-                path="/latest-photos"
+                path="/photo-viewer"
                 component={LazyPhotoViewerComponent}
               ></Route>
               <Route

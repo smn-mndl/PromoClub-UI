@@ -6,6 +6,11 @@ const PhotoGrid = (props) => {
   const currentScreenWidth = useCurrentWidth();
   const photoList = props.imgDtls ? props.imgDtls : [];
 
+  const photoCardClickHandler = (clickedPhotoDtls) => {
+    let title = clickedPhotoDtls["attributes"]["title"],
+      id = clickedPhotoDtls._id;
+    props.history.push(`/photo-viewer/?name=${title}&id=${id}`, { id });
+  };
   const getEachRow = (photos, totalRowWidth) => {
     return photos.map((each) => {
       return getEachImg(
@@ -16,10 +21,16 @@ const PhotoGrid = (props) => {
   };
   const getEachImg = (each, width) => {
     return (
-      <img
-        src={each.attributes.image_src.small}
-        style={{ objectFit: "cover", width: `${width}%`, height: "100%" }}
-      ></img>
+      <div
+        style={{ width: `${width}%`, height: "100%" }}
+        onClick={() => photoCardClickHandler(each)}
+      >
+        <img
+          src={each.attributes.image_src.small}
+          style={{ objectFit: "cover", width: `${100}%`, height: "100%" }}
+        ></img>
+        <div class="color-overlay"></div>
+      </div>
     );
   };
   const recursiveFunc = (list, dataHTML, rowCount) => {
@@ -78,10 +89,6 @@ const PhotoGrid = (props) => {
   return (
     <div className="stockers-bay-photo-grid">
       <div class="grid-layout">{getPhotoCards()}</div>
-      {/* <div id="photos">{getPhotoCards()}</div> */}
-      {/* <section id="photos1" className="masonry-with-columns">
-        {abc()}
-      </section> */}
     </div>
   );
 };

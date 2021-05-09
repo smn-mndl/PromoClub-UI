@@ -34,7 +34,8 @@
       text-indent: 0;
     }
     a {
-      all: unset;
+      all: unset !important;
+      color: unset;
     }
   }
 }

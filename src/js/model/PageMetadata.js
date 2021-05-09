@@ -14,7 +14,6 @@ const PAGE_METADATA = {
         setShowDrpdwnOpt,
         goToPagesAction,
       }) => {
-        debugger;
         setNavigationRouteAction(
           dispatch,
           `${history.location.pathname}${history.location.search}`

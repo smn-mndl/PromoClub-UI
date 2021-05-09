@@ -140,3 +140,15 @@ webkit-scrollbar-thumb {
   justify-content: center;
   color: white;
 }
+
+@mixin image-card-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: background 0.3s ease-in-out;
+  &:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
