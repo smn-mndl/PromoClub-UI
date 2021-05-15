@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import "./PhotoViewerBottomSection.scss";
 import { Store } from "../../store/Store";
 import { useHistory } from "react-router";
-import { photoClickAction } from "../../actions/PhotoDetailsActions";
+import {
+  photoClickAction,
+  setSeletedPhotoBlankAction,
+} from "../../actions/PhotoDetailsActions";
 import PhotoGrid from "../../components/app-level/photo-grid/PhotoGrid";
 
 const imgDtls = [
@@ -181,8 +184,13 @@ const PhotoViewerBottomSection = () => {
   let history = useHistory();
 
   const photoClickHandler = (clickedPhotoDtls) => {
-    history.push(`/latest-photos/${clickedPhotoDtls.title}`);
-    photoClickAction(dispatch, clickedPhotoDtls);
+    debugger;
+    // history.push(`/latest-photos/${clickedPhotoDtls.title}`);
+    // photoClickAction(dispatch, clickedPhotoDtls);
+    let title = clickedPhotoDtls["attributes"]["title"],
+      id = clickedPhotoDtls._id;
+    history.push(`/photo-viewer/?name=${title}&id=${id}`, { id });
+    setSeletedPhotoBlankAction(dispatch);
   };
   const getPhotoCards = () => {
     return imgDtls.map((each) => {

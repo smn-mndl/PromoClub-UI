@@ -40,7 +40,7 @@ const PhotoViewerSection = () => {
     if (photoId !== id) {
       photoClickAction(dispatch, id);
     }
-  }, [image]);
+  }, [image, id]);
 
   const getKeywardsHTML = (selectedPhotoAttributes) => {
     const keywords = !isEmpty(selectedPhotoAttributes)

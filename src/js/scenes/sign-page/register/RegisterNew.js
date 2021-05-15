@@ -116,7 +116,7 @@ const Register = () => {
         method: "POST",
         url: "registerUsers",
         payload: JSON.stringify(registerData),
-        isLocal: true,
+        isLocal: false,
         isMock: false,
       });
       if (!res.data.result.isValid) {
