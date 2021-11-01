@@ -32,6 +32,9 @@ const LazyCustomerSupport = lazy(() =>
 const LazyPasswordRecoverCom = lazy(() =>
   import("./scenes/sign-page/password-recover/PasswordRecover")
 );
+const LazyPrivacyPolicy = lazy(() =>
+  import("./scenes/privacy-policy/PrivacyPolicy")
+);
 
 const PromoClubRoot = (props) => {
   let {
@@ -56,7 +59,6 @@ const PromoClubRoot = (props) => {
       setUserCredentialsFromStorageAction(dispatch);
     }
   }, []);
-
   return (
     <>
       {pageToast.show && (
@@ -130,9 +132,13 @@ const PromoClubRoot = (props) => {
               ></Route>
               <Route path="/cart/:email" component={CartComponent}></Route>
               <Route path="/support" component={LazyCustomerSupport}></Route>
+              <Route exact path="/privacy-policy">
+                <LazyPrivacyPolicy />
+              </Route>
               <Route path="*">
                 <LazyHomePage />
               </Route>
+
             </Switch>
           </main>
         </Router>

@@ -184,7 +184,6 @@ const PhotoViewerBottomSection = () => {
   let history = useHistory();
 
   const photoClickHandler = (clickedPhotoDtls) => {
-    debugger;
     // history.push(`/latest-photos/${clickedPhotoDtls.title}`);
     // photoClickAction(dispatch, clickedPhotoDtls);
     let title = clickedPhotoDtls["attributes"]["title"],

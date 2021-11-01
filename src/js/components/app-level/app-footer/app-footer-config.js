@@ -77,7 +77,7 @@ export const APP_FOOTER_CONFIG = {
     {
       disp: "Privacy Policy",
       key: "privacypolicy",
-      link: "#",
+      link: "privacy-policy",
     },
     {
       disp: "Terms and Conditions",

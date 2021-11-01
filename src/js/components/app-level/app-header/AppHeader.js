@@ -46,7 +46,7 @@ const AppHeader = ({
                 goToPagesAction(dispatch, "LandingPage", "");
             }}
           >
-            Photos Bay
+            Pixoque
           </a>
           <div className="pc-hdr-menu">
             <div

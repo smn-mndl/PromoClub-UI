@@ -28,7 +28,6 @@ export let addToCartAction = async ({
   email,
   setIsAddingToCart,
 }) => {
-  debugger;
   //make service call and add it user details object in db.
   //if successful then show notification in UI else show error msg in UI
   let dbCart = cart && JSON.parse(JSON.stringify(cart));

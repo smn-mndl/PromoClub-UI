@@ -5,7 +5,7 @@ const SecondFooter = () => {
   return (
     <>
       <footer className="secondary-footer-cont">
-        <div className="secondary-footer-text">© 2021 Photos Bay</div>
+        <div className="secondary-footer-text">© 2021 Pixoque</div>
         <div className="footer-overlay"></div>
       </footer>
     </>

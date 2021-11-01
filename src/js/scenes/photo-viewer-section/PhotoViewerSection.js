@@ -12,6 +12,7 @@ import {
 import { isEmpty } from "lodash";
 import { useHistory } from "react-router";
 import PhotoViewerContainer from "./PhotoViewContainer";
+import { goToPagesAction } from "../../actions/ApplevelActions";
 
 const PhotoViewerSection = () => {
   const {
@@ -23,9 +24,17 @@ const PhotoViewerSection = () => {
       userDetails: {
         profile: { cart },
       },
+      navigation: { currentPage },
     },
   } = useContext(Store);
   const [showFullScreenImg, setShowFullScreenImg] = useState(false);
+
+    /** Set current page as Login Page if direct URL is entered */
+    useEffect(() => {
+      if (currentPage !== "LandingPage") {
+        goToPagesAction(dispatch, `LandingPage`);
+      }
+    }, []);
 
   const setImageSize = (imgSize) => {
     setImageSizeAction(dispatch, imgSize);
