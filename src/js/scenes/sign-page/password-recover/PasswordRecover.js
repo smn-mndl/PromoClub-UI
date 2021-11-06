@@ -38,7 +38,7 @@ const PasswordRecovery = () => {
     } else {
       if (email) {
         if (checkIfEmailIsValid) {
-          Axios.post("http://localhost:8080/forgotPassword", {
+          Axios.post("https://intense-hollows-12373.herokuapp.com/forgotPassword", {
             email: email,
           })
             .then((response) => {
