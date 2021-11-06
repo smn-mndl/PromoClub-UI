@@ -1,4 +1,4 @@
-import makeApiCall from "./api";
+import { makeApiCall, makeApiCallForResetPassword } from "./api";
 
 export const getPublishedData = () => {
   return makeApiCall({
@@ -185,6 +185,25 @@ export const getAlbumData = (albumName) => {
     url: "getAlbum",
     payload: { albumName },
     isLocal: false,
+    isMock: false,
+  });
+};
+
+export const checkIfResetTokenMatches = (token) => {
+  return makeApiCallForResetPassword({
+    method: "GET",
+    url: "resetPassword",
+    payload: token,
+    isLocal: false,
+    isMock: false,
+  });
+};
+export const saveNewPassword = (newPass, token) => {
+  return makeApiCall({
+    method: "POST",
+    url: "saveNewPassword",
+    payload: { token, newPass },
+    isLocal: true,
     isMock: false,
   });
 };

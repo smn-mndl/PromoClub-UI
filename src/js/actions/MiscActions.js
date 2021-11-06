@@ -1,4 +1,4 @@
-import { saveCustomerComplaint } from "../api/api-creator";
+import { saveCustomerComplaint, saveNewPassword } from "../api/api-creator";
 
 export const setPageToastAction = async (
   dispatch,
@@ -18,4 +18,27 @@ export const saveCustomerSupportComplaintAction = async (
   complaint
 ) => {
   const response = await saveCustomerComplaint(complaint);
+};
+
+export const saveNewPasswordAction = async (
+  dispatch,
+  newpassword,
+  token,
+  history
+) => {
+  const response = await saveNewPassword(newpassword, token);
+  if(response.data.result.isValid){
+    setPageToastAction(dispatch, {
+      show: true,
+      toastType: "success",
+      toastMsg: "Password reset is successful",
+    });
+    history.push("/login")
+  }else{
+    setPageToastAction(dispatch, {
+      show: true,
+      toastType: "error",
+      toastMsg: response.data.result.successText,
+    });
+  }
 };

@@ -117,7 +117,7 @@
   .register-link {
     text-align: center;
     font-size: 1.2em;
-    border: 1px solid $default-pc-background;
+    border: 1px solid $default-click-btn-border-color;
     width: 6em;
     justify-content: center;
     align-items: center;
@@ -126,11 +126,11 @@
     border-radius: 6px;
     margin-top: 1.3em;
     cursor: pointer;
-    background: $default-pc-background;
+    background: $default-click-btn-background-color;
     color: $default-pc-color;
     padding: 0.4em;
     &:hover {
-      background: $default-pc-background;
+      background: $default-click-btn-hover-color;
       opacity: 0.8;
     }
   }
@@ -152,12 +152,12 @@
     margin-top: 2em;
     .login-link {
       color: $default-pc-color;
-      background: $default-pc-background;
+      background: $default-click-btn-hover-color;
       padding: 0.2em;
       border-radius: 0.25em;
       cursor: pointer;
       &:hover {
-        background: $default-pc-background;
+        background: $default-click-btn-hover-color;
         opacity: 0.8;
       }
     }
@@ -185,7 +185,7 @@
 .email-error-txt {
   margin-top: -15px;
   font-size: 1.08em;
-  color: white;
+  color: $default-pc-color;
   .email-error-asterisk {
     color: red;
   }

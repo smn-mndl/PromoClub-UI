@@ -9,7 +9,7 @@ import {
   setNavigationRouteAction,
 } from "../../../actions/ApplevelActions";
 import { Store } from "../../../store/Store";
-import makeApiCall from "../../../api/api";
+import {makeApiCall} from "../../../api/api";
 import { useHistory } from "react-router";
 import Modal from "antd/lib/modal/Modal";
 import SecondFooter from "../../../components/app-level/app-footer/SecondFooter";
@@ -39,7 +39,8 @@ const checkIfPassLengthMatch = (registerData) => {
 };
 
 const checkIfEmailIsValid = (registerData) => {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return (
     registerData["email"] && re.test(String(registerData.email).toLowerCase())
   );
@@ -68,7 +69,7 @@ const checkIfInptFldValid = (registerData, setErrorInEmail) => {
   } else if (!ifEmailValid) {
     setErrorInEmail({
       error: true,
-      errorText: "Invalid email id!",
+      errorText: "Invalid email address!",
     });
   }
   return iIfEmptyInptFld && ifPassMatch && ifEmailValid ? true : false;
@@ -78,6 +79,7 @@ const Register = () => {
   const { dispatch, state } = useContext(Store);
   const {
     navigation: { route, currentPage },
+    isLoggedIn,
   } = state;
   const [registerData, setRegisterData] = useState({});
   const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -105,33 +107,41 @@ const Register = () => {
     });
   };
   const onSubmit = async () => {
-    setErrorInEmail({
-      error: false,
-      isLoading: true,
-      errorText: "",
-    });
-    const ifInptFldValid = checkIfInptFldValid(registerData, setErrorInEmail);
-    if (ifInptFldValid) {
-      const res = await makeApiCall({
-        method: "POST",
-        url: "registerUsers",
-        payload: JSON.stringify(registerData),
-        isLocal: false,
-        isMock: false,
+    if (isLoggedIn) {
+      setErrorInEmail({
+        error: true,
+        isLoading: false,
+        errorText: "You are already logged in. Please log out and try to register.",
       });
-      if (!res.data.result.isValid) {
-        setErrorInEmail({
-          error: true,
-          isLoading: false,
-          errorText: res.data.result.errorText,
+    } else {
+      setErrorInEmail({
+        error: false,
+        isLoading: true,
+        errorText: "",
+      });
+      const ifInptFldValid = checkIfInptFldValid(registerData, setErrorInEmail);
+      if (ifInptFldValid) {
+        const res = await makeApiCall({
+          method: "POST",
+          url: "registerUsers",
+          payload: JSON.stringify(registerData),
+          isLocal: false,
+          isMock: false,
         });
-      } else {
-        setErrorInEmail({
-          error: false,
-          isLoading: false,
-          errorText: "",
-        });
-        setShowRegisterModal(true);
+        if (!res.data.result.isValid) {
+          setErrorInEmail({
+            error: true,
+            isLoading: false,
+            errorText: res.data.result.errorText,
+          });
+        } else {
+          setErrorInEmail({
+            error: false,
+            isLoading: false,
+            errorText: "",
+          });
+          setShowRegisterModal(true);
+        }
       }
     }
   };

@@ -100,13 +100,13 @@
     background: rgba(138, 138, 138, 0.4) !important;
     border: 1px solid rgba(138, 138, 138, 0.4) !important;
     color: white;
-    cursor: not-allowed !important;
+    // cursor: not-allowed !important;
   }
   .login-link {
     align-items: center;
     text-align: center;
     font-size: 1.2em;
-    border: 1px solid $default-pc-background;
+    border: 1px solid $default-click-btn-border-color;
     width: 6em;
     justify-content: center;
     display: flex;
@@ -114,11 +114,11 @@
     border-radius: 6px;
     margin-top: 1.3em;
     cursor: pointer;
-    background: $default-pc-background;
+    background: $default-click-btn-background-color;
     color: $default-pc-color;
     padding: 0.4em;
     &:hover {
-      background: $default-pc-background;
+      background: $default-click-btn-hover-color;
       opacity: 0.8;
     }
     .btn-loader {
@@ -142,13 +142,21 @@
   }
   .register-link {
     color: $default-pc-color;
-    background: $default-pc-background;
+    background: $default-click-btn-hover-color;
     padding: 0.2em;
     border-radius: 0.25em;
     cursor: pointer;
     &:hover {
-      background: $default-pc-background;
+      background: $default-click-btn-hover-color;
       opacity: 0.8;
     }
+  }
+}
+.email-error-txt {
+  margin-top: -15px;
+  font-size: 1.08em;
+  color: $default-pc-color;
+  .email-error-asterisk {
+    color: red;
   }
 }

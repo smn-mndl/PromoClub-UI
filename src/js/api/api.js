@@ -21,7 +21,7 @@ const createStaticHeader = () => {
   };
 };
 
-const makeApiCall = async ({ method, url, payload, isLocal, isMock }) => {
+export const makeApiCall = async ({ method, url, payload, isLocal, isMock }) => {
   const staticHeader = createStaticHeader();
   const apiurl = `${API_URL(isMock, isLocal)}/${url}`;
   const apiHeader = {
@@ -34,4 +34,17 @@ const makeApiCall = async ({ method, url, payload, isLocal, isMock }) => {
   return response;
 };
 
-export default makeApiCall;
+export const makeApiCallForResetPassword = async ({ method, url, payload, isLocal, isMock }) => {
+  const staticHeader = createStaticHeader();
+  const apiurl = `${API_URL(isMock, isLocal)}/${url}`;
+  const apiHeader = {
+    ...staticHeader,
+    url: apiurl,
+    method: method,
+    params: payload,
+  };
+  const response = axios(apiHeader);
+  return response;
+};
+
+// export default makeApiCall;

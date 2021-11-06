@@ -1,7 +1,7 @@
 import React from "react";
 import "./PageToast.scss";
 
-const PageToast = props => {
+const PageToast = (props) => {
   const { toastType, toastMsg } = props;
   const getToastIcon = () => {
     let iconHTML = null;
@@ -16,12 +16,28 @@ const PageToast = props => {
   };
 
   return (
-    <div className="toast-cntnr">
-      <div className="toast-content">
-        {getToastIcon()}
-        {toastMsg}
+    <>
+      {/* <div className="toast-cntnr">
+        <div className="toast-content">
+          {getToastIcon()}
+          {toastMsg}
+        </div>
+      </div> */}
+      <div class="ant-message">
+        <div>
+          <div class="ant-message-notice">
+            <div class="ant-message-notice-content">
+              <div class="ant-message-custom-content ant-message-success">
+                <span>
+                  {getToastIcon()}
+                  {toastMsg}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

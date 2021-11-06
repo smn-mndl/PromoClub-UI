@@ -32,6 +32,9 @@ const LazyCustomerSupport = lazy(() =>
 const LazyPasswordRecoverCom = lazy(() =>
   import("./scenes/sign-page/password-recover/PasswordRecover")
 );
+const LazyResetPasswordCom = lazy(() =>
+  import("./scenes/sign-page/password-recover/ResetPassword")
+);
 const LazyPrivacyPolicy = lazy(() =>
   import("./scenes/privacy-policy/PrivacyPolicy")
 );
@@ -119,6 +122,12 @@ const PromoClubRoot = (props) => {
               >
                 {/* <LazyLoginPage /> */}
               </Route>
+              <Route
+                path="/reset/:token"
+                component={LazyResetPasswordCom}
+              >
+                {/* <LazyLoginPage /> */}
+              </Route>
               <Route path="/signup" component={LazyRegisterPage}>
                 <LazyRegisterPage />
               </Route>
@@ -138,7 +147,6 @@ const PromoClubRoot = (props) => {
               <Route path="*">
                 <LazyHomePage />
               </Route>
-
             </Switch>
           </main>
         </Router>

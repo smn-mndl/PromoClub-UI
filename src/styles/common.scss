@@ -131,7 +131,7 @@ webkit-scrollbar-thumb {
 @mixin secondary-footer-cont {
   position: absolute;
   z-index: 5;
-  bottom: 6px;
+  bottom: 0px;
   height: 65px;
   width: 100%;
   border-top: 1px solid;
