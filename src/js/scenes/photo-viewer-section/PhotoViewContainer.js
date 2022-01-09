@@ -2,11 +2,27 @@ import React from "react";
 import { FullscreenOutlined } from "@ant-design/icons";
 
 const PhotoViewerContainer = (props) => {
-  const {
-    setShowFullScreenImg,
-    showFullScreenImg,
-    selectedPhotoAttributes,
-  } = props;
+  const { setShowFullScreenImg, showFullScreenImg, selectedPhotoAttributes } =
+    props;
+  const getSrc = () => {
+    let src = "";
+    if (
+      selectedPhotoAttributes["image_src"] &&
+      selectedPhotoAttributes["image_src"]["small"]
+    ) {
+      src =
+        selectedPhotoAttributes["image_src"] &&
+        selectedPhotoAttributes["image_src"]["small"];
+    } else if (
+      selectedPhotoAttributes["image_src"] &&
+      selectedPhotoAttributes["image_src"]["medium"]
+    ) {
+      src =
+        selectedPhotoAttributes["image_src"] &&
+        selectedPhotoAttributes["image_src"]["medium"];
+    }
+    return src;
+  };
   return (
     <>
       <div
@@ -17,10 +33,7 @@ const PhotoViewerContainer = (props) => {
       </div>
       <img
         className="photo-section-img"
-        src={
-          selectedPhotoAttributes["image_src"] &&
-          selectedPhotoAttributes["image_src"]["480p"]
-        }
+        src={getSrc()}
         alt={selectedPhotoAttributes["alt"]}
       ></img>
       <div className="background-color-gradient"></div>

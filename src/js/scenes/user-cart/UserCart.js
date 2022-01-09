@@ -190,7 +190,7 @@ const UserCart = () => {
       <>
         <div className="cart">
           <div className="cart-img">
-            <img alt={"abc"} src={imgSrc && imgSrc["240p"]}></img>
+            <img alt={"abc"} src={imgSrc && imgSrc["extra_small"]}></img>
           </div>
           <div className="cart-item-dtls">
             <div
@@ -208,9 +208,10 @@ const UserCart = () => {
     );
   };
   const downloadSizeConfig = {
-    large_jpg: "1080p",
-    medium_jpg: "480p",
-    small_jpg: "240p",
+    large_jpg: "large",
+    medium_jpg: "medium",
+    small_jpg: "small",
+    extra_small_jpg: "extra_small",
   };
   const handleDownload = async (event, cart) => {
     event.preventDefault();

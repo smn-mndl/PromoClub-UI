@@ -22,9 +22,24 @@ const getShadowCards = () => {
   let shadowCards = [];
   for (let i = 0; i < 10; i++) {
     shadowCards.push(
-      <div className="latest-photo-cards blog-card spring-fever shadow-cards">
-        <div class="color-overlay"></div>
-      </div>
+      <>
+        <div class="cards">
+          <div class="card3">
+    
+          </div>
+
+          <div class="card is-loading">
+            <div class="image"></div>
+            <div class="content">
+              <h2></h2>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        {/* <div className="latest-photo-cards blog-card spring-fever shadow-cards">
+          <div class="color-overlay"></div>
+        </div> */}
+      </>
     );
   }
   return shadowCards;
@@ -45,7 +60,7 @@ const getPhotoCards = (dispatch, history, latestPhotos) => {
             ></img> */}
             <LazyImage
               key={index}
-              src={each["attributes"]["image_src"]["240p"]}
+              src={each["attributes"]["image_src"]["extra_small"]}
               alt={each["attributes"]["alt"]}
               style={{ objectFit: "cover", width: "100%", height: "100%" }}
             />

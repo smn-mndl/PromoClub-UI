@@ -29,12 +29,12 @@ const PhotoViewerSection = () => {
   } = useContext(Store);
   const [showFullScreenImg, setShowFullScreenImg] = useState(false);
 
-    /** Set current page as Login Page if direct URL is entered */
-    useEffect(() => {
-      if (currentPage !== "LandingPage") {
-        goToPagesAction(dispatch, `LandingPage`);
-      }
-    }, []);
+  /** Set current page as Login Page if direct URL is entered */
+  useEffect(() => {
+    if (currentPage !== "LandingPage") {
+      goToPagesAction(dispatch, `LandingPage`);
+    }
+  }, []);
 
   const setImageSize = (imgSize) => {
     setImageSizeAction(dispatch, imgSize);
@@ -109,7 +109,7 @@ const PhotoViewerSection = () => {
             className="photo-section-img"
             src={
               selectedPhotoAttributes["image_src"] &&
-              selectedPhotoAttributes["image_src"]["480p"]
+              selectedPhotoAttributes["image_src"]["small"]
             }
             alt={selectedPhotoAttributes["alt"]}
           ></img>

@@ -2,6 +2,7 @@ import {
   getLatestPhotos,
   getClickedPhotoDetails,
   getPhotoDetails,
+  fetchMorePhotosFromAlbum,
 } from "../api/api-creator";
 
 export const signInBtnClickHandler = async (dispatch, currentPage, subPage) => {
@@ -48,5 +49,12 @@ export const getPhotoDetailsAction = async (dispatch, id) => {
   return dispatch({
     type: "SET_PHOTO_DETAILS",
     payload: result.data.result.latestPhotos,
+  });
+};
+export const fetchMorePhotosFromAlbumAction = async (dispatch, collection_name) => {
+  const result = await fetchMorePhotosFromAlbum(collection_name);
+  return dispatch({
+    type: "MORE_PHOTOS",
+    payload: result.data.result,
   });
 };

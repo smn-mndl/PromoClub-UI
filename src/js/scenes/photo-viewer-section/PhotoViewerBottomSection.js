@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./PhotoViewerBottomSection.scss";
 import { Store } from "../../store/Store";
 import { useHistory } from "react-router";
@@ -180,8 +180,24 @@ const imgDtls = [
 ];
 
 const PhotoViewerBottomSection = () => {
-  const { dispatch } = useContext(Store);
+  const {
+    dispatch,
+    state: {
+      albums,
+      selectedPhotoDetails: { image },
+    },
+  } = useContext(Store);
   let history = useHistory();
+  const collection = image && image["attributes"] && image["attributes"]["details"]["collection_name"];
+  const [morePhotos, setMorePhotos] = useState(null);
+  useEffect(() => {
+    let albumNames = Object.keys(albums["allAlbums"]);
+    let morePhotos1 = [];
+    if (collection && albumNames.includes(collection.toLowerCase())) {
+      morePhotos1 = albums["allAlbums"][`${collection.toLowerCase()}`];
+      setMorePhotos(morePhotos1);
+    }
+  }, morePhotos, collection);
 
   const photoClickHandler = (clickedPhotoDtls) => {
     // history.push(`/latest-photos/${clickedPhotoDtls.title}`);
@@ -192,7 +208,7 @@ const PhotoViewerBottomSection = () => {
     setSeletedPhotoBlankAction(dispatch);
   };
   const getPhotoCards = () => {
-    return imgDtls.map((each) => {
+    return morePhotos && morePhotos.map((each) => {
       return (
         <div
           className="latest-photo-cards blog-card spring-fever"

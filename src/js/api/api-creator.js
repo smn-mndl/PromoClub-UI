@@ -207,3 +207,12 @@ export const saveNewPassword = (newPass, token) => {
     isMock: false,
   });
 };
+export const fetchMorePhotosFromAlbum = (albumName) => {
+  return makeApiCall({
+    method: "POST",
+    url: "morePhotos",
+    payload: albumName,
+    isLocal: true,
+    isMock: false,
+  });
+};
