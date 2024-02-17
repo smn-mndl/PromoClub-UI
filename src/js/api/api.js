@@ -5,7 +5,7 @@ const API_URL = (isMock, isLocal) => {
     ? !isMock
       ? "http://localhost:8080"
       : ""
-    : "https://intense-hollows-12373.herokuapp.com";
+    : "https://example-vuu1.onrender.com";
 };
 
 const createStaticHeader = () => {
